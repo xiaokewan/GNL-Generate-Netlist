@@ -1,0 +1,24 @@
+# example with strange Rent behavior
+
+[library]
+name=lib
+latch=dff   1 1
+latch=dffq  1 2
+gate=inv    1 1
+gate=and2   2 1
+gate=nand3  3 1
+gate=or4    4 1
+gate=xor2   2 1
+
+[circuit]
+name=strange
+libraries=lib
+distribution=100 100 600 400 300 200 100
+size=30
+  p=0.7
+size=200
+  p=0.3
+size=1800
+  p=0.8
+  q=0.6
+  sigmaG=0.1

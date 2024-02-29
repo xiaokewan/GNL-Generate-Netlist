@@ -1,0 +1,40 @@
+#example of a multilevel circuit
+
+[library]
+name=lib
+latch=dff   1 1
+latch=dffq  1 2
+gate=inv    1 1
+gate=and2   2 1
+gate=nand3  3 1
+gate=or4    4 1
+gate=xor2   2 1
+
+[module]
+name=part
+libraries=lib
+distribution=100 100 600 400 300 200 100
+size=300
+  p=0.8
+size=1800
+  I=120
+  O=80
+
+[circuit]
+name=multilevel
+libraries=part lib
+distribution=10
+distribution=1000 500 2000 1000 800 600 300
+size=1
+  meanT=3
+  sigmaT=1
+  meanG=0.3
+  sigmaG=0.15
+size=1800
+  p=0.5
+size=10000
+  meanG=0.4
+  p=0.7
+size=24200
+  I=300
+  O=200
