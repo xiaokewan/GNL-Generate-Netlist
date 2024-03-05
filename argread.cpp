@@ -495,7 +495,7 @@ void ArgRead::AR_ReadOption(int num, int &argCounter) {
             AR_ReadInt(correctionThreshold, lower, 1, 0);
             break;
         case 0:
-            AR_ReadMultipleRegEx(outputMacrocellFormats, "hnl|netD|netD2|nets|info|plot|rtd|dat|tree|ptree");
+            AR_ReadMultipleRegEx(outputMacrocellFormats, "hnl|netD|netD2|nets|info|plot|rtd|dat|tree|ptree|blif");
             break;
         case 23:
             AR_ReadFloat(maxPinError, both, 0, 100);
@@ -528,7 +528,7 @@ void ArgRead::AR_ReadOption(int num, int &argCounter) {
             AR_ReadFile(argCounter);
             break;
         case 2:
-            AR_ReadMultipleRegEx(outputFormats, "hnl|netD|netD2|nets|info|plot|rtd|dat|tree|ptree");
+            AR_ReadMultipleRegEx(outputFormats, "hnl|netD|netD2|nets|info|plot|rtd|dat|tree|ptree|blif");
             break;
         case 19:
             AR_ReadFloat(flopInsertProbability, both, 0, 1);

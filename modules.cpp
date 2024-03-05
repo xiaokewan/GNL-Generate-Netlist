@@ -200,6 +200,8 @@ void Module::PostProcess(ModuleType *modType) {
             WriteTree(name, modType);
         else if (*fi == "ptree")
             WritePtree(name, modType);
+        else if (*fi == "blif")
+            WriteBlifSimple(name, modType);
     }
 
     //Check for target number of pins and g_fraction

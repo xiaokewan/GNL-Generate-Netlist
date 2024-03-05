@@ -210,6 +210,8 @@ private:
 
     void WritePtree(const string &name, ModuleType *modType);
 
+    void WriteBlifSimple(const string &name, ModuleType *modType);
+
 private:
     struct Block;
     struct Net;
