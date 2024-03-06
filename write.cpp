@@ -93,7 +93,8 @@ void Module::WriteBlifSimple(const string &name, ModuleType *modType) {
                 out << " n" << netMap[*ni];
             for (vector<OutputNet *>::iterator ni = (*bi)->outputs.begin(); ni != (*bi)->outputs.end(); ++ni)
                 out << " n" << netMap[*ni];
-            out << "\n0 1\n1 0\n";
+//            out << "\n0 1\n1 0\n";
+	    out << "\n0 1\n";
         }
 
         else if (blockName == "and2"){
