@@ -27,25 +27,28 @@ gate=nand3  3 1
 [circuit]
 name=rent_exp_$p
 libraries=lib
-distribution=100 200 300 300
+distribution=500 1000 1500 1500
 
-size=1
+#size=0
+#  p=$p
+size=10
   p=$p
-  q=0.4
-size=900
-  I=350
-  O=150
+#  q=0.4
+size=4500
+  meanG = 0.4
+#  I=350
+#  O=150
 EOL
 
 
     gnl -w blif $filename
-    
-    cd ./vpr_files
+    mkdir ./vpr_files/$filename
+    cd ./vpr_files/$filename
     # run VPR
     bliffile="rent_exp_${p}.blif" 
     echo "Running VPR for $bliffile"
-    $VTR_ROOT/vpr/vpr $VTR_ROOT/vtr_flow/arch/timing/EArch.xml ../$bliffile
-    cd ..	
+    $VTR_ROOT/vpr/vpr $VTR_ROOT/vtr_flow/arch/timing/EArch.xml ../../$bliffile
+    cd ../..	
 done
 
 echo "All processes are done!"

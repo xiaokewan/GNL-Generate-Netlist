@@ -59,13 +59,24 @@ void Module::WriteBlifSimple(const string &name, ModuleType *modType) {
 
 
     out << ".model " << name << "\n";
+    
+    // checl if its timing or non-timing 
+    bool hasLatch = false;
+    for (list<Block*>::iterator bi = blocks.begin(); bi != blocks.end(); ++bi) {
+        if ((*bi)->cell->Name() == "latch") {
+            hasLatch = true;
+            break;
+        }
+    }
     // write .inputs and .outputs
     CounterMap netMap;
     if (!inputs.empty()) {
         out << ".inputs";
         for (list<InputNet *>::iterator ni = inputs.begin(); ni != inputs.end(); ++ni)
             out << " n" << netMap[*ni];
-        out << " pclk";
+        if (hasLatch) {
+            out << " pclk";
+        }
         out << endl;
     }
     if (!outputs.empty()) {
