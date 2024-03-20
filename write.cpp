@@ -65,6 +65,7 @@ void Module::WriteBlifSimple(const string &name, ModuleType *modType) {
         out << ".inputs";
         for (list<InputNet *>::iterator ni = inputs.begin(); ni != inputs.end(); ++ni)
             out << " n" << netMap[*ni];
+        out << " pclk";
         out << endl;
     }
     if (!outputs.empty()) {
