@@ -9,6 +9,7 @@ import os
 import pickle
 import matplotlib.pyplot as plt
 import numpy as np
+import sys
 
 
 def trend_line(data):
@@ -67,12 +68,27 @@ def visualize_rent(rent_path, output_filename='Rents_rule_real.png'):
     plt.savefig(output_filename)
 
 
-if __name__ == '__main__':
-    folder = "../rent_sweep/sweep"  # Adjust directory
-    filenames = [f for f in os.listdir(folder) if f.endswith('.rent')]
+# if __name__ == '__main__':
+#     # folder = "../rent_sweep/sweep"  # Adjust directory
+#     #
+#     if len(sys.argv) != 2:
+#         print("Usage: python3 rent2viz.py <rent_path>")
+#         sys.exit(1)
+#     rent_path = sys.argv[1]
+#     filenames = [f for f in os.listdir(rent_path) if f.endswith('.rent')]
+#     for filename in filenames:
+#         rent_file_path = os.path.join(rent_path, filename)
+#         output_filename = os.path.join(rent_path, f"{filename}_visualized.png")
+#         visualize_rent(rent_file_path, output_filename)
+#         print(f"Visualization saved to {output_filename}")
 
-    for filename in filenames:
-        rent_path = os.path.join(folder, filename)
-        output_filename = os.path.join(folder, f"{filename}_visualized.png")
-        visualize_rent(rent_path, output_filename)
-        print(f"Visualization saved to {output_filename}")
+if __name__ == '__main__':
+    if len(sys.argv) != 2:
+        print("Usage: python3 rent2viz.py <rent_file_path>")
+        sys.exit(1)
+
+    rent_file_path = sys.argv[1]
+    output_filename = rent_file_path + "_visualized.png"
+
+    visualize_rent(rent_file_path, output_filename)
+    print(f"Visualization saved to {output_filename}")

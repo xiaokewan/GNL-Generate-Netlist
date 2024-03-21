@@ -206,9 +206,36 @@ def process_blif_file(blif_file, output_folder, hmetis_path, graphfiles_folder='
         pickle.dump(rent_data, fp)
 
 
+# if __name__ == '__main__':
+#     arguments = sys.argv[1:]
+#     if len(arguments) > 3 or len(arguments) < 2:
+#         print("Usage: python3 netlist2rent.py <blif_file_path> <output_folder> <hmetis_path> \n"
+#               "or python3 netlist2rent.py <blif_file_path> <hmetis_path> with default output folder")
+#         sys.exit(1)
+#
+#     blif_folder_path = arguments[0]
+#     output_folder = os.path.dirname(blif_folder_path) if len(arguments) == 2 else arguments[1]
+#     hmetis_path = arguments[1] if len(arguments) == 2 else arguments[2]
+#
+#     # blif_file_folder = "../rent_sweep/sweep"
+#     # hmetis_path = “../hmetis-1.5-linux”
+#     filenames = [f for f in os.listdir(blif_folder_path) if f.endswith('.blif')]
+#     for filename in filenames:
+#         blif_file_path = os.path.join(blif_folder_path, filename)
+#         process_blif_file(blif_file_path, output_folder=output_folder, hmetis_path=hmetis_path)
+#
+
 if __name__ == '__main__':
-    blif_file_folder = "../rent_sweep/sweep"
-    filenames = [f for f in os.listdir(blif_file_folder) if f.endswith('.blif')]
-    for filename in filenames:
-        blif_file_path = os.path.join(blif_file_folder, filename)
-        process_blif_file(blif_file_path, output_folder=blif_file_folder, hmetis_path="../hmetis-1.5-linux/hmetis")
+    arguments = sys.argv[1:]
+    if len(arguments) < 2 or len(arguments) > 3:
+        print("Usage: python3 netlist2rent.py <blif_file_path> [<output_folder>] <hmetis_path>")
+        sys.exit(1)
+
+    blif_file_path = arguments[0]
+    hmetis_path = arguments[-1]  # Always the last argument
+    # If only two arguments are provided, use the directory of the BLIF file as the output directory
+    output_folder = arguments[1] if len(arguments) == 3 else os.path.dirname(blif_file_path)
+
+    if not os.path.exists(output_folder):
+        os.makedirs(output_folder)
+    process_blif_file(blif_file_path, output_folder, hmetis_path)
