@@ -10,6 +10,7 @@
 import os
 import re
 import matplotlib.pyplot as plt
+import sys
 
 
 def parse_log_file(filepath):
@@ -39,7 +40,14 @@ def extract_rent_exponent(filename):
 
 
 if __name__ == '__main__':
-    log_folder = "./sweep/vpr_files"
+#    log_folder = "./sweep/vpr_files"
+    if len(sys.argv) != 3:
+        print("Usage: python analyze_vpr_logs.py <log_folder> <output_figures_folder>")
+        sys.exit(1)
+
+    log_folder = sys.argv[1]
+    output_figures_folder = sys.argv[2]
+
     log_files = [os.path.join(root, f)
                  for root, dirs, files in os.walk(log_folder)
                  for f in files if f == "vpr_stdout.log"]
@@ -74,5 +82,5 @@ if __name__ == '__main__':
     axs[2].set_ylabel('Time (seconds)')
 
     plt.tight_layout()
-    plt.savefig('rent_exp_influence2vpr_flow.png')
+    plt.savefig(os.path.join(output_figures_folder, 'rent_exp_influence2vpr_flow.png'))
     plt.show()

@@ -7,8 +7,8 @@ fi
 
 export VTR_ROOT=~/Software/vtr-verilog-to-routing-master
 
-mkdir sweep
-cd ./sweep
+mkdir sweep_and2_q0
+cd ./sweep_and2_q0
 mkdir vpr_files
 for p in $(seq 0.4 0.1 1.0); do
     filename="rent_exp_${p}.gnl"
@@ -19,23 +19,24 @@ for p in $(seq 0.4 0.1 1.0); do
 
 [library]
 name=lib
-latch=latch 1 1
-gate=inv    1 1
+#latch=latch 1 1
+#gate=inv    1 1
 gate=and2   2 1
-gate=nand3  3 1
+#gate=nand3  3 1
 
 [circuit]
 name=rent_exp_$p
 libraries=lib
-distribution=500 1000 1500 1500
+distribution= 4000
 
 #size=0
 #  p=$p
-size=10
+size=1
   p=$p
+  q=0
 #  q=0.4
-size=4500
-  meanG = 0.4
+size=4000
+  meanG = 0.33
 #  I=350
 #  O=150
 EOL
