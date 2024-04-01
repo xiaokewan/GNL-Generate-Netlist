@@ -149,12 +149,12 @@ following entries (note: T is the number of terminals, thus T=I+O with I
 being the number of inputs and O being the number of outputs. The parameter
 g is the output fraction, i.e. g=O/T=O/(I+O)):
 
-	meanT = <mean T at end of region>
-	    p = <Rent exponent, default: 0.6>
-       sigmaT = <standard deviation for T at end of region>
-	    q = <exponent for standard deviation for T, default: p-0.1>
-	meanG = <mean g at end of region, default: 0.3>
-       sigmaG = <standard deviation for g for the complete region, default: 0.15>
+        meanT = <mean T at end of region>
+        p = <Rent exponent, default: 0.6>
+        sigmaT = <standard deviation for T at end of region>
+        q = <exponent for standard deviation for T, default: p-0.1>
+        meanG = <mean g at end of region, default: 0.3>
+        sigmaG = <standard deviation for g for the complete region, default: 0.15>
 
 It is not allowed to specify both p and meanT, or both q and sigmaT, since
 one can be calculated from the other. At least one Rent region must be
@@ -163,8 +163,8 @@ circuit size. This total circuit size must correspond to the size as
 specified by the library distribution. For this end region, the number of
 primary inputs and/or outputs can be specified as
 
-	    I = <number of primary inputs>
-	    O = <number of primary outputs>
+        I = <number of primary inputs>
+        O = <number of primary outputs>
 
 If both are specified, this supersedes meanT and meanG. Optionally, a region
 with boundary size=1 can be specified as well. For this special start region,
@@ -357,4 +357,10 @@ Command line options:
 
 -seed <seed>     Initial seed [1]
 		 Initial seed for random number generation.
+
+
+7. Post Process: (Sweep the Rent Parameters)
+--------------------------------------------
+
+
 
