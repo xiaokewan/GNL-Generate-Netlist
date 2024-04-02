@@ -56,7 +56,7 @@ def visualize_rent(rent_path, output_filename='Rents_rule_real.png'):
     line, slope, _, _ = trend_line(log_bin_means)
 
     # Plotting
-    plt.figure(figsize=(6, 8))
+    plt.figure(figsize=(10, 6))
     plt.scatter(blocks, pins, alpha=0.1)
     plt.scatter(bin_means[:, 0], bin_means[:, 1], s=100, color='red')
     plt.xscale("log", base=2)
@@ -88,7 +88,7 @@ if __name__ == '__main__':
         sys.exit(1)
 
     rent_file_path = sys.argv[1]
-    output_filename = rent_file_path + "_visualized.png"
+    output_filename = rent_file_path + "_viz.png"
 
     visualize_rent(rent_file_path, output_filename)
     print(f"Visualization saved to {output_filename}")

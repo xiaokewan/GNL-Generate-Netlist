@@ -34,6 +34,7 @@
 #include "debug.h"
 #include "pvtools.h"
 #include <cmath>
+#include <stdexcept>
 
 int CounterMap::operator[](void *p) {
     pair<map<void *, int>::iterator, bool> mi = counterMap.insert(pair<void *const, int>(p, next));
@@ -46,9 +47,12 @@ void Module::WriteBlifSimple(const string &name, ModuleType *modType) {
 
     //get map of all the library cells
     map<string, Librarycell *> cells;
-    for (list<Block *>::iterator bi = blocks.begin(); bi != blocks.end(); ++bi)
+
+    set<string> validBlockNames = {"latch", "inv", "and2", "nand3", "and3", "xor2"};
+    for (list<Block *>::iterator bi = blocks.begin(); bi != blocks.end(); ++bi) {
         cells[(*bi)->cell->Name()] = (*bi)->cell;
 
+    }
     string filename = name + ".blif";
     ofstream out(filename.c_str());
     if (!out)
@@ -90,6 +94,11 @@ void Module::WriteBlifSimple(const string &name, ModuleType *modType) {
     for (list<Block*>::iterator bi = blocks.begin(); bi != blocks.end(); ++bi) {
         string blockName = (*bi)->cell->Name();
 
+//        if (validBlockNames.find(blockName) == validBlockNames.end()) {
+//            // Block name not found, throw an error and terminate
+//            throw std::runtime_error("Error: Block name '" + blockName + "' is invalid or not supported.");
+//        }
+
         if (blockName == "latch"){
             out << ".latch ";
             for (vector<Net *>::iterator ni = (*bi)->inputs.begin(); ni != (*bi)->inputs.end(); ++ni)
@@ -106,7 +115,7 @@ void Module::WriteBlifSimple(const string &name, ModuleType *modType) {
             for (vector<OutputNet *>::iterator ni = (*bi)->outputs.begin(); ni != (*bi)->outputs.end(); ++ni)
                 out << " n" << netMap[*ni];
 //            out << "\n0 1\n1 0\n";
-	    out << "\n0 1\n";
+	        out << "\n0 1\n";
         }
 
         else if (blockName == "and2"){
@@ -143,6 +152,15 @@ void Module::WriteBlifSimple(const string &name, ModuleType *modType) {
             for (vector<OutputNet *>::iterator ni = (*bi)->outputs.begin(); ni != (*bi)->outputs.end(); ++ni)
                 out << " n" << netMap[*ni];
             out << "\n01 1\n10 1\n";
+        }
+
+        else if (blockName == "or4") {
+            out << ".names ";
+            for (vector<Net*>::iterator ni = (*bi)->inputs.begin(); ni != (*bi)->inputs.end(); ++ni)
+                out << " n" << netMap[*ni];
+            for (vector<OutputNet*>::iterator ni = (*bi)->outputs.begin(); ni != (*bi)->outputs.end(); ++ni)
+                out << " n" << netMap[*ni];
+            out << "\n0000 0\n";
         }
     }
     out << ".end\n";
