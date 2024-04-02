@@ -10,7 +10,7 @@
 
 # This script processes BLIF files in a specified working directory using netlist2rent.py and rent2viz.py,
 # and optionally reads VPR results with readvpr.py. It supports enabling or disabling specific parts of the process.
-# Usage: ./script_name.sh <work_dir_path> -n [on|off] -r [on|off]
+# Usage: ./post_process.sh <work_dir_path> -n [on|off] -r [on|off]
 # Parameters:
 #   <work_dir_path>: Mandatory. The path to the working directory containing BLIF files and where output files will be generated.
 #   -n [on|off]: Optional. whether to run netlist2rent.py and rent2viz.py. Default is 'on'.
