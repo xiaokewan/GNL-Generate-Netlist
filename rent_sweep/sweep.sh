@@ -21,9 +21,16 @@ fi
 
 export VTR_ROOT=~/Software/vtr-verilog-to-routing-master
 VPR_RUN="off" #
-FOLDER_NAME="test" #
+FOLDER_NAME="temp" #
 SWEEP_RUN="on"
 P_RANGE="0.3 0.98 0.02"
+
+if [ $# -eq 0 ]; then
+    echo "Error: No arguments provided."
+    echo "Usage: $0 -p <output_dir_path> -v [on|off] -s [on|off] -r <p_start p_end p_step>"
+    exit 1
+fi
+
 while getopts ":v:p:s:r:" opt; do
   case ${opt} in
     v )

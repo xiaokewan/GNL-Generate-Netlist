@@ -17,7 +17,7 @@ def parse_log_file(filepath):
     with open(filepath, 'r') as file:
         content = file.read()
 
-    time_regex = r"Flow timing analysis took ([\d.]+) seconds"
+    time_regex = r"The entire flow of VPR took ([\d.]+) seconds"
     cpd_regex = r"Final critical path delay \(least slack\): ([\d.]+) ns, Fmax: ([\d.]+) MHz"
     wirelength_regex = r"Total wirelength: ([\d]+), average net length: ([\d.]+)"
 
