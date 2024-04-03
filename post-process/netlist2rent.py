@@ -200,7 +200,7 @@ def process_blif_file(blif_file, output_folder, hmetis_path, graphfiles_folder='
     hypergraph = get_hypergraph_from_blif(blif_file, graphfiles_folder)
     rent_data = []
     bipartition(hypergraph, rent_data, hmetis_path)
-    os.makedirs(output_folder, exist_ok=True)g
+    os.makedirs(output_folder, exist_ok=True)
     output_path = os.path.join(output_folder, os.path.basename(blif_file) + '.rent')
     print("Output Path:", {output_path})
     with open(output_path, "wb") as fp:
