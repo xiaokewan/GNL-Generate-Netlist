@@ -9,7 +9,11 @@ import os
 import pickle
 import matplotlib.pyplot as plt
 import numpy as np
+import statsmodels.api as sm
 import sys
+# from sklearn.linear_model import LinearRegression, RANSACRegressor
+from statsmodels.nonparametric.kernel_regression import KernelReg
+from sklearn import datasets, linear_model, kernel_ridge
 
 
 # def trend_line(data):
@@ -22,11 +26,11 @@ import sys
 #     return np.array([[x[0], a * x[0] + b], [x[-1], a * x[-1] + b]]), a, b, error
 
 
-def trend_line(data, slope_threshold=(0, 1)):
- 
+def trend_line(data, slope_threshold=(0.2, 1)):
     filtered_data = []
     for i in range(1, len(data)):
-        slope = (data[i, 1] - data[i - 1, 1]) / (data[i, 0] - data[i - 1, 0]) if (data[i, 0] - data[i - 1, 0]) != 0 else 0
+        slope = (data[i, 1] - data[i - 1, 1]) / (data[i, 0] - data[i - 1, 0]) if (data[i, 0] - data[
+            i - 1, 0]) != 0 else 0
         if slope_threshold[0] <= slope <= slope_threshold[1]:
             filtered_data.append(data[i - 1])
             filtered_data.append(data[i])
@@ -43,10 +47,42 @@ def trend_line(data, slope_threshold=(0, 1)):
     b = y_mean - a * x_mean
     error = np.sum((y - (a * x + b)) ** 2) / len(filtered_data)
 
-    # 返回计算得到的趋势线起点和终点、斜率、截距和误差
     return np.array([[x[0], a * x[0] + b], [x[-1], a * x[-1] + b]]), a, b, error
 
-def visualize_rent(rent_path, output_filename='Rents_rule_real.png', output_figures_path = "."):
+
+def trend_line_ml(data):
+    X = data[:, 0].reshape(-1, 1)
+    y = data[:, 1]
+
+    ransac = linear_model.RANSACRegressor(max_trials=30, min_samples=1000, residual_threshold=1.24, random_state=42)
+    huber = linear_model.HuberRegressor(max_iter=1000, alpha=0.1, epsilon=2)
+
+    model = huber
+    model.fit(X, y)
+    # inlier_mask = model.inlier_mask_
+    # outlier_mask = np.logical_not(inlier_mask)
+    outlier_mask = model.outliers_
+    line_y_ransac = model.predict(X)
+    coef = model.coef_[0]
+
+    # coef = model.estimator_.coef_[0]
+    # intercept = ransac.intercept_
+
+    return line_y_ransac, coef, outlier_mask
+
+# def trend_line_ml(data):
+#     X = data[:, 0].reshape(-1, 1)
+#     y = data[:, 1]
+#
+#     # 使用局部加权线性回归模型
+#     kernel_reg = KernelReg(endog=y, exog=X, var_type='c', reg_type='lc', bw='cv_ls')
+#
+#     line_y_kernel, _ = kernel_reg.fit()
+#
+#     return line_y_kernel
+
+
+def visualize_rent(rent_path, output_filename='Rents_rule_real.png', output_figures_path="."):
     if not rent_path.endswith('.rent'):
         raise ValueError(f"Expected a .rent file, got {rent_path} instead.")
     with open(rent_path, "rb") as fp:  # Unpickling
@@ -56,6 +92,9 @@ def visualize_rent(rent_path, output_filename='Rents_rule_real.png', output_figu
     rent_data_flat = np.array([point for level in rent_data for point in level])
     blocks, pins = rent_data_flat[:, 0], rent_data_flat[:, 1]
 
+    # ml for trend line
+    # y_pred_log, coef, inlier_mask, outlier_mask = trend_line_ml(np.log(rent_data_flat))
+    y_pred_log, coef, outlier_mask = trend_line_ml(np.log(rent_data_flat))
     # Bin data
     n_bins = len(rent_data)
     max_blocks = blocks.max()
@@ -78,14 +117,23 @@ def visualize_rent(rent_path, output_filename='Rents_rule_real.png', output_figu
     # Trend line
     log_bin_means = np.log(bin_means)
     line, slope, _, _ = trend_line(log_bin_means)
+    # y_pred_log, coef = trend_line_ml(log_bin_means)
+
     plt.figure(figsize=(10, 6))
+
+    # plt.scatter(blocks[inlier_mask], pins[inlier_mask], color="blue", marker=".", label="Inliers")
+    plt.scatter(blocks[outlier_mask], pins[outlier_mask], color="gold", marker=".", label="Outliers")
     plt.scatter(blocks, pins, alpha=0.1, label='Data Points')
-    plt.scatter(bin_means[:, 0], bin_means[:, 1], s=100, color='red', label='Bin Means')
+    plt.scatter(bin_means[:, 0], bin_means[:, 1], s=100, color='red', alpha=0.85, edgecolors='w', linewidths=2,
+                marker='o', label='Bin Means')
+    plt.plot((rent_data_flat[:, 0]), np.exp(y_pred_log), color='red', label=f'Trend Line ML (Slope: {coef:.2f})')
+    # plt.plot((rent_data_flat[:, 0]), np.exp(y_pred_log), color='red', label=f'Trend Line ML')
     plt.xscale("log", base=2)
     plt.yscale("log", base=2)
     plt.xlabel('$B$ (Blocks)', size=15)
     plt.ylabel('$T$ (Terminals)', size=15)
-    plt.plot(np.exp(line[:, 0]), np.exp(line[:, 1]), color='black', linewidth=2, linestyle='--', label=f'Slope (r) = {slope:.2f}')
+    plt.plot(np.exp(line[:, 0]), np.exp(line[:, 1]), color='black', linewidth=2, linestyle='--',
+             label=f'Slope (r) = {slope:.2f}')
     plt.title('Rent\'s Rule Visualization')
     plt.legend()
 
@@ -100,7 +148,7 @@ def visualize_rent(rent_path, output_filename='Rents_rule_real.png', output_figu
     # plt.plot(np.exp(line[:, 0]), np.exp(line[:, 1]), color='black', linewidth=2)
     # plt.text(np.exp(line[0, 0]), np.exp(line[0, 1]), f'Slope (r) = {slope:.2f}', size=15)
     os.makedirs(output_figures_folder, exist_ok=True)
-    plt.savefig(os.path.join(output_figures_folder,output_filename))
+    plt.savefig(os.path.join(output_figures_folder, output_filename))
 
 
 # if __name__ == '__main__':
