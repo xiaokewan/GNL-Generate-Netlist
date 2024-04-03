@@ -53,14 +53,15 @@ if [ -z "$WORK_DIR" ]; then
     exit 1
 fi
 
-
+#$WORK_DIR="$PROJECT_ROOT/$WORK_DIR"
 cd "$PROJECT_ROOT/$WORK_DIR" || exit
+
 
 # netlist2rent.py: Transfer the .blif to Hypergraph
 if [ "$RUN_NETLIST2RENT" == "on" ]; then
     for blif_file in *.blif; do
         echo "Processing $blif_file with netlist2rent.py"
-        python3 "$POST_DIR/netlist2rent.py" "$blif_file" "$WORK_DIR" "$HMETIS_DIR"
+        python3 "$POST_DIR/netlist2rent.py" "$blif_file" "$PROJECT_ROOT/$WORK_DIR/rent_files" "$HMETIS_DIR"
     done
 fi
 

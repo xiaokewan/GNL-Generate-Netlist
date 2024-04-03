@@ -12,6 +12,6 @@ echo "Current Project Path is set to: $PROJECT_ROOT"
 SRC_DIR="$PROJECT_ROOT/src"
 POST_DIR="$PROJECT_ROOT/post-process"
 SWEEP_DIR="$PROJECT_ROOT/rent_sweep"
-HMETIS_DIR="$PROJECT_ROOT/hmetis-1.5-linux"
+HMETIS_DIR="$PROJECT_ROOT/hmetis-1.5-linux/hmetis"
 
 

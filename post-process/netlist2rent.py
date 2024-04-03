@@ -195,13 +195,14 @@ def bipartition(hg, rent_data, hmetis_path, partition_level=0):
 
 def process_blif_file(blif_file, output_folder, hmetis_path, graphfiles_folder='graphfiles'):
     if not os.path.isdir(graphfiles_folder):
-        os.mkdir(graphfiles_folder)
+        os.makedirs(graphfiles_folder, exist_ok=True) 
 
     hypergraph = get_hypergraph_from_blif(blif_file, graphfiles_folder)
     rent_data = []
     bipartition(hypergraph, rent_data, hmetis_path)
+    os.makedirs(output_folder, exist_ok=True)g
     output_path = os.path.join(output_folder, os.path.basename(blif_file) + '.rent')
-    print("Output Path:",{output_path})
+    print("Output Path:", {output_path})
     with open(output_path, "wb") as fp:
         pickle.dump(rent_data, fp)
 
@@ -233,9 +234,10 @@ if __name__ == '__main__':
 
     blif_file_path = arguments[0]
     hmetis_path = arguments[-1]  # Always the last argument
+    
     # If only two arguments are provided, use the directory of the BLIF file as the output directory
     output_folder = arguments[1] if len(arguments) == 3 else os.path.dirname(blif_file_path)
-
+    # print(f"Output path: {output_folder},\n Blif path: {blif_file_path},\n hmetis path: {hmetis_path}")
     if not os.path.exists(output_folder):
         os.makedirs(output_folder)
     process_blif_file(blif_file_path, output_folder, hmetis_path)
