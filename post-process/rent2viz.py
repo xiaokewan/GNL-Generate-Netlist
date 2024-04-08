@@ -55,7 +55,7 @@ def trend_line_ml(data):
     y = data[:, 1]
 
     ransac = linear_model.RANSACRegressor(max_trials=30, min_samples=1000, residual_threshold=1.24, random_state=42)
-    huber = linear_model.HuberRegressor(max_iter=1000, alpha=0.1, epsilon=2)
+    huber = linear_model.HuberRegressor(max_iter=1000, alpha=0.1, epsilon=4)
 
     model = huber
     model.fit(X, y)
