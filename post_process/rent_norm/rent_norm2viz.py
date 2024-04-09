@@ -99,7 +99,7 @@ def trend_line(data, slope_threshold=(0.2, 1)):
     return np.array([[x[0], a * x[0] + b], [x[-1], a * x[-1] + b]]), a, b, error
 
 
-def visualize_rent(rent_path, output_filename='Rents_rule_real.png', output_figures_path="."):
+def visualize_rent(rent_path, output_filename='Rents_rule_real.png', output_figures_folder="."):
     if not rent_path.endswith('.rent'):
         raise ValueError(f"Expected a .rent file, got {rent_path} instead.")
     with open(rent_path, "rb") as fp:  # Unpickling
@@ -119,11 +119,9 @@ def visualize_rent(rent_path, output_filename='Rents_rule_real.png', output_figu
     norm_blocks = rent_norm(t_dic, slope)
     y_predict, slope, outlier_mask = trend_line_ml(np.stack((np.log(norm_blocks.astype(float)), np.log(pins.astype(float))), axis=1))
     # prev_slope = slope
-    # for i in range(10):
-    #     bin_means = calculate_bin_means(rent_data_flat[:,0:2], norm_blocks, n_bins)
-    #     # log_bin_means = np.log(bin_means)
-    #     y_predict, slope, outlier_mask = trend_line_ml(np.stack((norm_blocks, pins), axis=1))
-    #     if abs(prev_slope - slope) <= 0.0001:
+    # for i in range(3):
+    #     y_predict, slope, outlier_mask = trend_line_ml(np.stack((np.log(norm_blocks.astype(float)), np.log(pins.astype(float))), axis=1))
+    #     if abs(prev_slope - slope) <= 0.01:
     #         print(f"{i}: slope {slope} : prev_slope {prev_slope}")
     #         break
     #
@@ -150,7 +148,7 @@ def visualize_rent(rent_path, output_filename='Rents_rule_real.png', output_figu
     ## bin means line
     # plt.plot(np.exp(line[:, 0]), np.exp(line[:, 1]), color='black', linewidth=2, linestyle='--',
     #          label=f'Slope (r) = {slope:.2f}')
-    plt.title('Rent\'s Rule Visualization')
+    plt.title('Rent\'s Rule Visualization After Normalization', size=15)
     plt.legend()
 
     os.makedirs(output_figures_folder, exist_ok=True)
@@ -165,7 +163,7 @@ if __name__ == '__main__':
 
     rent_file_path = sys.argv[1]
     output_figures_folder = sys.argv[2]
-    output_filename = rent_file_path + "_viz.png"
+    output_filename = rent_file_path + "_norm_viz.png"
 
     visualize_rent(rent_file_path, output_filename, output_figures_folder)
     print(f"Visualization saved to {output_filename}")

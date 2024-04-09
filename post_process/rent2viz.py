@@ -81,7 +81,7 @@ def trend_line_ml(data):
 #     return line_y_kernel
 
 
-def visualize_rent(rent_path, output_filename='Rents_rule_real.png', output_figures_path="."):
+def visualize_rent(rent_path, output_filename='Rents_rule_real.png', output_figures_folder="."):
     if not rent_path.endswith('.rent'):
         raise ValueError(f"Expected a .rent file, got {rent_path} instead.")
     with open(rent_path, "rb") as fp:  # Unpickling
@@ -90,11 +90,11 @@ def visualize_rent(rent_path, output_filename='Rents_rule_real.png', output_figu
     # Flatten data
     rent_data_flat = np.array([point for level in rent_data for point in level])
     blocks, pins = rent_data_flat[:, 0], rent_data_flat[:, 1]
-
+    rent_data_flat = rent_data_flat[:,0:2]
 
     # ml for trend line
     # y_pred_log, coef, inlier_mask, outlier_mask = trend_line_ml(np.log(rent_data_flat))
-    y_pred_log, coef, outlier_mask = trend_line_ml(np.log(rent_data_flat))
+    y_pred_log, coef, outlier_mask = trend_line_ml(np.log(rent_data_flat.astype(float)))
     # Bin data
     n_bins = len(rent_data)
     max_blocks = blocks.max()
