@@ -15,7 +15,8 @@ import sys
 # from sklearn.linear_model import LinearRegression, RANSACRegressor
 from statsmodels.nonparametric.kernel_regression import KernelReg
 from sklearn import datasets, linear_model, kernel_ridge
-from post-process.merge2csv import merge_2_csv
+from post_process.merge2csv import merge_to_csv
+
 
 def rent_norm(t_dic, r):
     weighted_blocks = []
@@ -50,18 +51,27 @@ def calculate_bin_means(rent_data_flat, blocks, n_bins):
 
 def trend_line_ml(data):
     X = data[:, 0].reshape(-1, 1)
+    # X = data[:, 0]
     y = data[:, 1]
 
-    ransac = linear_model.RANSACRegressor(max_trials=30, min_samples=1000, residual_threshold=1.24, random_state=42)
-    huber = linear_model.HuberRegressor(max_iter=1000, alpha=0.1, epsilon=4)
 
-    model = huber
+    # huber = linear_model.HuberRegressor(max_iter=1000, alpha=0.1, epsilon=4)
+    # huber = linear_model.HuberRegressor(max_iter=1000, alpha=0.1, epsilon=1.0)
+    # model = huber
+    # model.fit(X, y)
+    # # inlier_mask = model.inlier_mask_
+    # # outlier_mask = np.logical_not(inlier_mask)
+    # outlier_mask = model.outliers_
+    #
+    # coef = model.coef_[0]
+
+    ransac = linear_model.RANSACRegressor(max_trials=30, min_samples=1000, residual_threshold=1.0, random_state=42)
+    model = ransac
     model.fit(X, y)
-    # inlier_mask = model.inlier_mask_
-    # outlier_mask = np.logical_not(inlier_mask)
-    outlier_mask = model.outliers_
+    inlier_mask = ransac.inlier_mask_
+    outlier_mask = np.logical_not(inlier_mask)
     line_y_ransac = model.predict(X)
-    coef = model.coef_[0]
+    coef = model.estimator_.coef_[0]
     return line_y_ransac, coef, outlier_mask
 
 
@@ -107,30 +117,39 @@ def visualize_rent(rent_path, output_filename='Rents_rule_real.png', output_figu
 
     # use this slope for normalizing
     norm_blocks = rent_norm(t_dic, slope)
-    prev_slope = slope
-    for i in range(10):
-        bin_means = calculate_bin_means(rent_data_flat[:,0:2], norm_blocks, n_bins)
-        log_bin_means = np.log(bin_means)
-        y_predict, slope, _ = trend_line_ml(np.stack((norm_blocks, pins), axis=1))
-        if abs(prev_slope - slope) <= 0.0001:
-            print(f"{i}: slope {slope} : prev_slope {prev_slope}")
-            break
-
-        prev_slope = slope
-        norm_blocks = rent_norm(t_dic, slope)
+    y_predict, slope, outlier_mask = trend_line_ml(np.stack((np.log(norm_blocks.astype(float)), np.log(pins.astype(float))), axis=1))
+    # prev_slope = slope
+    # for i in range(10):
+    #     bin_means = calculate_bin_means(rent_data_flat[:,0:2], norm_blocks, n_bins)
+    #     # log_bin_means = np.log(bin_means)
+    #     y_predict, slope, outlier_mask = trend_line_ml(np.stack((norm_blocks, pins), axis=1))
+    #     if abs(prev_slope - slope) <= 0.0001:
+    #         print(f"{i}: slope {slope} : prev_slope {prev_slope}")
+    #         break
+    #
+    #     prev_slope = slope
+    #     norm_blocks = rent_norm(t_dic, slope)
 
 
     plt.figure(figsize=(10, 6))
+    ## data dots
     plt.scatter(norm_blocks, pins, alpha=0.1, label='Data Points')
-    plt.scatter(bin_means[:, 0], bin_means[:, 1], s=100, color='red', alpha=0.85, edgecolors='w', linewidths=2,
-                marker='o', label='Bin Means')
-    plt.plot(norm_blocks, y_predict, color='red', label=f'Trend Line ML (Slope: {slope:.2f})')
+
+    ## linear-regression line
+    plt.plot(norm_blocks, np.exp(y_predict), color='red', label=f'Trend Line ML (Slope: {slope:.2f})')
+    plt.scatter(norm_blocks[outlier_mask], pins[outlier_mask], color="gold", marker=".", label="Outliers")
     plt.xscale("log", base=2)
     plt.yscale("log", base=2)
     plt.xlabel('$B$ (Blocks)', size=15)
     plt.ylabel('$T$ (Terminals)', size=15)
-    plt.plot(np.exp(line[:, 0]), np.exp(line[:, 1]), color='black', linewidth=2, linestyle='--',
-             label=f'Slope (r) = {slope:.2f}')
+
+
+    ## bin dots
+    # plt.scatter(bin_means[:, 0], bin_means[:, 1], s=100, color='red', alpha=0.85, edgecolors='w', linewidths=2,
+    #             marker='o', label='Bin Means')
+    ## bin means line
+    # plt.plot(np.exp(line[:, 0]), np.exp(line[:, 1]), color='black', linewidth=2, linestyle='--',
+    #          label=f'Slope (r) = {slope:.2f}')
     plt.title('Rent\'s Rule Visualization')
     plt.legend()
 
