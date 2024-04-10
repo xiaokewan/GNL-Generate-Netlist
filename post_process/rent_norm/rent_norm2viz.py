@@ -23,7 +23,7 @@ def rent_norm(t_dic, r):
     for bl_dic in t_dic:
         w = 0
         for vertice in bl_dic:
-            w += vertice*(bl_dic[vertice]**(1/r))
+            w += (bl_dic[vertice])*(vertice**(1/r))
         weighted_blocks.append(w)
     return np.array(weighted_blocks)
 
@@ -55,24 +55,24 @@ def trend_line_ml(data):
     y = data[:, 1]
 
 
-    # huber = linear_model.HuberRegressor(max_iter=1000, alpha=0.1, epsilon=4)
+    # # huber = linear_model.HuberRegressor(max_iter=1000, alpha=0.1, epsilon=4)
     # huber = linear_model.HuberRegressor(max_iter=1000, alpha=0.1, epsilon=1.0)
     # model = huber
     # model.fit(X, y)
     # # inlier_mask = model.inlier_mask_
     # # outlier_mask = np.logical_not(inlier_mask)
     # outlier_mask = model.outliers_
-    #
+    # line = model.predict(X)
     # coef = model.coef_[0]
-
-    ransac = linear_model.RANSACRegressor(max_trials=30, min_samples=1000, residual_threshold=1.0, random_state=42)
+    #
+    ransac = linear_model.RANSACRegressor(max_trials=30, min_samples=1000, residual_threshold=2.0, random_state=42)
     model = ransac
     model.fit(X, y)
     inlier_mask = ransac.inlier_mask_
     outlier_mask = np.logical_not(inlier_mask)
-    line_y_ransac = model.predict(X)
+    line = model.predict(X)
     coef = model.estimator_.coef_[0]
-    return line_y_ransac, coef, outlier_mask
+    return line, coef, outlier_mask
 
 
 def trend_line(data, slope_threshold=(0.2, 1)):
@@ -110,7 +110,7 @@ def visualize_rent(rent_path, output_filename='Rents_rule_real.png', output_figu
     blocks, pins = rent_data_flat[:, 0], rent_data_flat[:, 1]
     t_dic = rent_data_flat[:, 2]
     n_bins = len(rent_data)
-    bin_means = calculate_bin_means(rent_data_flat[:,0:2], blocks, n_bins)
+    bin_means = calculate_bin_means(rent_data_flat[:, 0:2], blocks, n_bins)
     # Trend line
     log_bin_means = np.log(bin_means)
     line, slope, _, _ = trend_line(log_bin_means)
@@ -118,8 +118,9 @@ def visualize_rent(rent_path, output_filename='Rents_rule_real.png', output_figu
     # use this slope for normalizing
     norm_blocks = rent_norm(t_dic, slope)
     y_predict, slope, outlier_mask = trend_line_ml(np.stack((np.log(norm_blocks.astype(float)), np.log(pins.astype(float))), axis=1))
+
     # prev_slope = slope
-    # for i in range(3):
+    # for i in range(10):
     #     y_predict, slope, outlier_mask = trend_line_ml(np.stack((np.log(norm_blocks.astype(float)), np.log(pins.astype(float))), axis=1))
     #     if abs(prev_slope - slope) <= 0.01:
     #         print(f"{i}: slope {slope} : prev_slope {prev_slope}")
