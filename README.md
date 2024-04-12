@@ -137,6 +137,46 @@ Other features are added to increase control over the Rent behavior of the gener
   * Local connections: for blocks larger than the cutoff size (on a logarithmic scale), it is allowed to make connections between in- and outputs of the same module. At higher levels of the hierarchy, this can greatly enhance the control over the generated Rent behavior, especially in combination with the previous method.
 
 
+## Post Process: (Sweep the Rent Parameters)
+--------------------------------------------
+Sweep Rent and run VPR
+```
+./rent_sweep/sweep.sh 
+
+Examples:
+
+	./rent_sweep/sweep.sh  -p test1 -v on -r "0.3 0.98 0.02"
+	./rent_sweep/sweep.sh  -p <output_dir_path> -v [on|off] -s [on|off] -r <p_start p_end p_step>
+
+Parameters:
+	-p: Mandatory. The output directory path where generated files will be saved.
+	-v: Optional. Whether VPR (Verilog-to-Routing) is run ('on') or not ('off'). Default is 'off'.
+	-s: Optional. Sweep over Rent parameters using the GNL tool. Default is 'on'.
+	-r: Optional. Range for Rent's exponents to sweep over, given as "start end step". Default is "0.3 0.98 0.02".
+```
+
+## Post Process: (Partitioning and Visualize Partitioned Circuits )
+--------------------------------------------
+
+```
+./rent_sweep/post_process.sh
+
+Examples Usage: 
+	./rent_sweep/post_process.sh <work_dir_path> -n [on|off] -v [on|off] -r [on|off] 
+
+Parameters:
+	<work_dir_path>: Mandatory. The path to the working directory containing BLIF files and where output files will be generated.
+	-n --net2rent [on|off]: blif to rent hypergraph, default 'on'. Optional. whether to run netlist2rent.py.
+	-v --viz [on|off]: rent hypergraph to figure, default 'on'. Optional. whether to run rent2viz.py.
+						recommend: <work_dir_path> will search .rent files in the current folder and sub-folder
+	-r -- read [on|off]: Read VPR results for runtime critical pathlength ..., default is 'off'. Optional. whether to run readvpr.py to process VPR results. Default is 'off'.
+	-m --norm [on|off]: Using normalization rent_graph. Default is off.
+	-h help
+```
+
+
+
+
 Command line options:
 =====================
 ```
@@ -295,31 +335,6 @@ Command line options:
 
 -seed <seed>     Initial seed [1]
 		 Initial seed for random number generation.
-
-7. Post Process: (Sweep the Rent Parameters)
---------------------------------------------
-Sweep Rent and run VPR
-./rent_sweep/sweep.sh 
-Examples:
-	sweep.sh -p test1 -v on -r "0.3 0.98 0.02"
-	sweep.sh -p <output_dir_path> -v [on|off] -s [on|off] -r <p_start p_end p_step>
-
-Parameters:
-	-p: Mandatory. The output directory path where generated files will be saved.
-	-v: Optional. Whether VPR (Verilog-to-Routing) is run ('on') or not ('off'). Default is 'off'.
-	-s: Optional. Sweep over Rent parameters using the GNL tool. Default is 'on'.
-	-r: Optional. Range for Rent's exponents to sweep over, given as "start end step". Default is "0.3 0.98 0.02".
-
-8. Post Process: (Partitioning and Visualize Partitioned Circuits )
---------------------------------------------
-./rent_sweep/post_process.sh
-Examples Usage: 
-	post_process.sh <work_dir_path> -n [on|off] -r [on|off]
-
-Parameters:
-	<work_dir_path>: Mandatory. The path to the working directory containing BLIF files and where output files will be generated.
-	-n [on|off]: Optional. whether to run netlist2rent.py and rent2viz.py. Default is 'on'.
-	-r [on|off]: Optional. whether to run readvpr.py to process VPR results. Default is 'off'.
 
 
 
