@@ -10,7 +10,7 @@
 
 # This script processes BLIF files in a specified working directory using netlist2rent.py and rent2viz.py,
 # and optionally reads VPR results with readvpr.py. It supports enabling or disabling specific parts of the process.
-# Usage: ./post_process.sh <work_dir_path> -n [on|off] -r [on|off]
+# Usage: ./post_process.sh <work_dir_path> -n [on|off] -v [on|off] -r [on|off] 
 
 
 # Parameters:
@@ -115,7 +115,7 @@ fi
 # read vpr results (vpr_files)
 if [ "$READ_VPR" == "on" ]; then
     echo "Processing VPR results with readvpr.py from $POST_DIR working in $WORK_DIR"
-    python3 "$POST_DIR/readvpr.py" "$PROJECT_ROOT/$WORK_DIR/vpr_files" "."
+    python3 "$POST_DIR/readvpr.py" "$PROJECT_ROOT/$WORK_DIR/vpr_files" "$PROJECT_ROOT/$WORK_DIR"
 fi
 
 cd - > /dev/null || exit
