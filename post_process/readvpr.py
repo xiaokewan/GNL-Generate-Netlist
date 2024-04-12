@@ -10,8 +10,12 @@
 import os
 import re
 import matplotlib.pyplot as plt
+from scipy.optimize import curve_fit
 import sys
 import csv
+import pandas as pd
+import numpy as np
+
 
 def parse_log_file(filepath):
     with open(filepath, 'r') as file:
@@ -49,8 +53,52 @@ def save_to_csv(data, filename):
             writer.writerow(row)
 
 
+def fit_and_plot_exponential(filename, columns_to_fit):
+    data = pd.read_csv(filename)
+
+    def exponential_func(x, a, b, c):
+        return a * np.exp(-b * x) + c
+
+    fitted_parameters = {}
+    for column in columns_to_fit:
+        # Sort the data points based on the "rent_value" column
+        sorted_data = data.sort_values(by='rent_exp')
+        clean_data = sorted_data.dropna(subset=[column])
+
+        if clean_data.empty:
+            print(f"Warning: No data available for column '{column}' in file '{filename}'")
+            continue
+
+        try:
+            popt, _ = curve_fit(exponential_func, clean_data['rent_exp'], clean_data[column])
+            fitted_parameters[column] = popt
+        except RuntimeError:
+            print(f"Error: Unable to fit exponential curve for column '{column}' in file '{filename}'")
+            continue
+    colors = ['#1f77b4', '#ff7f0e', '#2ca02c']
+    num_plots = len(fitted_parameters)
+    fig, axs = plt.subplots(num_plots, 1, figsize=(10, 6 * num_plots))
+
+    for i, (column, popt) in enumerate(fitted_parameters.items()):
+        fitted_values = exponential_func(clean_data['rent_exp'], *popt)  # Use clean_data here
+        axs[i].scatter(clean_data['rent_exp'], clean_data[column], label=f'Original {column}', color=colors[i])  # Use clean_data here
+        axs[i].plot(clean_data['rent_exp'], fitted_values, label=f'Fitted {column}', color=colors[i],  linewidth=3, alpha=0.7)
+        axs[i].set_xlabel('Rent Exponent')
+        axs[i].set_ylabel('Value')
+        axs[i].set_title(f'Exponential Fit for {column}')
+        axs[i].legend()
+        axs[i].grid(True)
+
+    plt.tight_layout()
+    directory = os.path.dirname(filename)
+    plt.savefig(os.path.join(directory, 'rent_exp_influence2vpr_flow.png'))
+    plt.show()
+
+
+
 if __name__ == '__main__':
-#    log_folder = "./sweep/vpr_files"
+
+    #    log_folder = "./sweep/vpr_files"
     if len(sys.argv) != 3:
         print("Usage: python analyze_vpr_logs.py <log_folder> <output_figures_folder>")
         sys.exit(1)
@@ -69,31 +117,11 @@ if __name__ == '__main__':
         log_data["rent_exp"] = rent_exp
         data.append(log_data)
 
-    rent_exps = [d["rent_exp"] for d in data]
-    cpds = [d["cpd"] for d in data]
-    times = [d["time"] for d in data]
-    total_wirelengths = [d["total_wirelength"] for d in data]
+    # rent_exps = [d["rent_exp"] for d in data]
+    # cpds = [d["cpd"] for d in data]
+    # times = [d["time"] for d in data]
+    # total_wirelengths = [d["total_wirelength"] for d in data]
 
-    fig, axs = plt.subplots(3, 1, figsize=(8, 12))
-
-    axs[0].scatter(rent_exps, cpds)
-    axs[0].set_title('Critical Path Delay vs. Rent Exponent')
-    axs[0].set_xlabel('Rent Exponent')
-    axs[0].set_ylabel('Critical Path Delay (ns)')
-
-    axs[1].scatter(rent_exps, total_wirelengths)
-    axs[1].set_title('Total Wire Length vs. Rent Exponent')
-    axs[1].set_xlabel('Rent Exponent')
-    axs[1].set_ylabel('Total Wire Length (units of 1 clb segments)')
-
-    axs[2].scatter(rent_exps, times)
-    axs[2].set_title('VPR Whole Flow Running Time vs. Rent Exponent')
-    axs[2].set_xlabel('Rent Exponent')
-    axs[2].set_ylabel('Time (seconds)')
-
-    # csv_filename = os.path.join(output_figures_folder, 'vpr_data.csv')
-    # save_to_csv(data, csv_filename)
-
-    plt.tight_layout()
-    plt.savefig(os.path.join(output_figures_folder, 'rent_exp_influence2vpr_flow.png'))
-    plt.show()
+    csv_filename = os.path.join(output_figures_folder, 'vpr_data.csv')
+    save_to_csv(data, csv_filename)
+    fit_and_plot_exponential(csv_filename, columns_to_fit = ['time', 'cpd', 'total_wirelength'])
