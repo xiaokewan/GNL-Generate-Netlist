@@ -15,7 +15,7 @@ import sys
 # from sklearn.linear_model import LinearRegression, RANSACRegressor
 from statsmodels.nonparametric.kernel_regression import KernelReg
 from sklearn import datasets, linear_model, kernel_ridge
-from post_process.merge2csv import merge_to_csv
+# from post_process.merge2csv import merge_to_csv
 
 
 def rent_norm(t_dic, r):
@@ -49,6 +49,30 @@ def calculate_bin_means(rent_data_flat, blocks, n_bins):
     return bin_means
 
 
+def calculate_bin_means_norm(rent_data_flat, blocks, n_bins):
+    # Bin data
+    max_blocks = blocks.max()
+    bin_factor = max_blocks ** (1 / n_bins)
+    bin_values = np.round(bin_factor ** np.arange(1, n_bins + 1))
+    bin_values[-1] += 1  # Ensure covering max value
+
+    # Mean and median per bin
+    bin_means = []
+
+    for i in range(1, n_bins):
+        bin_mask = (blocks > bin_values[i - 1]) & (blocks <= bin_values[i])
+        bin_data = rent_data_flat[bin_mask]
+        pin_bin_data = rent_data_flat[:, 1][bin_mask]
+        blocks_bin_data = blocks[bin_mask]
+        if bin_data.size > 0:
+            blocks_mean = blocks_bin_data.mean()
+            pins_median = np.mean(pin_bin_data)
+            bin_means.append([blocks_mean, pins_median])
+
+    bin_means = np.array(bin_means)
+    return bin_means
+
+
 def trend_line_ml(data):
     X = data[:, 0].reshape(-1, 1)
     # X = data[:, 0]
@@ -75,18 +99,20 @@ def trend_line_ml(data):
     return line, coef, outlier_mask
 
 
-def trend_line(data, slope_threshold=(0.2, 1)):
-    filtered_data = []
-    for i in range(1, len(data)):
-        slope = (data[i, 1] - data[i - 1, 1]) / (data[i, 0] - data[i - 1, 0]) if (data[i, 0] - data[
-            i - 1, 0]) != 0 else 0
-        if slope_threshold[0] <= slope <= slope_threshold[1]:
-            filtered_data.append(data[i - 1])
-            filtered_data.append(data[i])
+def trend_line(data, filter=False, slope_threshold=(0.2, 1)):
+    if filter:
+        filtered_data = []
+        for i in range(1, len(data)):
+            slope = (data[i, 1] - data[i - 1, 1]) / (data[i, 0] - data[i - 1, 0]) if (data[i, 0] - data[
+                i - 1, 0]) != 0 else 0
+            if slope_threshold[0] <= slope <= slope_threshold[1]:
+                filtered_data.append(data[i - 1])
+                filtered_data.append(data[i])
 
-    if not filtered_data:
-        return None, None, None, None
-
+        if not filtered_data:
+            return None, None, None, None
+    else:
+        filtered_data = data
     # filtered data for tendline
     filtered_data = np.array(filtered_data)
     x, y = filtered_data[:, 0], filtered_data[:, 1]
@@ -109,15 +135,20 @@ def visualize_rent(rent_path, output_filename='Rents_rule_real.png', output_figu
     rent_data_flat = np.array([point for level in rent_data for point in level])
     blocks, pins = rent_data_flat[:, 0], rent_data_flat[:, 1]
     t_dic = rent_data_flat[:, 2]
+
+    # bins and trend line
     n_bins = len(rent_data)
     bin_means = calculate_bin_means(rent_data_flat[:, 0:2], blocks, n_bins)
-    # Trend line
-    log_bin_means = np.log(bin_means)
+    log_bin_means = np.log2(bin_means)
     line, slope, _, _ = trend_line(log_bin_means)
 
     # use this slope for normalizing
     norm_blocks = rent_norm(t_dic, slope)
-    y_predict, slope, outlier_mask = trend_line_ml(np.stack((np.log(norm_blocks.astype(float)), np.log(pins.astype(float))), axis=1))
+    # y_predict, slope, outlier_mask = trend_line_ml(np.stack((np.log2(norm_blocks.astype(float)), np.log2(pins.astype(float))), axis=1))
+
+    # # calculate norm bin means
+    bin_means = calculate_bin_means_norm(rent_data_flat[:, 0:2], norm_blocks, (np.floor(np.log2(norm_blocks.max()))).astype(int))
+    line, slope, _, _ = trend_line(np.log2(bin_means))
 
     # prev_slope = slope
     # for i in range(10):
@@ -129,32 +160,34 @@ def visualize_rent(rent_path, output_filename='Rents_rule_real.png', output_figu
     #     prev_slope = slope
     #     norm_blocks = rent_norm(t_dic, slope)
 
-
     plt.figure(figsize=(10, 6))
-    ## data dots
+
+    ## data points
     plt.scatter(norm_blocks, pins, alpha=0.1, label='Data Points')
 
     ## linear-regression line
-    plt.plot(norm_blocks, np.exp(y_predict), color='red', label=f'Trend Line ML (Slope: {slope:.2f})')
-    plt.scatter(norm_blocks[outlier_mask], pins[outlier_mask], color="gold", marker=".", label="Outliers")
+    # plt.plot(norm_blocks, np.exp2(y_predict), color='red', label=f'Trend Line ML (Slope: {slope:.2f})')
+    # plt.scatter(norm_blocks[outlier_mask], pins[outlier_mask], color="gold", marker=".", label="Outliers")
+
+    ## bin dots
+    plt.scatter(bin_means[:, 0], bin_means[:, 1], s=100, color='red', alpha=0.85, edgecolors='w', linewidths=2,
+                marker='o', label='Bin Means')
+    # bin means line
+    plt.plot(np.exp2(line[:, 0]), np.exp2(line[:, 1]), color='black', linewidth=2, linestyle='--',
+             label=f'Slope (r) = {slope:.2f}')
     plt.xscale("log", base=2)
     plt.yscale("log", base=2)
     plt.xlabel('$B$ (Blocks)', size=15)
     plt.ylabel('$T$ (Terminals)', size=15)
 
 
-    ## bin dots
-    # plt.scatter(bin_means[:, 0], bin_means[:, 1], s=100, color='red', alpha=0.85, edgecolors='w', linewidths=2,
-    #             marker='o', label='Bin Means')
-    ## bin means line
-    # plt.plot(np.exp(line[:, 0]), np.exp(line[:, 1]), color='black', linewidth=2, linestyle='--',
-    #          label=f'Slope (r) = {slope:.2f}')
+
     plt.title('Rent\'s Rule Visualization After Normalization', size=15)
     plt.legend()
 
     os.makedirs(output_figures_folder, exist_ok=True)
     plt.savefig(os.path.join(output_figures_folder, output_filename))
-    plt.show()
+    # plt.show()
 
 
 if __name__ == '__main__':
@@ -164,7 +197,7 @@ if __name__ == '__main__':
 
     rent_file_path = sys.argv[1]
     output_figures_folder = sys.argv[2]
-    output_filename = rent_file_path + "_norm_viz.png"
+    output_filename = os.path.basename(rent_file_path) + "_norm_viz.png"
 
     visualize_rent(rent_file_path, output_filename, output_figures_folder)
     print(f"Visualization saved to {output_filename}")

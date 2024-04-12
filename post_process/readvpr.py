@@ -11,7 +11,7 @@ import os
 import re
 import matplotlib.pyplot as plt
 import sys
-
+import csv
 
 def parse_log_file(filepath):
     with open(filepath, 'r') as file:
@@ -37,6 +37,16 @@ def parse_log_file(filepath):
 def extract_rent_exponent(filename):
     match = re.search(r"rent_exp_([0-9.]*[0-9])", filename)
     return float(match.group(1)) if match else None
+
+
+
+def save_to_csv(data, filename):
+    with open(filename, 'w', newline='') as csvfile:
+        fieldnames = data[0].keys()
+        writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+        writer.writeheader()
+        for row in data:
+            writer.writerow(row)
 
 
 if __name__ == '__main__':
@@ -80,6 +90,9 @@ if __name__ == '__main__':
     axs[2].set_title('VPR Whole Flow Running Time vs. Rent Exponent')
     axs[2].set_xlabel('Rent Exponent')
     axs[2].set_ylabel('Time (seconds)')
+
+    # csv_filename = os.path.join(output_figures_folder, 'vpr_data.csv')
+    # save_to_csv(data, csv_filename)
 
     plt.tight_layout()
     plt.savefig(os.path.join(output_figures_folder, 'rent_exp_influence2vpr_flow.png'))
