@@ -5,19 +5,21 @@
 # exponent values, allowing for a comprehensive exploration of netlist characteristics.
 #
 # Example usage:
-# ./sweep.sh -p test1 -v on -r "0.3 0.98 0.02"
-# ./sweep.sh -p <output_dir_path> -v [on|off] -s [on|off] -r <p_start p_end p_step>
+# ./rent_sweep/sweep.sh -p test1 -v on -r "0.3 0.98 0.02"
+# ./rent_sweep/sweep.sh -p <output_dir_path> -v [on|off] -s [on|off] -r <p_start p_end p_step>
+# keep the current path in the GNL level
 #
 # Parameters:
-# -p: Mandatory. The output directory path where generated files will be saved.
-# -v: Optional. Whether VPR (Verilog-to-Routing) is run ('on') or not ('off'). Default is 'off'.
-# -s: Optional. Sweep over Rent parameters using the GNL tool. Default is 'on'.
-# -r: Optional. Range for Rent's exponents to sweep over, given as "start end step". Default is "0.3 0.98 0.02".
+# -p --oupdir: Mandatory. The output directory path where generated files will be saved.
+# -v --vpr: Optional. Whether VPR (Verilog-to-Routing) is run ('on') or not ('off'). Default is 'off'.
+# -s --sweep: Optional. Sweep over Rent parameters using the GNL tool. Default is 'on'.
+# -r --range: Optional. Range for Rent's exponents to sweep over, given as "start end step". Default is "0.3 0.98 0.02".
 
 
 if [ -f ~/.bashrc ]; then
     source ~/.bashrc
 fi
+source "./config.sh"
 
 export VTR_ROOT=~/Software/vtr-verilog-to-routing-master
 VPR_RUN="off" #
@@ -31,26 +33,38 @@ if [ $# -eq 0 ]; then
     exit 1
 fi
 
-while getopts ":v:p:s:r:" opt; do
-  case ${opt} in
-    v )
-      VPR_RUN=$OPTARG
+# Parse command line options
+TEMP=$(getopt -o v:p:s:r: --long vpr:,oupdir:,sweep:,range: -n 'script.sh' -- "$@")
+if [ $? -ne 0 ]; then
+    echo "Usage: $0 -p <output_dir_path> -v [on|off] -s [on|off] -r <p_start p_end p_step>"
+    exit 1
+fi
+eval set -- "$TEMP"
+
+while true; do
+  case "$1" in
+    -v | --vpr )
+      VPR_RUN=$2
+      shift 2
       ;;
-    p )
-      FOLDER_NAME=$OPTARG
+    -p | --oupdir )
+      FOLDER_NAME=$2
+      shift 2
       ;;
-    s )
-      SWEEP_RUN=$OPTARG
+    -s | --sweep )
+      SWEEP_RUN=$2
+      shift 2
       ;;
-    r )
-      P_RANGE=$OPTARG  #
+    -r | --range )
+      P_RANGE=$2
+      shift 2
       ;;
-    \? )
-      echo "Usage: $0 -p <output_dir_path> -v [on|off] -s [on|off] -r <p_start p_end p_step>"
-      exit 1
+    -- )
+      shift
+      break
       ;;
-    : )
-      echo "Usage: $0 -p <output_dir_path> -v [on|off] -s [on|off] -r <p_start p_end p_step>"
+    * )
+      echo "Internal error!"
       exit 1
       ;;
   esac
@@ -63,9 +77,8 @@ done
 #    exit 1
 #fi
 
+cd "$PROJECT_ROOT"/rent_sweep/"$FOLDER_NAME" || mkdir -p "$PROJECT_ROOT"/rent_sweep/"$FOLDER_NAME" || exit 1
 
-mkdir "$FOLDER_NAME"
-cd "$FOLDER_NAME"
 
 if [ "$SWEEP_RUN" == "on" ]; then
     read -r start end step <<< "$P_RANGE"
@@ -79,32 +92,32 @@ if [ "$SWEEP_RUN" == "on" ]; then
 
 [library]
 name=lib
-#latch=latch   1 1
-#gate=inv    1 1
-#gate=and2   2 1
+latch=latch   1 1
+gate=inv    1 1
+gate=and2   2 1
 gate=nand3  3 1
-#gate=or4    4 1
-#gate=xor2   2 1
+gate=or4    4 1
+gate=xor2   2 1
 
 [circuit]
 name=rent_exp_$p
 libraries=lib
-#distribution=1000 3000 2000 2000 1000 1000
-distribution = 4096
+distribution=1000 3000 2000 2000 1000 1000
+#distribution = 4096
 
 size=1
 p=$p
 sigmaG=0
 sigmaT=0
 
-size=4096
+size=10000
 p=$p
 #  meanG=0.5
 sigmaG=0
 sigmaT=0
 EOL
     # generate blif file from gnl
-        gnl -w blif $filename -sp
+        $PROJECT_ROOT/build/gnl -w blif $filename -sp
     done
 fi
 
@@ -118,7 +131,8 @@ if [ "$VPR_RUN" == "on" ]; then
         # run the vpr
         bliffile="rent_exp_${p}.blif"
         echo "Running VPR for $bliffile"
-        $VTR_ROOT/vpr/vpr $VTR_ROOT/vtr_flow/arch/timing/EArch.xml ../../$bliffile
+#        $VTR_ROOT/vpr/vpr $VTR_ROOT/vtr_flow/arch/timing/EArch.xml ../../$bliffile
+        $VTR_ROOT/vpr/vpr /vtr_flow/arch/titan/stratixiv_arch.timing.xml ../../$bliffile
         cd ../..
     done
 fi
