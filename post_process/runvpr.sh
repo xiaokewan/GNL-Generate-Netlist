@@ -62,5 +62,5 @@ fi
 vtr="/home/xiaokewan/Software/vtr-verilog-to-routing-master"
 vpr="/home/xiaokewan/Software/vtr-verilog-to-routing-master/vpr/vpr"
 if [ "$VPR_RUN" == "on" ] && [ "$PAR" == "on" ]; then
-    parallel "cd $PROJECT_ROOT/$WORK_DIR/vpr_files/{} && $vpr $vtr/vtr_flow/arch/titan/stratixiv_arch.timing.xml $PROJECT_ROOT/$WORK_DIR/{}" ::: $BLIF_FILES
+    parallel -j 3 "cd $PROJECT_ROOT/$WORK_DIR/vpr_files/{} && $vpr $vtr/vtr_flow/arch/titan/stratixiv_arch.timing.xml $PROJECT_ROOT/$WORK_DIR/{}" ::: $BLIF_FILES
 fi
