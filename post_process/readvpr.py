@@ -53,6 +53,45 @@ def save_to_csv(data, filename):
             writer.writerow(row)
 
 
+def draw_fit_in_diff_files(filenames, columns_to_fit):
+    def exponential_func(x, a, b, c):
+        return a * np.exp(-b * x) + c
+    fig, axs = plt.subplots(len(columns_to_fit), 1, figsize=(10, 6 * len(columns_to_fit)))
+    for i, column in enumerate(columns_to_fit):
+        colors = ['#1f77b4', '#ff7f0e', '#2ca02c']
+        for j, filename in enumerate(filenames):
+            data = pd.read_csv(filename)
+            sorted_data = data.sort_values(by='rent_exp')
+            clean_data = sorted_data.dropna(subset=[column])
+
+            if clean_data.empty:
+                print(f"Warning: No data available for column '{column}' in file '{filename}'")
+                continue
+
+            try:
+                popt, _ = curve_fit(exponential_func, clean_data['rent_exp'], clean_data[column])
+                fitted_values = exponential_func(clean_data['rent_exp'], *popt)
+                a, b, c = popt
+                label = f'Original {column} ({os.path.basename(filename)})\nFit: {a:.7f} * exp(-{b:.2f} * x) + {c:.2f}'
+                print(label)
+                axs[i].scatter(clean_data['rent_exp'], clean_data[column], label=label, color=colors[j])
+                axs[i].plot(clean_data['rent_exp'], fitted_values, label='', color=colors[j], linewidth=3, alpha=0.7)
+            except RuntimeError:
+                print(f"Error: Unable to fit exponential curve for column '{column}' in file '{filename}'")
+                continue
+
+        axs[i].set_xlabel('Rent Exponent')
+        axs[i].set_ylabel('Value')
+        axs[i].set_title(f'Exponential Fit for {column}')
+        axs[i].legend()
+        axs[i].grid(True)
+
+    plt.tight_layout()
+    directory = os.path.dirname(filenames[0])  # Use the directory of the first file for saving the plot
+    plt.savefig(os.path.join(directory, 'rent_exp_influence2vpr_flow.png'))
+    plt.show()
+
+
 def fit_and_plot_exponential(filename, columns_to_fit):
     data = pd.read_csv(filename)
 
@@ -81,8 +120,10 @@ def fit_and_plot_exponential(filename, columns_to_fit):
 
     for i, (column, popt) in enumerate(fitted_parameters.items()):
         fitted_values = exponential_func(clean_data['rent_exp'], *popt)  # Use clean_data here
-        axs[i].scatter(clean_data['rent_exp'], clean_data[column], label=f'Original {column}', color=colors[i])  # Use clean_data here
-        axs[i].plot(clean_data['rent_exp'], fitted_values, label=f'Fitted {column}', color=colors[i],  linewidth=3, alpha=0.7)
+        a, b, c = popt
+        label = f'Original {column}\nFit: {a:.5f} * exp({-b:.2f} * r) + {c:.2f}'
+        axs[i].scatter(clean_data['rent_exp'], clean_data[column], label=label, color=colors[i])  # Use clean_data here
+        axs[i].plot(clean_data['rent_exp'], fitted_values, label='', color=colors[i],  linewidth=3, alpha=0.7)
         axs[i].set_xlabel('Rent Exponent')
         axs[i].set_ylabel('Value')
         axs[i].set_title(f'Exponential Fit for {column}')
@@ -95,10 +136,7 @@ def fit_and_plot_exponential(filename, columns_to_fit):
     plt.show()
 
 
-
 if __name__ == '__main__':
-
-    #    log_folder = "./sweep/vpr_files"
     if len(sys.argv) != 3:
         print("Usage: python analyze_vpr_logs.py <log_folder> <output_figures_folder>")
         sys.exit(1)
@@ -122,6 +160,7 @@ if __name__ == '__main__':
     # times = [d["time"] for d in data]
     # total_wirelengths = [d["total_wirelength"] for d in data]
 
-    csv_filename = os.path.join(output_figures_folder, 'vpr_data.csv')
+    # get the last name for having Blocks amount in csv name
+    csv_filename = os.path.join(output_figures_folder, os.path.basename(os.path.dirname(log_folder)) + '_vpr_data.csv')
     save_to_csv(data, csv_filename)
     fit_and_plot_exponential(csv_filename, columns_to_fit = ['time', 'cpd', 'total_wirelength'])

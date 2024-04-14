@@ -25,7 +25,7 @@ export VTR_ROOT=~/Software/vtr-verilog-to-routing-master
 VPR_RUN="off" #
 FOLDER_NAME="temp" #
 SWEEP_RUN="on"
-P_RANGE="0.3 0.98 0.02"
+P_RANGE="0.4 0.8 0.01"
 
 if [ $# -eq 0 ]; then
     echo "Error: No arguments provided."
@@ -83,7 +83,6 @@ cd "$PROJECT_ROOT"/rent_sweep/"$FOLDER_NAME" || mkdir -p "$PROJECT_ROOT"/rent_sw
 if [ "$SWEEP_RUN" == "on" ]; then
     read -r start end step <<< "$P_RANGE"
     for p in $(seq $start $step $end); do
-    #for p in $(seq 0.6 1 0.6); do
         filename="rent_exp_${p}.gnl"
         echo "Generating $filename with p=$p"
         cat > $filename <<EOL
@@ -102,15 +101,14 @@ gate=xor2   2 1
 [circuit]
 name=rent_exp_$p
 libraries=lib
-distribution=1000 3000 2000 2000 1000 1000
-#distribution = 4096
+distribution=1500 4500 3000 3000 1500 1500
 
 size=1
 p=$p
 sigmaG=0
 sigmaT=0
 
-size=10000
+size=15000
 p=$p
 #  meanG=0.5
 sigmaG=0

@@ -148,7 +148,7 @@ def visualize_rent(rent_path, output_filename='Rents_rule_real.png', output_figu
 
     # # calculate norm bin means
     bin_means = calculate_bin_means_norm(rent_data_flat[:, 0:2], norm_blocks, (np.floor(np.log2(norm_blocks.max()))).astype(int))
-    line, slope, _, _ = trend_line(np.log2(bin_means))
+    line, slope, _, _ = trend_line(np.log2(bin_means), True)
 
     # prev_slope = slope
     # for i in range(10):
