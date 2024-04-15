@@ -52,8 +52,8 @@ while [[ $# -gt 0 ]]; do
             shift 2
             ;;
         -b|--blif)
-            BLIF_OPTION="yes"
-            shift
+            BLIF_FILES=("${@:2}")
+            break
             ;;
         -h|--help)
             usage
@@ -75,8 +75,6 @@ if [ -z "$3" ]; then
     for blif_file in "$WORK_DIR"/*.blif; do
         [ -f "$blif_file" ] && BLIF_FILES+=("$(basename "$blif_file")")
     done
-else
-    BLIF_FILES=("${@:3}")
 fi
 
 if [ "$VPR_RUN" == "on" ] && [ "$PAR" != "on" ]; then
@@ -106,5 +104,5 @@ vpr="/home/xiaokewan/Software/vtr-verilog-to-routing-master/vpr/vpr"
 PROJECT_ROOT="$PROJECT_ROOT"
 if [ "$VPR_RUN" == "on" ] && [ "$PAR" == "on" ]; then
     echo "Start GNU parallel computing: ${BLIF_FILES[@]}"
-    parallel -j 2 "mkdir -p $PROJECT_ROOT/$WORK_DIR/vpr_files/{} && cd $PROJECT_ROOT/$WORK_DIR/vpr_files/{} && $vpr $vtr/vtr_flow/arch/titan/stratixiv_arch.timing.xml $PROJECT_ROOT/$WORK_DIR/{}" ::: "${BLIF_FILES[@]}"
+    parallel -j 3 "mkdir -p $PROJECT_ROOT/$WORK_DIR/vpr_files/{} && cd $PROJECT_ROOT/$WORK_DIR/vpr_files/{} && $vpr $vtr/vtr_flow/arch/titan/stratixiv_arch.timing.xml $PROJECT_ROOT/$WORK_DIR/{}" ::: "${BLIF_FILES[@]}"
 fi
