@@ -72,7 +72,7 @@ def draw_fit_in_diff_files(filenames, columns_to_fit):
                 popt, _ = curve_fit(exponential_func, clean_data['rent_exp'], clean_data[column])
                 fitted_values = exponential_func(clean_data['rent_exp'], *popt)
                 a, b, c = popt
-                label = f'Original {column} ({os.path.basename(filename)})\nFit: {a:.7f} * exp(-{b:.2f} * x) + {c:.2f}'
+                label = f'Original {column} ({os.path.basename(filename)})\nFit: $({a:.2e}) * exp(-{b:.2f} * x) + {c:.2f}$'
                 print(label)
                 axs[i].scatter(clean_data['rent_exp'], clean_data[column], label=label, color=colors[j])
                 axs[i].plot(clean_data['rent_exp'], fitted_values, label='', color=colors[j], linewidth=3, alpha=0.7)
@@ -164,3 +164,6 @@ if __name__ == '__main__':
     csv_filename = os.path.join(output_figures_folder, os.path.basename(os.path.dirname(log_folder)) + '_vpr_data.csv')
     save_to_csv(data, csv_filename)
     fit_and_plot_exponential(csv_filename, columns_to_fit = ['time', 'cpd', 'total_wirelength'])
+
+    # example for using diff data plotting in a same graph
+    # draw_fit_in_diff_files(["./rent_sweep/norm_rent_sweep_15000/norm_rent_sweep_15000_vpr_data.csv", "./rent_sweep/norm_rent_sweep_10000/vpr_data.csv"], columns_to_fit = ['time', 'cpd', 'total_wirelength'])

@@ -104,5 +104,5 @@ vpr="/home/xiaokewan/Software/vtr-verilog-to-routing-master/vpr/vpr"
 PROJECT_ROOT="$PROJECT_ROOT"
 if [ "$VPR_RUN" == "on" ] && [ "$PAR" == "on" ]; then
     echo "Start GNU parallel computing: ${BLIF_FILES[@]}"
-    parallel -j 3 "mkdir -p $PROJECT_ROOT/$WORK_DIR/vpr_files/{} && cd $PROJECT_ROOT/$WORK_DIR/vpr_files/{} && $vpr $vtr/vtr_flow/arch/titan/stratixiv_arch.timing.xml $PROJECT_ROOT/$WORK_DIR/{}" ::: "${BLIF_FILES[@]}"
+    parallel -j 2 "mkdir -p $PROJECT_ROOT/$WORK_DIR/vpr_files/{} && cd $PROJECT_ROOT/$WORK_DIR/vpr_files/{} && $vpr $vtr/vtr_flow/arch/titan/stratixiv_arch.timing.xml $PROJECT_ROOT/$WORK_DIR/{}" ::: "${BLIF_FILES[@]}"
 fi
