@@ -56,9 +56,14 @@ def save_to_csv(data, filename):
 def draw_fit_in_diff_files(filenames, columns_to_fit):
     def exponential_func(x, a, b, c):
         return a * np.exp(-b * x) + c
+
     fig, axs = plt.subplots(len(columns_to_fit), 1, figsize=(10, 6 * len(columns_to_fit)))
+
     for i, column in enumerate(columns_to_fit):
         colors = ['#1f77b4', '#ff7f0e', '#2ca02c']
+        max_values = []
+        min_values = []
+
         for j, filename in enumerate(filenames):
             data = pd.read_csv(filename)
             sorted_data = data.sort_values(by='rent_exp')
@@ -71,14 +76,27 @@ def draw_fit_in_diff_files(filenames, columns_to_fit):
             try:
                 popt, _ = curve_fit(exponential_func, clean_data['rent_exp'], clean_data[column])
                 fitted_values = exponential_func(clean_data['rent_exp'], *popt)
+
+                # Store the fitted values for each curve separately
+                max_values.append(fitted_values)
+                min_values.append(fitted_values)
+
                 a, b, c = popt
                 label = f'Original {column} ({os.path.basename(filename)})\nFit: $({a:.2e}) * exp(-{b:.2f} * x) + {c:.2f}$'
                 print(label)
                 axs[i].scatter(clean_data['rent_exp'], clean_data[column], label=label, color=colors[j])
-                axs[i].plot(clean_data['rent_exp'], fitted_values, label='', color=colors[j], linewidth=3, alpha=0.7)
+                axs[i].plot(clean_data['rent_exp'], fitted_values, label=label, color=colors[j], linewidth=3, alpha=0.7)
+
             except RuntimeError:
                 print(f"Error: Unable to fit exponential curve for column '{column}' in file '{filename}'")
                 continue
+
+        # Fill between the curves
+        for k in range(len(max_values) - 1):
+            min_values_k_resized = np.resize(min_values[k], len(clean_data['rent_exp']))
+            max_values_k_plus1_resized = np.resize(max_values[k + 1], len(clean_data['rent_exp']))
+            axs[i].fill_between(clean_data['rent_exp'], min_values_k_resized, max_values_k_plus1_resized,
+                                color=colors[k], alpha=0.3)
 
         axs[i].set_xlabel('Rent Exponent')
         axs[i].set_ylabel('Value')
@@ -89,8 +107,8 @@ def draw_fit_in_diff_files(filenames, columns_to_fit):
     plt.tight_layout()
     directory = os.path.dirname(filenames[0])  # Use the directory of the first file for saving the plot
     plt.savefig(os.path.join(directory, 'rent_exp_influence2vpr_flow.png'))
-    plt.show()
 
+    plt.show()
 
 def fit_and_plot_exponential(filename, columns_to_fit):
     data = pd.read_csv(filename)
@@ -166,4 +184,4 @@ if __name__ == '__main__':
     fit_and_plot_exponential(csv_filename, columns_to_fit = ['time', 'cpd', 'total_wirelength'])
 
     # example for using diff data plotting in a same graph
-    # draw_fit_in_diff_files(["./rent_sweep/norm_rent_sweep_15000/norm_rent_sweep_15000_vpr_data.csv", "./rent_sweep/norm_rent_sweep_10000/vpr_data.csv"], columns_to_fit = ['time', 'cpd', 'total_wirelength'])
+    # draw_fit_in_diff_files([ "./rent_sweep/norm_rent_sweep_10000/norm_rent_sweep_10000_vpr_data.csv", "./rent_sweep/norm_rent_sweep_15000/norm_rent_sweep_15000_vpr_data.csv", "./rent_sweep/norm_rent_sweep_20000/norm_rent_sweep_20000_vpr_data.csv"], columns_to_fit = ['time', 'cpd', 'total_wirelength'])

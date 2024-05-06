@@ -21,6 +21,7 @@ import numpy as np
 import subprocess
 import pickle
 import sys
+import csv
 from ipyfilechooser import FileChooser
 import glob
 
@@ -224,9 +225,16 @@ def process_blif_file(blif_file, output_folder, hmetis_path, graphfiles_folder='
     bipartition(hypergraph, rent_data, hmetis_path)
     os.makedirs(output_folder, exist_ok=True)
     output_path = os.path.join(output_folder, os.path.basename(blif_file) + '.rent')
+    output_path_csv = os.path.join(output_folder, os.path.basename(blif_file) + '.csv')
     print("Output Path:", {output_path})
     with open(output_path, "wb") as fp:
         pickle.dump(rent_data, fp)
+
+    with open(output_path_csv, "w", newline="") as csvfile:
+        writer = csv.writer(csvfile)
+        for sublist in rent_data:
+            writer.writerow(sublist)
+
 
 
 if __name__ == '__main__':
