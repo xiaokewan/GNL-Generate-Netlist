@@ -14,7 +14,7 @@
 # Example:
 # ./script.sh /path/to/work_dir -v on -b blif_file1.blif blif_file2.blif
 WORK_DIR=$1
-VPR_RUN=$2
+VPR_RUN=${2:-"on"} 
 PAR="on"
 source config.sh
 usage() {
@@ -67,15 +67,17 @@ while [[ $# -gt 0 ]]; do
     esac
 done
 
+echo "${BLIF_FILES[@]}"
 
 
 # If no BLIF file parameters are provided, process all BLIF files
-if [ -z "$3" ]; then
+if [ ${#BLIF_FILES[@]} -eq 0 ]; then
     BLIF_FILES=()
     for blif_file in "$WORK_DIR"/*.blif; do
         [ -f "$blif_file" ] && BLIF_FILES+=("$(basename "$blif_file")")
     done
 fi
+
 
 if [ "$VPR_RUN" == "on" ] && [ "$PAR" != "on" ]; then
     if [ -d "$WORK_DIR" ]; then
@@ -102,7 +104,8 @@ fi
 vtr="/home/xiaokewan/Software/vtr-verilog-to-routing-master"
 vpr="/home/xiaokewan/Software/vtr-verilog-to-routing-master/vpr/vpr"
 PROJECT_ROOT="$PROJECT_ROOT"
+
 if [ "$VPR_RUN" == "on" ] && [ "$PAR" == "on" ]; then
     echo "Start GNU parallel computing: ${BLIF_FILES[@]}"
-    parallel -j 2 "mkdir -p $PROJECT_ROOT/$WORK_DIR/vpr_files/{} && cd $PROJECT_ROOT/$WORK_DIR/vpr_files/{} && $vpr $vtr/vtr_flow/arch/titan/stratixiv_arch.timing.xml $PROJECT_ROOT/$WORK_DIR/{}" ::: "${BLIF_FILES[@]}"
+    parallel -j 3 "mkdir -p $PROJECT_ROOT/$WORK_DIR/vpr_files/{} && cd $PROJECT_ROOT/$WORK_DIR/vpr_files/{} && $vpr $vtr/vtr_flow/arch/titan/stratixiv_arch.timing.xml $PROJECT_ROOT/$WORK_DIR/{}  --write_rr_graph ./stratixiv_arch_$WORK_DIR_{}.xml" ::: "${BLIF_FILES[@]}"
 fi

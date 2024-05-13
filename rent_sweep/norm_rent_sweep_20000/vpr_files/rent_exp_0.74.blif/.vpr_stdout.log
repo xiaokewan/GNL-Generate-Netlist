@@ -1,0 +1,2602 @@
+VPR FPGA Placement and Routing.
+Version: 8.1.0-dev+unkown
+Revision: unkown
+Compiled: 2023-11-16T17:20:44
+Compiler: GNU 11.4.0 on Linux-6.2.0-36-generic x86_64
+Build Info: release IPO VTR_ASSERT_LEVEL=2
+
+University of Toronto
+verilogtorouting.org
+vtr-users@googlegroups.com
+This is free open source code under MIT license.
+
+VPR was run with the following command-line:
+/home/xiaokewan/Software/vtr-verilog-to-routing-master/vpr/vpr /home/xiaokewan/Software/vtr-verilog-to-routing-master/vtr_flow/arch/titan/stratixiv_arch.timing.xml /home/xiaokewan/Documents/GNL-Netlist-Generator//rent_sweep/norm_rent_sweep_20000//rent_exp_0.74.blif
+
+
+Architecture file: /home/xiaokewan/Software/vtr-verilog-to-routing-master/vtr_flow/arch/titan/stratixiv_arch.timing.xml
+Circuit name: rent_exp_0.74
+
+# Loading Architecture Description
+# Loading Architecture Description took 0.35 seconds (max_rss 80.1 MiB, delta_rss +64.9 MiB)
+
+Timing analysis: ON
+Circuit netlist file: rent_exp_0.74.net
+Circuit placement file: rent_exp_0.74.place
+Circuit routing file: rent_exp_0.74.route
+Circuit SDC file: rent_exp_0.74.sdc
+Vpr floorplanning constraints file: not specified
+
+Packer: ENABLED
+Placer: ENABLED
+Router: ENABLED
+Analysis: ENABLED
+
+VPR was run with the following options:
+
+NetlistOpts.abosrb_buffer_luts            : true
+NetlistOpts.sweep_dangling_primary_ios    : true
+NetlistOpts.sweep_dangling_nets           : true
+NetlistOpts.sweep_dangling_blocks         : true
+NetlistOpts.sweep_constant_primary_outputs: false
+NetlistOpts.netlist_verbosity             : 1
+NetlistOpts.const_gen_inference           : COMB_SEQ
+
+PackerOpts.allow_unrelated_clustering: auto
+PackerOpts.alpha_clustering: 0.750000
+PackerOpts.beta_clustering: 0.900000
+PackerOpts.cluster_seed_type: BLEND2
+PackerOpts.connection_driven: true
+PackerOpts.global_clocks: true
+PackerOpts.hill_climbing_flag: false
+PackerOpts.inter_cluster_net_delay: 1.000000
+PackerOpts.timing_driven: true
+PackerOpts.target_external_pin_util: auto
+
+PlacerOpts.place_freq: PLACE_ONCE
+PlacerOpts.place_algorithm: CRITICALITY_TIMING_PLACE
+PlacerOpts.pad_loc_type: FREE
+PlacerOpts.constraints_file: No constraints file given
+PlacerOpts.place_cost_exp: 1.000000
+PlacerOpts.place_chan_width: 100
+PlacerOpts.inner_loop_recompute_divider: 0
+PlacerOpts.recompute_crit_iter: 1
+PlacerOpts.timing_tradeoff: 0.500000
+PlacerOpts.td_place_exp_first: 1.000000
+PlacerOpts.td_place_exp_last: 8.000000
+PlacerOpts.delay_offset: 0.000000
+PlacerOpts.delay_ramp_delta_threshold: -1
+PlacerOpts.delay_ramp_slope: 0.000000
+PlacerOpts.tsu_rel_margin: 1.000000
+PlacerOpts.tsu_abs_margin: 0.000000
+PlacerOpts.post_place_timing_report_file: 
+PlacerOpts.allowed_tiles_for_delay_model: 
+PlacerOpts.delay_model_reducer: MIN
+PlacerOpts.delay_model_type: DELTA
+PlacerOpts.rlim_escape_fraction: 0.000000
+PlacerOpts.move_stats_file: 
+PlacerOpts.placement_saves_per_temperature: 0
+PlacerOpts.effort_scaling: CIRCUIT
+PlacerOpts.place_delta_delay_matrix_calculation_method: ASTAR_ROUTE
+PlaceOpts.seed: 1
+AnnealSched.type: AUTO_SCHED
+AnnealSched.inner_num: 0.500000
+
+RouterOpts.route_type: DETAILED
+RouterOpts.flat_routing: false
+RouterOpts.has_choking_spot: false
+RouterOpts.router_algorithm: TIMING_DRIVEN
+RouterOpts.base_cost_type: DELAY_NORMALIZED_LENGTH
+RouterOpts.fixed_channel_width: NO_FIXED_CHANNEL_WIDTH
+RouterOpts.check_route: FULL
+RouterOpts.acc_fac: 1.000000
+RouterOpts.bb_factor: 3
+RouterOpts.bend_cost: 0.000000
+RouterOpts.first_iter_pres_fac: 0.000000
+RouterOpts.initial_pres_fac: 0.500000
+RouterOpts.pres_fac_mult: 1.300000
+RouterOpts.max_router_iterations: 50
+RouterOpts.min_incremental_reroute_fanout: 16
+RouterOpts.do_check_rr_graph: true
+RouterOpts.verify_binary_search: false
+RouterOpts.min_channel_width_hint: 0
+RouterOpts.read_rr_edge_metadata: false
+RouterOpts.exit_after_first_routing_iteration: false
+RouterOpts.astar_fac: 1.200000
+RouterOpts.router_profiler_astar_fac: 1.200000
+RouterOpts.criticality_exp: 1.000000
+RouterOpts.max_criticality: 0.990000
+RouterOpts.init_wirelength_abort_threshold: 0.850000
+RouterOpts.save_routing_per_iteration: false
+RouterOpts.congested_routing_iteration_threshold_frac: 1.000000
+RouterOpts.high_fanout_threshold: 64
+RouterOpts.router_debug_net: -2
+RouterOpts.router_debug_sink_rr: -2
+RouterOpts.router_debug_iteration: -2
+RouterOpts.max_convergence_count: 1
+RouterOpts.reconvergence_cpd_threshold: 0.990000
+RouterOpts.update_lower_bound_delays: true
+RouterOpts.first_iteration_timing_report_file: 
+RouterOpts.incr_reroute_delay_ripup: AUTO
+RouterOpts.route_bb_update: DYNAMIC
+RouterOpts.lookahead_type: MAP
+RouterOpts.initial_timing: LOOKAHEAD
+RouterOpts.router_heap: BINARY_HEAP
+RouterOpts.routing_failure_predictor = SAFE
+RouterOpts.routing_budgets_algorithm = DISABLE
+
+AnalysisOpts.gen_post_synthesis_netlist: false
+AnalysisOpts.timing_report_npaths: 100
+AnalysisOpts.timing_report_skew: false
+AnalysisOpts.echo_dot_timing_graph_node: -1
+AnalysisOpts.timing_report_detail: NETLIST
+AnalysisOpts.post_synth_netlist_unconn_input_handling: UNCONNECTED
+AnalysisOpts.post_synth_netlist_unconn_output_handling: UNCONNECTED
+
+# Building complex block graph
+# Building complex block graph took 3.54 seconds (max_rss 954.4 MiB, delta_rss +874.3 MiB)
+Circuit file: /home/xiaokewan/Documents/GNL-Netlist-Generator//rent_sweep/norm_rent_sweep_20000//rent_exp_0.74.blif
+# Load circuit
+# Load circuit took 0.09 seconds (max_rss 973.3 MiB, delta_rss +18.9 MiB)
+# Clean circuit
+Absorbed 0 LUT buffers
+Inferred    0 additional primitive pins as constant generators since they have no combinationally connected inputs
+Inferred    0 additional primitive pins as constant generators due to constant inputs
+Swept input(s)      : 0
+Swept output(s)     : 0 (0 dangling, 0 constant)
+Swept net(s)        : 0
+Swept block(s)      : 0
+Constant Pins Marked: 0
+# Clean circuit took 0.00 seconds (max_rss 973.3 MiB, delta_rss +0.0 MiB)
+# Compress circuit
+# Compress circuit took 0.02 seconds (max_rss 974.3 MiB, delta_rss +0.9 MiB)
+# Verify circuit
+# Verify circuit took 0.00 seconds (max_rss 974.3 MiB, delta_rss +0.0 MiB)
+Circuit Statistics:
+  Blocks: 26188
+    .input :    3200
+    .latch :    3617
+    .output:    1371
+    6-LUT  :   18000
+  Nets  : 24817
+    Avg Fanout:     1.9
+    Max Fanout:  3617.0
+    Min Fanout:     1.0
+  Netlist Clocks: 1
+# Build Timing Graph
+  Timing Graph Nodes: 71422
+  Timing Graph Edges: 91839
+  Timing Graph Levels: 84
+# Build Timing Graph took 0.03 seconds (max_rss 978.0 MiB, delta_rss +3.4 MiB)
+Netlist contains 1 clocks
+  Netlist Clock 'pclk' Fanout: 3617 pins (5.1%), 3617 blocks (13.8%)
+# Load Timing Constraints
+
+SDC file 'rent_exp_0.74.sdc' not found
+Setting default timing constraints:
+   * constrain all primay inputs and primary outputs on netlist clock 'pclk'
+   * optimize netlist clock to run as fast as possible
+Timing constraints created 1 clocks
+  Constrained Clock 'pclk' Source: 'pclk.inpad[0]'
+
+# Load Timing Constraints took 0.00 seconds (max_rss 978.0 MiB, delta_rss +0.0 MiB)
+# Packing
+Warning 1: Block type 'M144K' grid location specification startx (33 = 33) falls outside device horizontal range [0,9]
+Warning 2: Block type 'EMPTY' grid location specification startx (33 = 33) falls outside device horizontal range [0,9]
+Begin packing '/home/xiaokewan/Documents/GNL-Netlist-Generator//rent_sweep/norm_rent_sweep_20000//rent_exp_0.74.blif'.
+
+After removing unused inputs...
+	total blocks: 26188, total nets: 24817, total inputs: 3200, total outputs: 1371
+Begin prepacking.
+
+There is one chain in this architecture called "LAB_carry_chain" with the following starting points:
+	LAB[0]/alm[0]/lut[0]/lcell_comb[0].cin[0]
+
+
+There is one chain in this architecture called "share_chain" with the following starting points:
+	LAB[0]/alm[0]/lut[0]/lcell_comb[0].sharein[0]
+
+0 attraction groups were created during prepacking.
+Finish prepacking.
+Using inter-cluster delay: 1.01382e-09
+Packing with pin utilization targets: io:1,1 PLL:1,1 LAB:0.8,1 DSP:1,1 M9K:1,1 M144K:1,1
+Packing with high fanout thresholds: io:128 PLL:128 LAB:32 DSP:128 M9K:128 M144K:128
+Starting Clustering - Clustering Progress: 
+-------------------   --------------------------   ---------
+Molecules processed   Number of clusters created   FPGA size
+-------------------   --------------------------   ---------
+  1047/26188     3%                           37    13 x 10    
+  2094/26188     7%                           73    16 x 12    
+  3141/26188    11%                          111    19 x 14    
+  4188/26188    15%                          149    20 x 15    
+  5235/26188    19%                          187    22 x 16    
+  6282/26188    23%                          227    24 x 18    
+  7329/26188    27%                          267    25 x 19    
+  8376/26188    31%                          308    27 x 20    
+  9423/26188    35%                          350    28 x 21    
+ 10470/26188    39%                          391    29 x 21    
+ 11517/26188    43%                          436    31 x 23    
+ 12564/26188    47%                          481    32 x 24    
+ 13611/26188    51%                          525    33 x 24    
+ 14658/26188    55%                          571    35 x 26    
+ 15705/26188    59%                          619    36 x 27    
+ 16752/26188    63%                          666    37 x 27    
+ 17799/26188    67%                          715    38 x 28    
+ 18846/26188    71%                          765    39 x 29    
+ 19893/26188    75%                          816    40 x 30    
+ 20940/26188    79%                          867    42 x 31    
+ 21987/26188    83%                         1331    62 x 46    
+ 23034/26188    87%                         2378   212 x 157   
+ 24081/26188    91%                         3425   362 x 268   
+ 25128/26188    95%                         4472   513 x 380   
+ 26175/26188    99%                         5519   663 x 491   
+Incr Slack updates 1 in 0.000841011 sec
+Full Max Req/Worst Slack updates 1 in 4.7288e-05 sec
+Incr Max Req/Worst Slack updates 0 in 0 sec
+Incr Criticality updates 0 in 0 sec
+Full Criticality updates 1 in 0.00108731 sec
+FPGA sized to 665 x 493 (auto)
+Device Utilization: 0.01 (target 1.00)
+	Block Utilization: 1.00 Type: io
+	Block Utilization: 0.00 Type: LAB
+
+Start the iterative improvement process
+the iterative improvement process is done
+Final Clustering Statistics: 
+----------   --------   ------------------------------------   --------------------------
+Block Type   # Blocks   Avg. # of input clocks and pins used   Avg. # of output pins used
+----------   --------   ------------------------------------   --------------------------
+     EMPTY          0                                      0                            0   
+        io       4571                               0.299934                     0.700066   
+       PLL          0                                      0                            0   
+       LAB        962                                23.6414                      15.0229   
+       DSP          0                                      0                            0   
+       M9K          0                                      0                            0   
+     M144K          0                                      0                            0   
+Absorbed logical nets 7165 out of 24817 nets, 17652 nets not absorbed.
+
+Netlist conversion complete.
+
+# Packing took 810.04 seconds (max_rss 1171.3 MiB, delta_rss +193.3 MiB)
+# Load packing
+Begin loading packed FPGA netlist file.
+Netlist generated from file 'rent_exp_0.74.net'.
+Detected 0 constant generators (to see names run with higher pack verbosity)
+Finished loading packed FPGA netlist file (took 0.763835 seconds).
+Warning 3: Treated 0 constant nets as global which will not be routed (to see net names increase packer verbosity).
+# Load packing took 0.81 seconds (max_rss 1209.6 MiB, delta_rss +38.2 MiB)
+Warning 4: Netlist contains 0 global net to non-global architecture pin connections
+
+Pb types usage...
+  io         : 4571
+   pad       : 4571
+    inpad    : 3200
+    outpad   : 1371
+  LAB        : 962
+   alm       : 9026
+    lut      : 18000
+     lut6    : 18000
+      lut    : 18000
+    dff      : 3617
+     ff      : 3617
+
+# Create Device
+## Build Device Grid
+FPGA sized to 665 x 493: 327845 grid tiles (auto)
+
+Resource usage...
+	Netlist
+		4571	blocks of type: io
+	Architecture
+		4576	blocks of type: io
+	Netlist
+		0	blocks of type: PLL
+	Architecture
+		16	blocks of type: PLL
+	Netlist
+		962	blocks of type: LAB
+	Architecture
+		295356	blocks of type: LAB
+	Netlist
+		0	blocks of type: DSP
+	Architecture
+		2074	blocks of type: DSP
+	Netlist
+		0	blocks of type: M9K
+	Architecture
+		12225	blocks of type: M9K
+	Netlist
+		0	blocks of type: M144K
+	Architecture
+		915	blocks of type: M144K
+
+Device Utilization: 0.01 (target 1.00)
+	Physical Tile io:
+	Block Utilization: 1.00 Logical Block: io
+	Physical Tile PLL:
+	Block Utilization: 0.00 Logical Block: PLL
+	Physical Tile LAB:
+	Block Utilization: 0.00 Logical Block: LAB
+	Physical Tile DSP:
+	Block Utilization: 0.00 Logical Block: DSP
+	Physical Tile M9K:
+	Block Utilization: 0.00 Logical Block: M9K
+	Physical Tile M144K:
+	Block Utilization: 0.00 Logical Block: M144K
+
+FPGA size limited by block type(s): io
+
+## Build Device Grid took 4.94 seconds (max_rss 1209.6 MiB, delta_rss +0.0 MiB)
+## Build routing resource graph
+SOURCE->OPIN and IPIN->SINK edge count:43202722
+OPIN->CHANX/CHANY edge count before creating direct connections: 85515660
+OPIN->CHANX/CHANY edge count after creating direct connections: 98782050
+CHAN->CHAN type edge count:243414286
+## Build routing resource graph took 204.71 seconds (max_rss 17081.0 MiB, delta_rss +15871.5 MiB)
+  RR Graph Nodes: 64464438
+  RR Graph Edges: 385399058
+# Create Device took 216.69 seconds (max_rss 17081.0 MiB, delta_rss +15871.5 MiB)
+
+# Computing router lookahead map
+## Computing wire lookahead
+## Computing wire lookahead took 1868.20 seconds (max_rss 17081.0 MiB, delta_rss +0.0 MiB)
+## Computing src/opin lookahead
+## Computing src/opin lookahead took 0.00 seconds (max_rss 17081.0 MiB, delta_rss +0.0 MiB)
+# Computing router lookahead map took 1868.20 seconds (max_rss 17081.0 MiB, delta_rss +0.0 MiB)
+# Computing placement delta delay look-up
+## Build routing resource graph
+SOURCE->OPIN and IPIN->SINK edge count:43202722
+OPIN->CHANX/CHANY edge count before creating direct connections: 455689324
+OPIN->CHANX/CHANY edge count after creating direct connections: 468955714
+CHAN->CHAN type edge count:1368359512
+## Build routing resource graph took 963.15 seconds (max_rss 56630.4 MiB, delta_rss +39549.4 MiB)
+  RR Graph Nodes: 128442614
+  RR Graph Edges: 1880517948
+## Computing router lookahead map
+### Computing wire lookahead
+### Computing wire lookahead took 8848.49 seconds (max_rss 56630.4 MiB, delta_rss +0.0 MiB)
+### Computing src/opin lookahead
+### Computing src/opin lookahead took 0.00 seconds (max_rss 56630.4 MiB, delta_rss +0.0 MiB)
+## Computing router lookahead map took 8848.50 seconds (max_rss 56630.4 MiB, delta_rss +0.0 MiB)
+## Computing delta delays
+## Computing delta delays took 4186.06 seconds (max_rss 56630.4 MiB, delta_rss +0.0 MiB)
+# Computing placement delta delay look-up took 14018.96 seconds (max_rss 56630.4 MiB, delta_rss +39549.4 MiB)
+
+Bounding box mode is Cube
+
+Using simple RL 'Softmax agent' for choosing move and block types
+# Placement
+## Initial Placement
+Initial placement iteration 0 has finished successfully
+## Initial Placement took 0.04 seconds (max_rss 56630.4 MiB, delta_rss +0.0 MiB)
+
+There are 23366 point to point connections in this circuit.
+
+
+BB estimate of min-dist (placement) wire length: 3314741
+
+Completed placement consistency check successfully.
+Initial placement cost: 1 bb_cost: 6230.72 td_cost: 3.64773e-05
+Initial placement estimated Critical Path Delay (CPD): 93.5725 ns
+Initial placement estimated setup Total Negative Slack (sTNS): -206839 ns
+Initial placement estimated setup Worst Negative Slack (sWNS): -93.5725 ns
+
+Initial placement estimated setup slack histogram:
+[ -9.4e-08: -8.4e-08)  28 (  0.6%) |*
+[ -8.4e-08: -7.5e-08) 186 (  3.7%) |**********
+[ -7.5e-08: -6.6e-08) 505 ( 10.1%) |***************************
+[ -6.6e-08: -5.6e-08) 887 ( 17.8%) |***********************************************
+[ -5.6e-08: -4.7e-08) 703 ( 14.1%) |*************************************
+[ -4.7e-08: -3.8e-08) 576 ( 11.5%) |*******************************
+[ -3.8e-08: -2.8e-08) 486 (  9.7%) |**************************
+[ -2.8e-08: -1.9e-08) 467 (  9.4%) |*************************
+[ -1.9e-08: -9.6e-09) 828 ( 16.6%) |********************************************
+[ -9.6e-09: -2.3e-10) 322 (  6.5%) |*****************
+Placement contains 0 placement macros involving 0 blocks (average macro size -nan)
+
+Moves per temperature: 48916
+Warning 5: Starting t: 1984 of 5533 configurations accepted.
+
+---- ------ ------- ------- ---------- ---------- ------- ---------- -------- ------- ------- ------ -------- --------- ------
+Tnum   Time       T Av Cost Av BB Cost Av TD Cost     CPD       sTNS     sWNS Ac Rate Std Dev  R lim Crit Exp Tot Moves  Alpha
+      (sec)                                          (ns)       (ns)     (ns)                                                 
+---- ------ ------- ------- ---------- ---------- ------- ---------- -------- ------- ------- ------ -------- --------- ------
+   1    0.2 7.4e-04   0.893    4899.64 2.4393e-05  88.499  -1.82e+05  -88.499   0.946  0.0349  664.0     1.00     48916  0.200
+   2    0.2 6.7e-04   0.980    4734.69 2.9396e-05  61.870  -1.39e+05  -61.870   0.943  0.0099  664.0     1.00     97832  0.900
+   3    0.2 6.0e-04   0.987    4672.78 2.6827e-05  65.328  -1.36e+05  -65.328   0.938  0.0055  664.0     1.00    146748  0.900
+   4    0.2 5.4e-04   0.982    4657.97 2.8607e-05  60.929  -1.39e+05  -60.929   0.936  0.0083  664.0     1.00    195664  0.900
+   5    0.2 4.9e-04   0.994    4589.54 2.8945e-05  56.693  -1.31e+05  -56.693   0.937  0.0029  664.0     1.00    244580  0.900
+   6    0.2 4.4e-04   0.996    4584.12 3.095e-05   53.020   -1.3e+05  -53.020   0.934  0.0025  664.0     1.00    293496  0.900
+   7    0.2 4.0e-04   0.996    4591.97 2.8303e-05  59.044  -1.31e+05  -59.044   0.928  0.0027  664.0     1.00    342412  0.900
+   8    0.2 3.6e-04   0.993    4565.40 3.0786e-05  52.522  -1.29e+05  -52.522   0.927  0.0030  664.0     1.00    391328  0.900
+   9    0.2 3.2e-04   0.990    4544.11 2.9962e-05  53.906   -1.3e+05  -53.906   0.922  0.0038  664.0     1.00    440244  0.900
+  10    0.2 2.9e-04   0.988    4515.98 2.732e-05   58.858   -1.3e+05  -58.858   0.919  0.0038  664.0     1.00    489160  0.900
+  11    0.2 2.6e-04   0.995    4530.45 2.9314e-05  54.725  -1.27e+05  -54.725   0.915  0.0020  664.0     1.00    538076  0.900
+  12    0.2 2.3e-04   0.991    4513.11 2.9913e-05  53.624  -1.29e+05  -53.624   0.911  0.0043  664.0     1.00    586992  0.900
+  13    0.2 2.1e-04   0.995    4503.54 3.0747e-05  51.656  -1.27e+05  -51.656   0.904  0.0017  664.0     1.00    635908  0.900
+  14    0.2 1.9e-04   0.990    4492.03 3.0181e-05  52.103  -1.28e+05  -52.103   0.901  0.0026  664.0     1.00    684824  0.900
+  15    0.2 1.7e-04   0.995    4485.98 2.9987e-05  52.231  -1.28e+05  -52.231   0.893  0.0024  664.0     1.00    733740  0.900
+  16    0.2 1.5e-04   0.991    4458.64 2.9023e-05  53.850  -1.29e+05  -53.850   0.885  0.0028  664.0     1.00    782656  0.900
+  17    0.2 1.4e-04   0.989    4430.80 2.9698e-05  51.927  -1.25e+05  -51.927   0.879  0.0032  664.0     1.00    831572  0.900
+  18    0.2 1.2e-04   0.993    4406.76 3.0168e-05  50.792  -1.24e+05  -50.792   0.868  0.0026  664.0     1.00    880488  0.900
+  19    0.2 1.1e-04   0.993    4381.38 3.0879e-05  48.481  -1.23e+05  -48.481   0.859  0.0024  664.0     1.00    929404  0.900
+  20    0.2 1.0e-04   0.988    4360.76 2.9553e-05  50.546  -1.24e+05  -50.546   0.849  0.0054  664.0     1.00    978320  0.900
+  21    0.2 9.0e-05   0.993    4324.23 2.8402e-05  52.119  -1.24e+05  -52.119   0.834  0.0025  664.0     1.00   1027236  0.900
+  22    0.2 8.1e-05   0.992    4297.85 2.9195e-05  49.007  -1.21e+05  -49.007   0.823  0.0023  664.0     1.00   1076152  0.900
+  23    0.2 7.3e-05   0.990    4279.29 2.9683e-05  47.965  -1.21e+05  -47.965   0.813  0.0033  664.0     1.00   1125068  0.900
+  24    0.2 6.6e-05   0.992    4255.82 2.9261e-05  47.873   -1.2e+05  -47.873   0.799  0.0029  664.0     1.00   1173984  0.900
+  25    0.2 6.3e-05   0.993    4228.96 2.823e-05   49.426  -1.18e+05  -49.426   0.792  0.0023  664.0     1.00   1222900  0.950
+  26    0.2 5.9e-05   0.996    4225.67 2.9576e-05  46.915  -1.19e+05  -46.915   0.789  0.0009  664.0     1.00   1271816  0.950
+  27    0.2 5.6e-05   0.991    4205.97 2.8929e-05  48.276  -1.19e+05  -48.276   0.780  0.0033  664.0     1.00   1320732  0.950
+  28    0.2 5.4e-05   0.995    4197.57 2.8518e-05  48.545  -1.17e+05  -48.545   0.769  0.0014  664.0     1.00   1369648  0.950
+  29    0.2 5.1e-05   0.993    4186.43 2.8801e-05  47.752  -1.18e+05  -47.752   0.766  0.0026  664.0     1.00   1418564  0.950
+  30    0.2 4.8e-05   0.992    4174.73 2.8575e-05  47.419  -1.17e+05  -47.419   0.755  0.0020  664.0     1.00   1467480  0.950
+  31    0.2 4.6e-05   0.995    4163.59 2.8865e-05  46.789  -1.18e+05  -46.789   0.746  0.0022  664.0     1.00   1516396  0.950
+  32    0.2 4.4e-05   0.994    4150.40 2.8964e-05  46.107  -1.16e+05  -46.107   0.737  0.0025  664.0     1.00   1565312  0.950
+  33    0.2 4.2e-05   0.995    4142.08 2.7853e-05  47.934  -1.17e+05  -47.934   0.726  0.0010  664.0     1.00   1614228  0.950
+  34    0.2 3.9e-05   0.995    4137.92 2.85e-05    46.672  -1.16e+05  -46.672   0.721  0.0012  664.0     1.00   1663144  0.950
+  35    0.2 3.7e-05   0.993    4130.83 2.8685e-05  45.721  -1.17e+05  -45.721   0.712  0.0020  664.0     1.00   1712060  0.950
+  36    0.2 3.6e-05   0.994    4116.54 2.8634e-05  45.623  -1.15e+05  -45.623   0.703  0.0023  664.0     1.00   1760976  0.950
+  37    0.2 3.4e-05   0.995    4107.98 2.8156e-05  46.638  -1.15e+05  -46.638   0.693  0.0014  664.0     1.00   1809892  0.950
+  38    0.2 3.2e-05   0.995    4104.27 2.8293e-05  46.082  -1.15e+05  -46.082   0.679  0.0017  664.0     1.00   1858808  0.950
+  39    0.2 3.1e-05   0.995    4098.91 2.8387e-05  45.331  -1.15e+05  -45.331   0.679  0.0015  664.0     1.00   1907724  0.950
+  40    0.2 2.9e-05   0.995    4094.26 2.8052e-05  45.998  -1.14e+05  -45.998   0.665  0.0014  664.0     1.00   1956640  0.950
+  41    0.2 2.8e-05   0.994    4088.15 2.8385e-05  45.731  -1.15e+05  -45.731   0.647  0.0016  664.0     1.00   2005556  0.950
+  42    0.2 2.6e-05   0.994    4079.26 2.7924e-05  46.104  -1.13e+05  -46.104   0.644  0.0017  664.0     1.00   2054472  0.950
+  43    0.2 2.5e-05   0.995    4070.23 2.7263e-05  46.805  -1.13e+05  -46.805   0.628  0.0014  664.0     1.00   2103388  0.950
+  44    0.2 2.4e-05   0.995    4065.97 2.7705e-05  45.352  -1.13e+05  -45.352   0.619  0.0015  664.0     1.00   2152304  0.950
+  45    0.2 2.2e-05   0.994    4059.07 2.821e-05   44.985  -1.14e+05  -44.985   0.610  0.0016  664.0     1.00   2201220  0.950
+  46    0.2 2.1e-05   0.995    4055.22 2.7552e-05  44.938  -1.12e+05  -44.938   0.600  0.0013  664.0     1.00   2250136  0.950
+  47    0.2 2.0e-05   0.994    4043.96 2.6886e-05  47.013  -1.15e+05  -47.013   0.584  0.0020  664.0     1.00   2299052  0.950
+  48    0.2 1.9e-05   0.995    4038.79 2.6891e-05  46.029  -1.12e+05  -46.029   0.568  0.0013  664.0     1.00   2347968  0.950
+  49    0.2 1.8e-05   0.995    4037.11 2.7502e-05  45.344  -1.12e+05  -45.344   0.561  0.0015  664.0     1.00   2396884  0.950
+  50    0.2 1.7e-05   0.996    4033.06 2.8033e-05  43.946  -1.11e+05  -43.946   0.550  0.0015  664.0     1.00   2445800  0.950
+  51    0.2 1.6e-05   0.996    4029.90 2.7724e-05  44.503  -1.13e+05  -44.503   0.536  0.0012  664.0     1.00   2494716  0.950
+  52    0.2 1.6e-05   0.994    4024.59 2.6961e-05  45.606  -1.13e+05  -45.606   0.522  0.0021  664.0     1.00   2543632  0.950
+  53    0.2 1.5e-05   0.996    4022.04 2.7417e-05  44.494  -1.12e+05  -44.494   0.507  0.0015  664.0     1.00   2592548  0.950
+  54    0.2 1.4e-05   0.995    4016.97 2.7683e-05  43.753  -1.11e+05  -43.753   0.490  0.0017  664.0     1.00   2641464  0.950
+  55    0.2 1.3e-05   0.996    4011.95 2.7623e-05  43.545  -1.12e+05  -43.545   0.479  0.0011  664.0     1.00   2690380  0.950
+  56    0.2 1.3e-05   0.995    4008.64 2.7513e-05  43.768  -1.11e+05  -43.768   0.465  0.0016  664.0     1.00   2739296  0.950
+  57    0.2 1.2e-05   0.996    4007.25 2.6583e-05  45.256  -1.12e+05  -45.256   0.455  0.0011  664.0     1.00   2788212  0.950
+  58    0.2 1.2e-05   0.995    4003.36 2.6527e-05  45.186  -1.11e+05  -45.186   0.436  0.0017  664.0     1.00   2837128  0.950
+  59    0.2 1.1e-05   0.996    3998.97 2.6789e-05  44.183  -1.11e+05  -44.183   0.421  0.0012  661.5     1.03   2886044  0.950
+  60    0.2 1.0e-05   0.994    3997.16 2.4936e-05  45.005   -1.1e+05  -45.005   0.389  0.0020  648.9     1.16   2934960  0.950
+  61    0.2 9.9e-06   0.993    3992.34 2.3234e-05  42.656   -1.1e+05  -42.656   0.345  0.0023  615.7     1.51   2983876  0.950
+  62    0.2 9.4e-06   0.990    3988.03 1.8567e-05  42.665  -1.09e+05  -42.665   0.286  0.0036  557.1     2.13   3032792  0.950
+  63    0.2 8.9e-06   0.989    3987.87 1.3952e-05  42.580  -1.07e+05  -42.580   0.224  0.0042  471.1     3.04   3081708  0.950
+  64    0.2 8.5e-06   0.987    3985.95 1.1784e-05  40.202  -1.06e+05  -40.202   0.191  0.0048  369.4     4.11   3130624  0.950
+  65    0.2 8.0e-06   0.985    3982.39 1.0109e-05  39.110  -1.04e+05  -39.110   0.170  0.0057  277.2     5.08   3179540  0.950
+  66    0.2 7.6e-06   0.985    3980.04 7.6167e-06  40.122  -1.04e+05  -40.122   0.166  0.0056  202.3     5.87   3228456  0.950
+  67    0.2 7.3e-06   0.984    3978.73 6.1959e-06  40.570  -1.03e+05  -40.570   0.162  0.0056  146.8     6.46   3277372  0.950
+  68    0.2 6.9e-06   0.985    3977.83 6.2246e-06  39.736  -1.03e+05  -39.736   0.155  0.0060  106.0     6.89   3326288  0.950
+  69    0.2 6.6e-06   0.992    3974.99 5.8998e-06  40.092  -1.03e+05  -40.092   0.515  0.0036   75.9     7.21   3375204  0.950
+  70    0.2 6.2e-06   0.995    3971.86 5.918e-06   39.691  -1.02e+05  -39.691   0.503  0.0024   81.6     7.15   3424120  0.950
+  71    0.2 5.9e-06   0.996    3969.91 6.9119e-06  38.525  -1.01e+05  -38.525   0.490  0.0023   86.7     7.10   3473036  0.950
+  72    0.2 5.6e-06   0.995    3968.26 6.88e-06    38.426  -1.01e+05  -38.426   0.479  0.0028   91.0     7.05   3521952  0.950
+  73    0.2 5.3e-06   0.995    3964.65 6.5918e-06  38.667  -1.01e+05  -38.667   0.468  0.0023   94.5     7.01   3570868  0.950
+  74    0.2 5.1e-06   0.996    3963.70 7.1529e-06  37.999  -1.01e+05  -37.999   0.455  0.0021   97.2     6.98   3619784  0.950
+  75    0.2 4.8e-06   0.996    3962.85 6.9938e-06  38.006  -1.01e+05  -38.006   0.448  0.0017   98.7     6.97   3668700  0.950
+  76    0.2 4.6e-06   0.996    3960.29 7.0609e-06  37.873     -1e+05  -37.873   0.441  0.0018   99.5     6.96   3717616  0.950
+  77    0.2 4.3e-06   0.996    3959.02 7.045e-06   37.874     -1e+05  -37.874   0.425  0.0020   99.6     6.96   3766532  0.950
+  78    0.2 4.1e-06   0.996    3957.47 7.6958e-06  37.298     -1e+05  -37.298   0.417  0.0017   98.1     6.97   3815448  0.950
+  79    0.2 3.9e-06   0.997    3955.47 7.4707e-06  37.297     -1e+05  -37.297   0.412  0.0017   95.8     7.00   3864364  0.950
+  80    0.2 3.7e-06   0.997    3953.78 7.4468e-06  37.096     -1e+05  -37.096   0.405  0.0016   93.1     7.03   3913280  0.950
+  81    0.2 3.5e-06   0.996    3952.72 7.552e-06   36.934     -1e+05  -36.934   0.399  0.0016   89.9     7.06   3962196  0.950
+  82    0.2 3.4e-06   0.997    3951.19 7.5398e-06  36.808  -9.97e+04  -36.808   0.393  0.0015   86.2     7.10   4011112  0.950
+  83    0.2 3.2e-06   0.997    3949.67 7.5259e-06  36.780  -9.98e+04  -36.780   0.387  0.0015   82.1     7.14   4060028  0.950
+  84    0.2 3.0e-06   0.998    3948.47 7.3541e-06  36.780  -9.95e+04  -36.780   0.371  0.0012   77.8     7.19   4108944  0.950
+  85    0.2 2.9e-06   0.997    3947.74 7.1774e-06  36.819  -9.95e+04  -36.819   0.369  0.0013   72.5     7.25   4157860  0.950
+  86    0.2 2.7e-06   0.997    3945.97 7.0707e-06  36.839  -9.92e+04  -36.839   0.362  0.0011   67.3     7.30   4206776  0.950
+  87    0.2 2.6e-06   0.998    3945.57 7.7551e-06  36.305  -9.89e+04  -36.305   0.354  0.0011   62.1     7.36   4255692  0.950
+  88    0.2 2.5e-06   0.998    3944.99 7.6421e-06  36.305   -9.9e+04  -36.305   0.342  0.0009   56.7     7.41   4304608  0.950
+  89    0.2 2.3e-06   0.998    3943.93 7.6019e-06  36.267  -9.89e+04  -36.267   0.345  0.0008   51.1     7.47   4353524  0.950
+  90    0.2 2.2e-06   0.999    3943.32 7.5506e-06  36.217  -9.88e+04  -36.217   0.341  0.0007   46.3     7.52   4402440  0.950
+  91    0.2 2.1e-06   0.999    3941.90 7.39e-06    36.247  -9.87e+04  -36.247   0.328  0.0007   41.7     7.57   4451356  0.950
+  92    0.2 2.0e-06   0.999    3941.15 7.3049e-06  36.260  -9.86e+04  -36.260   0.324  0.0005   37.0     7.62   4500272  0.950
+  93    0.2 1.9e-06   0.999    3940.07 7.2127e-06  36.260  -9.85e+04  -36.260   0.318  0.0005   32.7     7.66   4549188  0.950
+  94    0.2 1.8e-06   0.999    3938.86 6.9825e-06  36.304  -9.83e+04  -36.304   0.313  0.0005   28.7     7.71   4598104  0.950
+  95    0.2 1.7e-06   0.999    3938.81 6.953e-06   36.292  -9.83e+04  -36.292   0.300  0.0005   25.1     7.75   4647020  0.950
+  96    0.2 1.6e-06   0.999    3938.14 6.9045e-06  36.264  -9.81e+04  -36.264   0.294  0.0003   21.6     7.78   4695936  0.950
+  97    0.2 1.6e-06   0.999    3937.95 6.9117e-06  36.192   -9.8e+04  -36.192   0.288  0.0003   18.4     7.82   4744852  0.950
+  98    0.2 1.5e-06   1.000    3937.69 6.9387e-06  36.118   -9.8e+04  -36.118   0.279  0.0002   15.6     7.85   4793768  0.950
+  99    0.2 1.4e-06   0.999    3937.31 6.8167e-06  36.159  -9.79e+04  -36.159   0.282  0.0002   13.1     7.87   4842684  0.950
+ 100    0.2 1.3e-06   0.999    3936.86 6.6715e-06  36.226  -9.78e+04  -36.226   0.271  0.0003   11.0     7.89   4891600  0.950
+ 101    0.2 1.3e-06   1.000    3936.13 6.7599e-06  36.128  -9.78e+04  -36.128   0.265  0.0002    9.2     7.91   4940516  0.950
+ 102    0.2 1.2e-06   1.000    3935.64 6.8087e-06  36.055  -9.77e+04  -36.055   0.258  0.0002    7.6     7.93   4989432  0.950
+ 103    0.2 1.1e-06   1.000    3935.17 6.7107e-06  36.091  -9.76e+04  -36.091   0.248  0.0002    6.2     7.95   5038348  0.950
+ 104    0.2 1.1e-06   1.000    3934.95 6.7115e-06  36.059  -9.77e+04  -36.059   0.247  0.0002    5.0     7.96   5087264  0.950
+ 105    0.2 1.0e-06   1.000    3934.60 6.6904e-06  36.062  -9.76e+04  -36.062   0.242  0.0001    4.0     7.97   5136180  0.950
+ 106    0.2 9.8e-07   1.000    3934.47 6.6531e-06  36.074  -9.76e+04  -36.074   0.244  0.0001    3.2     7.98   5185096  0.950
+ 107    0.2 9.3e-07   1.000    3934.37 6.6079e-06  36.091  -9.76e+04  -36.091   0.252  0.0001    2.6     7.98   5234012  0.950
+ 108    0.2 8.9e-07   1.000    3934.24 6.586e-06   36.091  -9.75e+04  -36.091   0.246  0.0001    2.1     7.99   5282928  0.950
+ 109    0.2 8.4e-07   1.000    3933.97 6.5911e-06  36.073  -9.76e+04  -36.073   0.235  0.0001    1.7     7.99   5331844  0.950
+ 110    0.2 8.0e-07   1.000    3933.92 6.5562e-06  36.091  -9.76e+04  -36.091   0.227  0.0000    1.4     8.00   5380760  0.950
+ 111    0.2 7.6e-07   1.000    3933.86 6.5754e-06  36.073  -9.75e+04  -36.073   0.222  0.0001    1.1     8.00   5429676  0.950
+ 112    0.2 7.2e-07   1.000    3933.76 6.5719e-06  36.073  -9.75e+04  -36.073   0.219  0.0001    1.0     8.00   5478592  0.950
+ 113    0.2 6.9e-07   1.000    3933.42 6.5682e-06  36.073  -9.75e+04  -36.073   0.213  0.0000    1.0     8.00   5527508  0.950
+ 114    0.2 6.5e-07   1.000    3933.29 6.5394e-06  36.091  -9.75e+04  -36.091   0.209  0.0001    1.0     8.00   5576424  0.950
+ 115    0.2 6.2e-07   1.000    3933.09 6.5377e-06  36.091  -9.75e+04  -36.091   0.206  0.0000    1.0     8.00   5625340  0.950
+ 116    0.2 5.9e-07   1.000    3933.18 6.5612e-06  36.073  -9.75e+04  -36.073   0.203  0.0000    1.0     8.00   5674256  0.950
+ 117    0.2 5.6e-07   1.000    3932.99 6.5328e-06  36.091  -9.75e+04  -36.091   0.204  0.0000    1.0     8.00   5723172  0.950
+ 118    0.2 5.3e-07   1.000    3933.03 6.5565e-06  36.073  -9.75e+04  -36.073   0.194  0.0000    1.0     8.00   5772088  0.950
+ 119    0.2 5.0e-07   1.000    3933.00 6.5571e-06  36.073  -9.75e+04  -36.073   0.193  0.0000    1.0     8.00   5821004  0.950
+ 120    0.2 4.8e-07   1.000    3932.98 6.5512e-06  36.073  -9.75e+04  -36.073   0.186  0.0000    1.0     8.00   5869920  0.950
+ 121    0.2 4.6e-07   1.000    3932.96 6.5504e-06  36.073  -9.75e+04  -36.073   0.184  0.0000    1.0     8.00   5918836  0.950
+ 122    0.2 4.3e-07   1.000    3932.86 6.5449e-06  36.073  -9.75e+04  -36.073   0.182  0.0000    1.0     8.00   5967752  0.950
+ 123    0.2 4.1e-07   1.000    3932.86 6.5432e-06  36.073  -9.75e+04  -36.073   0.178  0.0000    1.0     8.00   6016668  0.950
+ 124    0.2 3.9e-07   1.000    3932.88 6.5429e-06  36.073  -9.75e+04  -36.073   0.174  0.0000    1.0     8.00   6065584  0.950
+ 125    0.2 3.7e-07   1.000    3932.95 6.5427e-06  36.073  -9.75e+04  -36.073   0.173  0.0000    1.0     8.00   6114500  0.950
+ 126    0.2 3.5e-07   1.000    3932.86 6.5385e-06  36.073  -9.75e+04  -36.073   0.172  0.0000    1.0     8.00   6163416  0.950
+ 127    0.2 3.3e-07   1.000    3932.76 6.5123e-06  36.091  -9.75e+04  -36.091   0.163  0.0000    1.0     8.00   6212332  0.950
+ 128    0.2 3.2e-07   1.000    3932.80 6.5365e-06  36.073  -9.75e+04  -36.073   0.160  0.0000    1.0     8.00   6261248  0.950
+ 129    0.2 3.0e-07   1.000    3932.77 6.5353e-06  36.073  -9.75e+04  -36.073   0.157  0.0000    1.0     8.00   6310164  0.950
+ 130    0.2 2.9e-07   1.000    3932.70 6.5357e-06  36.073  -9.75e+04  -36.073   0.156  0.0000    1.0     8.00   6359080  0.950
+ 131    0.3 0.0e+00   0.999    3932.86 6.5249e-06  36.073  -9.75e+04  -36.073   0.034  0.0005    1.0     8.00   6407996  0.950
+## Placement Quench took 0.26 seconds (max_rss 56630.4 MiB)
+post-quench CPD = 35.9654 (ns) 
+
+BB estimate of min-dist (placement) wire length: 2092312
+
+Completed placement consistency check successfully.
+
+Swaps called: 6413529
+
+Aborted Move Reasons:
+  No moves aborted
+
+Placement estimated critical path delay (least slack): 35.9654 ns, Fmax: 27.8045 MHz
+Placement estimated setup Worst Negative Slack (sWNS): -35.9654 ns
+Placement estimated setup Total Negative Slack (sTNS): -96531.8 ns
+
+Placement estimated setup slack histogram:
+[ -3.6e-08: -3.2e-08)  113 (  2.3%) |****
+[ -3.2e-08: -2.9e-08)  201 (  4.0%) |******
+[ -2.9e-08: -2.5e-08)  427 (  8.6%) |*************
+[ -2.5e-08: -2.2e-08) 1465 ( 29.4%) |**********************************************
+[ -2.2e-08: -1.8e-08)  822 ( 16.5%) |**************************
+[ -1.8e-08: -1.5e-08)  694 ( 13.9%) |**********************
+[ -1.5e-08: -1.1e-08)  749 ( 15.0%) |************************
+[ -1.1e-08: -7.4e-09)  274 (  5.5%) |*********
+[ -7.4e-09: -3.8e-09)   66 (  1.3%) |**
+[ -3.8e-09: -2.3e-10)  177 (  3.5%) |******
+
+Placement estimated geomean non-virtual intra-domain period: 35.9654 ns (27.8045 MHz)
+Placement estimated fanout-weighted geomean non-virtual intra-domain period: 35.9654 ns (27.8045 MHz)
+
+Placement cost: 0.998461, bb_cost: 3932.92, td_cost: 6.60223e-06, 
+
+Placement resource usage:
+  io  implemented as io : 4571
+  LAB implemented as LAB: 962
+
+Placement number of temperatures: 131
+Placement total # of swap attempts: 6413529
+	Swaps accepted: 3130032 (48.8 %)
+	Swaps rejected: 3184121 (49.6 %)
+	Swaps aborted:   99376 ( 1.5 %)
+
+
+Placement perturbation distribution by block and move type: 
+------------------ ----------------- ---------------- ---------------- --------------- ------------ 
+    Block Type         Move Type       (%) of Total      Accepted(%)     Rejected(%)    Aborted(%)
+------------------ ----------------- ---------------- ---------------- --------------- ------------ 
+io                 Uniform                20.61            55.58           44.42          0.00         
+                   Median                 20.61            55.10           42.39          2.51         
+                   Centroid               20.57            55.17           42.35          2.48         
+                   W. Centroid            20.56            55.23           42.30          2.47         
+                   W. Median              0.09             5.16            81.17          13.68        
+                   Crit. Uniform          0.01             6.82            93.18          0.00         
+                   Feasible Region        0.00             22.26           54.52          23.23        
+
+LAB                Uniform                4.31             1.74            98.26          0.00         
+                   Median                 4.34             33.86           66.13          0.01         
+                   Centroid               4.34             19.38           80.62          0.00         
+                   W. Centroid            4.34             20.82           79.18          0.00         
+                   W. Median              0.02             0.62            99.30          0.08         
+                   Crit. Uniform          0.10             0.01            99.99          0.00         
+                   Feasible Region        0.11             0.03            99.97          0.00         
+
+
+Placement Quench timing analysis took 0.0865235 seconds (0.0848557 STA, 0.00166778 slack) (1 full updates: 1 setup, 0 hold, 0 combined).
+Placement Total  timing analysis took 11.6885 seconds (11.4453 STA, 0.243261 slack) (133 full updates: 133 setup, 0 hold, 0 combined).
+update_td_costs: connections 0 nets 0 sum_nets 0 total 0
+# Placement took 25.77 seconds (max_rss 56630.4 MiB, delta_rss +0.0 MiB)
+
+# Routing
+Initializing minimum channel width search based on maximum CLB pins
+
+Attempting to route at 190 channels (binary search bounds: [-1, -1])
+## Build routing resource graph
+SOURCE->OPIN and IPIN->SINK edge count:43202722
+OPIN->CHANX/CHANY edge count before creating direct connections: 161450896
+OPIN->CHANX/CHANY edge count after creating direct connections: 174717286
+CHAN->CHAN type edge count:474753768
+## Build routing resource graph took 336.15 seconds (max_rss 56630.4 MiB, delta_rss +0.0 MiB)
+  RR Graph Nodes: 77752572
+  RR Graph Edges: 692673776
+Confirming router algorithm: TIMING_DRIVEN.
+## Computing router lookahead map
+### Computing wire lookahead
+### Computing wire lookahead took 3109.91 seconds (max_rss 56630.4 MiB, delta_rss +0.0 MiB)
+### Computing src/opin lookahead
+### Computing src/opin lookahead took 0.00 seconds (max_rss 56630.4 MiB, delta_rss +0.0 MiB)
+## Computing router lookahead map took 3109.91 seconds (max_rss 56630.4 MiB, delta_rss +0.0 MiB)
+## Initializing router criticalities
+Initial Net Connection Criticality Histogram:
+[        0:      0.1)  882 (  3.7%) |******
+[      0.1:      0.2)  215 (  0.9%) |**
+[      0.2:      0.3)  945 (  3.9%) |*******
+[      0.3:      0.4)  730 (  3.0%) |*****
+[      0.4:      0.5) 1396 (  5.8%) |**********
+[      0.5:      0.6) 2194 (  9.1%) |****************
+[      0.6:      0.7) 3604 ( 14.9%) |**************************
+[      0.7:      0.8) 4975 ( 20.6%) |************************************
+[      0.8:      0.9) 6286 ( 26.1%) |**********************************************
+[      0.9:        1) 2887 ( 12.0%) |*********************
+## Initializing router criticalities took 0.33 seconds (max_rss 56630.4 MiB, delta_rss +0.0 MiB)
+---- ------ ------- ---- ------- ------- ------- ----------------- --------------- -------- ---------- ---------- ---------- ---------- --------
+Iter   Time    pres  BBs    Heap  Re-Rtd  Re-Rtd Overused RR Nodes      Wirelength      CPD       sTNS       sWNS       hTNS       hWNS Est Succ
+      (sec)     fac Updt    push    Nets   Conns                                       (ns)       (ns)       (ns)       (ns)       (ns)     Iter
+---- ------ ------- ---- ------- ------- ------- ----------------- --------------- -------- ---------- ---------- ---------- ---------- --------
+   1    1.5     0.0    0 1.5e+07   17651   23366   39783 ( 0.051%) 2124544 ( 1.7%)   37.422 -1.001e+05    -37.422      0.000      0.000      N/A
+Incr Slack updates 133 in 0.0957277 sec
+Full Max Req/Worst Slack updates 80 in 0.00377178 sec
+Incr Max Req/Worst Slack updates 53 in 0.0033083 sec
+Incr Criticality updates 18 in 0.0152202 sec
+Full Criticality updates 115 in 0.113975 sec
+   2    1.7     0.5  106 1.6e+07   15547   21198   16725 ( 0.022%) 2125378 ( 1.7%)   37.273 -1.002e+05    -37.273      0.000      0.000      N/A
+   3    2.8     0.6   57 2.2e+07   10060   14454   11193 ( 0.014%) 2127585 ( 1.7%)   37.268 -1.003e+05    -37.268      0.000      0.000      N/A
+   4    6.3     0.8   47 4.0e+07    8048   11862    6187 ( 0.008%) 2127607 ( 1.7%)   37.427 -1.004e+05    -37.427      0.000      0.000      N/A
+   5    5.4     1.1   39 3.3e+07    5884    9171    2750 ( 0.004%) 2127244 ( 1.7%)   37.427 -1.004e+05    -37.427      0.000      0.000      N/A
+   6    2.5     1.4   15 1.5e+07    3590    5960    1299 ( 0.002%) 2126971 ( 1.7%)   37.426 -1.005e+05    -37.426      0.000      0.000      N/A
+   7    1.2     1.9   15 6672868    1949    3652     513 ( 0.001%) 2127319 ( 1.7%)   37.426 -1.005e+05    -37.426      0.000      0.000      N/A
+   8    0.7     2.4    7 3196048    1003    2048     221 ( 0.000%) 2127413 ( 1.7%)   37.426 -1.005e+05    -37.426      0.000      0.000      N/A
+   9    0.4     3.1    4 1185131     569    1267      82 ( 0.000%) 2127528 ( 1.7%)   37.426 -1.005e+05    -37.426      0.000      0.000      N/A
+  10    0.4     4.1    0  794323     376     898      21 ( 0.000%) 2127569 ( 1.7%)   37.426 -1.005e+05    -37.426      0.000      0.000       14
+  11    0.4     5.3    0  715622     290     728       8 ( 0.000%) 2127574 ( 1.7%)   37.426 -1.005e+05    -37.426      0.000      0.000       13
+  12    0.3     6.9    0  589259     272     698       1 ( 0.000%) 2127562 ( 1.7%)   37.426 -1.005e+05    -37.426      0.000      0.000       13
+  13    0.4     9.0    0  591904     264     682       0 ( 0.000%) 2127562 ( 1.7%)   37.426 -1.005e+05    -37.426      0.000      0.000       12
+Restoring best routing
+Critical path: 37.4257 ns
+Successfully routed after 13 routing iterations.
+Final Net Connection Criticality Histogram:
+[        0:      0.1)  874 (  3.6%) |*******
+[      0.1:      0.2)  241 (  1.0%) |**
+[      0.2:      0.3)  220 (  0.9%) |**
+[      0.3:      0.4)  799 (  3.3%) |******
+[      0.4:      0.5) 1716 (  7.1%) |*************
+[      0.5:      0.6) 2095 (  8.7%) |****************
+[      0.6:      0.7) 4088 ( 17.0%) |********************************
+[      0.7:      0.8) 4671 ( 19.4%) |************************************
+[      0.8:      0.9) 5913 ( 24.5%) |**********************************************
+[      0.9:        1) 3497 ( 14.5%) |***************************
+Router Stats: total_nets_routed: 65503 total_connections_routed: 95984 total_heap_pushes: 156127555 total_heap_pops: 24471575 total_internal_heap_pushes: 0 total_internal_heap_pops: 0 total_external_heap_pushes: 156127555 total_external_heap_pops: 24471575 total_external_SOURCE_pushes: 95984 total_external_SOURCE_pops: 94904 total_internal_SOURCE_pushes: 0 total_internal_SOURCE_pops: 0 rt_node_SOURCE_pushes: 95984 rt_node_SOURCE_high_fanout_pushes: 0 rt_node_SOURCE_entire_tree_pushes: 95984 total_external_SINK_pushes: 481932 total_external_SINK_pops: 445350 total_internal_SINK_pushes: 0 total_internal_SINK_pops: 0 rt_node_SINK_pushes: 0 rt_node_SINK_high_fanout_pushes: 0 rt_node_SINK_entire_tree_pushes: 0 total_external_IPIN_pushes: 507872 total_external_IPIN_pops: 482091 total_internal_IPIN_pushes: 0 total_internal_IPIN_pops: 0 rt_node_IPIN_pushes: 0 rt_node_IPIN_high_fanout_pushes: 0 rt_node_IPIN_entire_tree_pushes: 0 total_external_OPIN_pushes: 3240835 total_external_OPIN_pops: 3102507 total_internal_OPIN_pushes: 0 total_internal_OPIN_pops: 0 rt_node_OPIN_pushes: 34837 rt_node_OPIN_high_fanout_pushes: 0 rt_node_OPIN_entire_tree_pushes: 34837 total_external_CHANX_pushes: 77030465 total_external_CHANX_pops: 10108028 total_internal_CHANX_pushes: 0 total_internal_CHANX_pops: 0 rt_node_CHANX_pushes: 75615 rt_node_CHANX_high_fanout_pushes: 0 rt_node_CHANX_entire_tree_pushes: 75615 total_external_CHANY_pushes: 74770467 total_external_CHANY_pops: 10238695 total_internal_CHANY_pushes: 0 total_internal_CHANY_pops: 0 rt_node_CHANY_pushes: 84256 rt_node_CHANY_high_fanout_pushes: 0 rt_node_CHANY_entire_tree_pushes: 84256 total_number_of_adding_all_rt: 374252 total_number_of_adding_high_fanout_rt: 0 total_number_of_adding_all_rt_from_calling_high_fanout_rt: 0 
+
+Attempting to route at 96 channels (binary search bounds: [-1, 190])
+## Build routing resource graph
+SOURCE->OPIN and IPIN->SINK edge count:43202722
+OPIN->CHANX/CHANY edge count before creating direct connections: 83011416
+OPIN->CHANX/CHANY edge count after creating direct connections: 96277806
+CHAN->CHAN type edge count:233021602
+## Build routing resource graph took 182.13 seconds (max_rss 56630.4 MiB, delta_rss +0.0 MiB)
+  RR Graph Nodes: 64052930
+  RR Graph Edges: 372502130
+Confirming router algorithm: TIMING_DRIVEN.
+## Computing router lookahead map
+### Computing wire lookahead
+### Computing wire lookahead took 1751.56 seconds (max_rss 56630.4 MiB, delta_rss +0.0 MiB)
+### Computing src/opin lookahead
+### Computing src/opin lookahead took 0.00 seconds (max_rss 56630.4 MiB, delta_rss +0.0 MiB)
+## Computing router lookahead map took 1751.56 seconds (max_rss 56630.4 MiB, delta_rss +0.0 MiB)
+## Initializing router criticalities
+Initial Net Connection Criticality Histogram:
+[        0:      0.1)  882 (  3.7%) |*******
+[      0.1:      0.2)  215 (  0.9%) |**
+[      0.2:      0.3)  944 (  3.9%) |*******
+[      0.3:      0.4)  727 (  3.0%) |*****
+[      0.4:      0.5) 1366 (  5.7%) |**********
+[      0.5:      0.6) 2187 (  9.1%) |****************
+[      0.6:      0.7) 3600 ( 14.9%) |***************************
+[      0.7:      0.8) 4992 ( 20.7%) |*************************************
+[      0.8:      0.9) 6240 ( 25.9%) |**********************************************
+[      0.9:        1) 2961 ( 12.3%) |**********************
+## Initializing router criticalities took 0.17 seconds (max_rss 56630.4 MiB, delta_rss +0.0 MiB)
+---- ------ ------- ---- ------- ------- ------- ----------------- --------------- -------- ---------- ---------- ---------- ---------- --------
+Iter   Time    pres  BBs    Heap  Re-Rtd  Re-Rtd Overused RR Nodes      Wirelength      CPD       sTNS       sWNS       hTNS       hWNS Est Succ
+      (sec)     fac Updt    push    Nets   Conns                                       (ns)       (ns)       (ns)       (ns)       (ns)     Iter
+---- ------ ------- ---- ------- ------- ------- ----------------- --------------- -------- ---------- ---------- ---------- ---------- --------
+   1    1.2     0.0    0 9645534   17651   23366   43584 ( 0.068%) 2116886 ( 3.4%)   37.379 -9.999e+04    -37.379      0.000      0.000      N/A
+   2    2.3     0.5  179 1.7e+07   16753   22450   29214 ( 0.046%) 2116622 ( 3.4%)   37.360 -1.002e+05    -37.360      0.000      0.000      N/A
+   3   24.5     0.6   70 1.3e+08   14448   19899   24791 ( 0.039%) 2118565 ( 3.4%)   37.515 -1.006e+05    -37.515      0.000      0.000      N/A
+   4  148.5     0.8   61 5.8e+08   14010   19504   17896 ( 0.028%) 2119216 ( 3.4%)   37.391 -1.006e+05    -37.391      0.000      0.000      N/A
+   5  344.5     1.1   86 1.0e+09   12932   18334   12842 ( 0.020%) 2120818 ( 3.4%)   37.358 -1.008e+05    -37.358      0.000      0.000      N/A
+   6  629.6     1.4  101 1.5e+09   11639   16858   10688 ( 0.017%) 2123025 ( 3.4%)   37.411 -1.008e+05    -37.411      0.000      0.000      N/A
+   7 1251.0     1.9  126 2.4e+09   10704   15781    9390 ( 0.015%) 2125264 ( 3.4%)   37.223 -1.009e+05    -37.223      0.000      0.000      N/A
+   8 2181.1     2.4  160 3.5e+09    9919   14718    8465 ( 0.013%) 2127585 ( 3.4%)   37.263 -1.009e+05    -37.263      0.000      0.000      N/A
+   9 4274.1     3.1  153 5.8e+09    9531   14308    7921 ( 0.012%) 2130750 ( 3.4%)   37.394 -1.010e+05    -37.394      0.000      0.000      N/A
+  10 7357.6     4.1  189 9.8e+09    9192   13849    7395 ( 0.012%) 2134078 ( 3.4%)   37.256 -1.011e+05    -37.256      0.000      0.000       84
+  11 10640.1     5.3  214 1.4e+10    8648   13036    7064 ( 0.011%) 2137577 ( 3.4%)   37.405 -1.013e+05    -37.405      0.000      0.000      108
+  12 14884.8     6.9  254 1.9e+10    8554   13033    6727 ( 0.011%) 2141849 ( 3.4%)   37.252 -1.013e+05    -37.252      0.000      0.000      119
+  13 18982.6     9.0  281 2.4e+10    8072   12251    6450 ( 0.010%) 2146649 ( 3.4%)   37.272 -1.015e+05    -37.272      0.000      0.000      147
+  14 23617.5    11.6  318 2.8e+10    7812   11919    6252 ( 0.010%) 2150292 ( 3.4%)   37.284 -1.016e+05    -37.284      0.000      0.000      157
+Routing aborted, the predicted iteration for a successful route (157.0) is too high.
+Routing failed.
+
+Failed routing attempt #0
+Total number of overused nodes: 6252
+Total number of overused nodes is larger than the logging limit (20).
+Displaying the first 20 entries.
+Routing Failure Diagnostics: Printing Overused Nodes Information
+------ ------- ---------- --------- -------- ------------ ------- ------- ------- ------- ------- ------- -------
+   No.  NodeId  Occupancy  Capacity  RR Node    Direction    Side     PTC   Block    Xlow    Ylow   Xhigh   Yhigh
+                                        type                          NUM    Name                                 
+------ ------- ---------- --------- -------- ------------ ------- ------- ------- ------- ------- ------- -------
+     0 22009234          2         1     IPIN          N/A     TOP       7     LAB     293     238     293     238
+     1 22078722          2         1     IPIN          N/A     TOP       7     LAB     294     233     294     233
+     2 22078983          2         1     OPIN          N/A     TOP     126     LAB     294     234     294     234
+     3 22079145          2         1     IPIN          N/A     TOP       4     LAB     294     236     294     236
+     4 22079287          2         1     IPIN          N/A     TOP       4     LAB     294     237     294     237
+     5 22079290          2         1     IPIN          N/A     TOP       7     LAB     294     237     294     237
+     6 22079452          2         1     IPIN          N/A     TOP      27     LAB     294     238     294     238
+     7 22079852          2         1     IPIN          N/A     TOP       1     LAB     294     241     294     241
+     8 22149199          2         1     IPIN          N/A     TOP       2     LAB     295     235     295     235
+     9 22149349          2         1     IPIN          N/A     TOP      10     LAB     295     236     295     236
+    10 22149351          2         1     IPIN          N/A     TOP      12     LAB     295     236     295     236
+    11 22149627          2         1     IPIN          N/A     TOP       4     LAB     295     238     295     238
+    12 22149631          2         1     IPIN          N/A     TOP       8     LAB     295     238     295     238
+    13 22149635          2         1     IPIN          N/A     TOP      12     LAB     295     238     295     238
+    14 22150055          3         1     IPIN          N/A     TOP       6     LAB     295     241     295     241
+    15 22150484          2         1     IPIN          N/A     TOP       9     LAB     295     244     295     244
+    16 22218978          2         1     IPIN          N/A     TOP       9     LAB     296     232     296     232
+    17 22219112          2         1     IPIN          N/A     TOP       1     LAB     296     233     296     233
+    18 22219407          2         1     IPIN          N/A     TOP      12     LAB     296     235     296     235
+    19 22219548          2         1     IPIN          N/A     TOP      11     LAB     296     236     296     236
+
+Final Net Connection Criticality Histogram:
+[        0:      0.1)  852 (  3.5%) |*******
+[      0.1:      0.2)  232 (  1.0%) |**
+[      0.2:      0.3)  210 (  0.9%) |**
+[      0.3:      0.4)  722 (  3.0%) |******
+[      0.4:      0.5) 1703 (  7.1%) |**************
+[      0.5:      0.6) 1900 (  7.9%) |***************
+[      0.6:      0.7) 3837 ( 15.9%) |*******************************
+[      0.7:      0.8) 4774 ( 19.8%) |**************************************
+[      0.8:      0.9) 5714 ( 23.7%) |**********************************************
+[      0.9:        1) 4170 ( 17.3%) |**********************************
+Router Stats: total_nets_routed: 159865 total_connections_routed: 229306 total_heap_pushes: 110879588046 total_heap_pops: 91774780316 total_internal_heap_pushes: 0 total_internal_heap_pops: 0 total_external_heap_pushes: 110879588046 total_external_heap_pops: 91774780316 total_external_SOURCE_pushes: 229306 total_external_SOURCE_pops: 227009 total_internal_SOURCE_pushes: 0 total_internal_SOURCE_pops: 0 rt_node_SOURCE_pushes: 229306 rt_node_SOURCE_high_fanout_pushes: 0 rt_node_SOURCE_entire_tree_pushes: 229306 total_external_SINK_pushes: 1008692 total_external_SINK_pops: 835025 total_internal_SINK_pushes: 0 total_internal_SINK_pops: 0 rt_node_SINK_pushes: 0 rt_node_SINK_high_fanout_pushes: 0 rt_node_SINK_entire_tree_pushes: 0 total_external_IPIN_pushes: 1129709 total_external_IPIN_pops: 1009958 total_internal_IPIN_pushes: 0 total_internal_IPIN_pops: 0 rt_node_IPIN_pushes: 0 rt_node_IPIN_high_fanout_pushes: 0 rt_node_IPIN_entire_tree_pushes: 0 total_external_OPIN_pushes: 8002709 total_external_OPIN_pops: 7740853 total_internal_OPIN_pushes: 0 total_internal_OPIN_pops: 0 rt_node_OPIN_pushes: 80411 rt_node_OPIN_high_fanout_pushes: 0 rt_node_OPIN_entire_tree_pushes: 80411 total_external_CHANX_pushes: 54825767907 total_external_CHANX_pops: 45489542563 total_internal_CHANX_pushes: 0 total_internal_CHANX_pops: 0 rt_node_CHANX_pushes: 184419 rt_node_CHANX_high_fanout_pushes: 0 rt_node_CHANX_entire_tree_pushes: 184419 total_external_CHANY_pushes: 56043449723 total_external_CHANY_pops: 46275424908 total_internal_CHANY_pushes: 0 total_internal_CHANY_pops: 0 rt_node_CHANY_pushes: 184478 rt_node_CHANY_high_fanout_pushes: 0 rt_node_CHANY_entire_tree_pushes: 184478 total_number_of_adding_all_rt: 861786 total_number_of_adding_high_fanout_rt: 0 total_number_of_adding_all_rt_from_calling_high_fanout_rt: 0 
+
+Attempting to route at 144 channels (binary search bounds: [96, 190])
+## Build routing resource graph
+SOURCE->OPIN and IPIN->SINK edge count:43202722
+OPIN->CHANX/CHANY edge count before creating direct connections: 122518216
+OPIN->CHANX/CHANY edge count after creating direct connections: 135784606
+CHAN->CHAN type edge count:348868012
+## Build routing resource graph took 259.40 seconds (max_rss 56630.4 MiB, delta_rss +0.0 MiB)
+  RR Graph Nodes: 70944538
+  RR Graph Edges: 527855340
+Confirming router algorithm: TIMING_DRIVEN.
+## Computing router lookahead map
+### Computing wire lookahead
+### Computing wire lookahead took 2233.57 seconds (max_rss 56630.4 MiB, delta_rss +0.0 MiB)
+### Computing src/opin lookahead
+### Computing src/opin lookahead took 0.00 seconds (max_rss 56630.4 MiB, delta_rss +0.0 MiB)
+## Computing router lookahead map took 2233.57 seconds (max_rss 56630.4 MiB, delta_rss +0.0 MiB)
+## Initializing router criticalities
+Initial Net Connection Criticality Histogram:
+[        0:      0.1)  882 (  3.7%) |******
+[      0.1:      0.2)  215 (  0.9%) |**
+[      0.2:      0.3)  945 (  3.9%) |*******
+[      0.3:      0.4)  735 (  3.0%) |*****
+[      0.4:      0.5) 1392 (  5.8%) |**********
+[      0.5:      0.6) 2186 (  9.1%) |****************
+[      0.6:      0.7) 3605 ( 14.9%) |**************************
+[      0.7:      0.8) 4981 ( 20.7%) |*************************************
+[      0.8:      0.9) 6268 ( 26.0%) |**********************************************
+[      0.9:        1) 2905 ( 12.0%) |*********************
+## Initializing router criticalities took 0.17 seconds (max_rss 56630.4 MiB, delta_rss +0.0 MiB)
+---- ------ ------- ---- ------- ------- ------- ----------------- --------------- -------- ---------- ---------- ---------- ---------- --------
+Iter   Time    pres  BBs    Heap  Re-Rtd  Re-Rtd Overused RR Nodes      Wirelength      CPD       sTNS       sWNS       hTNS       hWNS Est Succ
+      (sec)     fac Updt    push    Nets   Conns                                       (ns)       (ns)       (ns)       (ns)       (ns)     Iter
+---- ------ ------- ---- ------- ------- ------- ----------------- --------------- -------- ---------- ---------- ---------- ---------- --------
+   1    1.4     0.0    0 1.3e+07   17651   23366   39601 ( 0.056%) 2114453 ( 2.3%)   37.320 -9.975e+04    -37.320      0.000      0.000      N/A
+   2    1.7     0.5   91 1.4e+07   15760   21415   19313 ( 0.027%) 2113622 ( 2.3%)   37.347 -9.991e+04    -37.347      0.000      0.000      N/A
+   3    4.3     0.6   41 3.1e+07   11012   15648   14382 ( 0.020%) 2116434 ( 2.3%)   37.327 -1.001e+05    -37.327      0.000      0.000      N/A
+   4   19.5     0.8   45 9.9e+07   10013   14451    9613 ( 0.014%) 2116290 ( 2.3%)   37.330 -1.002e+05    -37.330      0.000      0.000      N/A
+   5   24.1     1.1   43 1.1e+08    8230   12380    5265 ( 0.007%) 2116544 ( 2.3%)   37.313 -1.002e+05    -37.313      0.000      0.000      N/A
+   6   12.5     1.4   15 6.1e+07    5959    9544    3072 ( 0.004%) 2117233 ( 2.3%)   37.332 -1.003e+05    -37.332      0.000      0.000      N/A
+   7    7.7     1.9   13 3.6e+07    4003    6797    1864 ( 0.003%) 2117860 ( 2.3%)   37.332 -1.003e+05    -37.332      0.000      0.000      N/A
+   8    7.7     2.4   10 3.3e+07    2763    4907    1230 ( 0.002%) 2118235 ( 2.3%)   37.332 -1.003e+05    -37.332      0.000      0.000      N/A
+   9    8.0     3.1    7 3.0e+07    1818    3328     769 ( 0.001%) 2119015 ( 2.3%)   37.332 -1.003e+05    -37.332      0.000      0.000      N/A
+  10    2.7     4.1   15 1.1e+07    1172    2221     456 ( 0.001%) 2119644 ( 2.3%)   37.332 -1.003e+05    -37.332      0.000      0.000       23
+  11    3.1     5.3    7 1.1e+07     767    1457     276 ( 0.000%) 2120155 ( 2.3%)   37.332 -1.003e+05    -37.332      0.000      0.000       23
+  12    6.4     6.9   15 2.0e+07     479     900     164 ( 0.000%) 2120662 ( 2.3%)   37.332 -1.003e+05    -37.332      0.000      0.000       23
+  13   21.2     9.0   17 3.9e+07     267     503     113 ( 0.000%) 2121018 ( 2.3%)   37.332 -1.003e+05    -37.332      0.000      0.000       22
+  14    3.4    11.6    7 1.0e+07     181     372      69 ( 0.000%) 2121182 ( 2.3%)   37.332 -1.004e+05    -37.332      0.000      0.000       23
+  15    3.3    15.1    6 8938720     111     243      35 ( 0.000%) 2121323 ( 2.3%)   37.332 -1.004e+05    -37.332      0.000      0.000       23
+  16   13.7    19.7    5 2.4e+07      55     113      16 ( 0.000%) 2121453 ( 2.3%)   37.332 -1.004e+05    -37.332      0.000      0.000       22
+  17    0.3    25.6    2  289915      25      58       7 ( 0.000%) 2121509 ( 2.3%)   37.332 -1.004e+05    -37.332      0.000      0.000       22
+  18    0.3    33.3    3   49530      13      27       6 ( 0.000%) 2121548 ( 2.3%)   37.332 -1.004e+05    -37.332      0.000      0.000       21
+  19    0.3    43.3    2   49571       7      18       1 ( 0.000%) 2121624 ( 2.3%)   37.332 -1.004e+05    -37.332      0.000      0.000       21
+  20    0.3    56.2    2   21286       2       3       1 ( 0.000%) 2121628 ( 2.3%)   37.332 -1.004e+05    -37.332      0.000      0.000       20
+  21    0.3    73.1    1   23848       2       3       0 ( 0.000%) 2121636 ( 2.3%)   37.332 -1.004e+05    -37.332      0.000      0.000       20
+Restoring best routing
+Critical path: 37.3318 ns
+Successfully routed after 21 routing iterations.
+Final Net Connection Criticality Histogram:
+[        0:      0.1)  873 (  3.6%) |*******
+[      0.1:      0.2)  236 (  1.0%) |**
+[      0.2:      0.3)  218 (  0.9%) |**
+[      0.3:      0.4)  775 (  3.2%) |******
+[      0.4:      0.5) 1735 (  7.2%) |**************
+[      0.5:      0.6) 2049 (  8.5%) |****************
+[      0.6:      0.7) 4066 ( 16.9%) |********************************
+[      0.7:      0.8) 4757 ( 19.7%) |*************************************
+[      0.8:      0.9) 5904 ( 24.5%) |**********************************************
+[      0.9:        1) 3501 ( 14.5%) |***************************
+Router Stats: total_nets_routed: 80290 total_connections_routed: 117754 total_heap_pushes: 555238892 total_heap_pops: 160660921 total_internal_heap_pushes: 0 total_internal_heap_pops: 0 total_external_heap_pushes: 555238892 total_external_heap_pops: 160660921 total_external_SOURCE_pushes: 117754 total_external_SOURCE_pops: 116369 total_internal_SOURCE_pushes: 0 total_internal_SOURCE_pops: 0 rt_node_SOURCE_pushes: 117754 rt_node_SOURCE_high_fanout_pushes: 0 rt_node_SOURCE_entire_tree_pushes: 117754 total_external_SINK_pushes: 609752 total_external_SINK_pops: 563253 total_internal_SINK_pushes: 0 total_internal_SINK_pops: 0 rt_node_SINK_pushes: 0 rt_node_SINK_high_fanout_pushes: 0 rt_node_SINK_entire_tree_pushes: 0 total_external_IPIN_pushes: 639012 total_external_IPIN_pops: 609888 total_internal_IPIN_pushes: 0 total_internal_IPIN_pops: 0 rt_node_IPIN_pushes: 0 rt_node_IPIN_high_fanout_pushes: 0 rt_node_IPIN_entire_tree_pushes: 0 total_external_OPIN_pushes: 4037904 total_external_OPIN_pops: 3884830 total_internal_OPIN_pushes: 0 total_internal_OPIN_pops: 0 rt_node_OPIN_pushes: 43438 rt_node_OPIN_high_fanout_pushes: 0 rt_node_OPIN_entire_tree_pushes: 43438 total_external_CHANX_pushes: 271035435 total_external_CHANX_pops: 78832968 total_internal_CHANX_pushes: 0 total_internal_CHANX_pops: 0 rt_node_CHANX_pushes: 93175 rt_node_CHANX_high_fanout_pushes: 0 rt_node_CHANX_entire_tree_pushes: 93175 total_external_CHANY_pushes: 278799035 total_external_CHANY_pops: 76653613 total_internal_CHANY_pushes: 0 total_internal_CHANY_pops: 0 rt_node_CHANY_pushes: 101101 rt_node_CHANY_high_fanout_pushes: 0 rt_node_CHANY_entire_tree_pushes: 101101 total_number_of_adding_all_rt: 457500 total_number_of_adding_high_fanout_rt: 0 total_number_of_adding_all_rt_from_calling_high_fanout_rt: 0 
+
+Attempting to route at 120 channels (binary search bounds: [96, 144])
+## Build routing resource graph
+SOURCE->OPIN and IPIN->SINK edge count:43202722
+OPIN->CHANX/CHANY edge count before creating direct connections: 102438660
+OPIN->CHANX/CHANY edge count after creating direct connections: 115705050
+CHAN->CHAN type edge count:290605000
+## Build routing resource graph took 221.58 seconds (max_rss 56630.4 MiB, delta_rss +0.0 MiB)
+  RR Graph Nodes: 67498792
+  RR Graph Edges: 449512772
+Confirming router algorithm: TIMING_DRIVEN.
+## Computing router lookahead map
+### Computing wire lookahead
+### Computing wire lookahead took 2013.27 seconds (max_rss 56630.4 MiB, delta_rss +0.0 MiB)
+### Computing src/opin lookahead
+### Computing src/opin lookahead took 0.00 seconds (max_rss 56630.4 MiB, delta_rss +0.0 MiB)
+## Computing router lookahead map took 2013.27 seconds (max_rss 56630.4 MiB, delta_rss +0.0 MiB)
+## Initializing router criticalities
+Initial Net Connection Criticality Histogram:
+[        0:      0.1)  882 (  3.7%) |******
+[      0.1:      0.2)  215 (  0.9%) |**
+[      0.2:      0.3)  945 (  3.9%) |*******
+[      0.3:      0.4)  730 (  3.0%) |*****
+[      0.4:      0.5) 1396 (  5.8%) |**********
+[      0.5:      0.6) 2185 (  9.1%) |****************
+[      0.6:      0.7) 3608 ( 15.0%) |**************************
+[      0.7:      0.8) 4979 ( 20.6%) |************************************
+[      0.8:      0.9) 6277 ( 26.0%) |**********************************************
+[      0.9:        1) 2897 ( 12.0%) |*********************
+## Initializing router criticalities took 0.18 seconds (max_rss 56630.4 MiB, delta_rss +0.0 MiB)
+---- ------ ------- ---- ------- ------- ------- ----------------- --------------- -------- ---------- ---------- ---------- ---------- --------
+Iter   Time    pres  BBs    Heap  Re-Rtd  Re-Rtd Overused RR Nodes      Wirelength      CPD       sTNS       sWNS       hTNS       hWNS Est Succ
+      (sec)     fac Updt    push    Nets   Conns                                       (ns)       (ns)       (ns)       (ns)       (ns)     Iter
+---- ------ ------- ---- ------- ------- ------- ----------------- --------------- -------- ---------- ---------- ---------- ---------- --------
+   1    1.3     0.0    0 1.1e+07   17651   23366   41727 ( 0.062%) 2119658 ( 2.7%)   37.318 -9.972e+04    -37.318      0.000      0.000      N/A
+   2    1.8     0.5  215 1.5e+07   16408   22094   23566 ( 0.035%) 2119169 ( 2.7%)   37.330 -9.992e+04    -37.330      0.000      0.000      N/A
+   3    8.8     0.6   68 5.6e+07   12941   18037   19040 ( 0.028%) 2120645 ( 2.7%)   37.332 -1.002e+05    -37.332      0.000      0.000      N/A
+   4   35.8     0.8   65 1.8e+08   12240   17356   13666 ( 0.020%) 2120215 ( 2.7%)   37.295 -1.003e+05    -37.295      0.000      0.000      N/A
+   5   49.8     1.1   49 2.3e+08   10977   15977    8576 ( 0.013%) 2120284 ( 2.7%)   37.304 -1.004e+05    -37.304      0.000      0.000      N/A
+   6   54.0     1.4   44 2.1e+08    8871   13477    6189 ( 0.009%) 2121143 ( 2.7%)   37.300 -1.004e+05    -37.300      0.000      0.000      N/A
+   7   74.1     1.9   45 2.4e+08    7184   11358    4790 ( 0.007%) 2122616 ( 2.7%)   37.313 -1.005e+05    -37.313      0.000      0.000      N/A
+   8  121.1     2.4   61 3.3e+08    6023    9743    3719 ( 0.006%) 2124375 ( 2.7%)   37.311 -1.005e+05    -37.311      0.000      0.000      N/A
+   9  229.9     3.1   67 5.0e+08    4974    8222    3003 ( 0.004%) 2125767 ( 2.7%)   37.311 -1.005e+05    -37.311      0.000      0.000      N/A
+  10  350.2     4.1   59 6.9e+08    4285    7160    2460 ( 0.004%) 2128449 ( 2.7%)   37.311 -1.005e+05    -37.311      0.000      0.000       40
+  11  582.0     5.3   92 1.0e+09    3613    6081    2071 ( 0.003%) 2130405 ( 2.7%)   37.311 -1.006e+05    -37.311      0.000      0.000       44
+  12 1093.1     6.9   81 1.7e+09    3157    5346    1746 ( 0.003%) 2131825 ( 2.7%)   37.314 -1.006e+05    -37.314      0.000      0.000       46
+  13 1605.9     9.0   77 2.3e+09    2688    4586    1533 ( 0.002%) 2133942 ( 2.7%)   37.312 -1.006e+05    -37.312      0.000      0.000       49
+  14 2902.8    11.6   90 3.9e+09    2403    4120    1340 ( 0.002%) 2135756 ( 2.7%)   37.291 -1.007e+05    -37.291      0.000      0.000       51
+  15 4344.7    15.1   70 5.6e+09    2114    3593    1201 ( 0.002%) 2137928 ( 2.7%)   37.291 -1.007e+05    -37.291      0.000      0.000       56
+  16 4663.5    19.7   78 5.9e+09    1913    3273    1021 ( 0.002%) 2140119 ( 2.7%)   37.299 -1.008e+05    -37.299      0.000      0.000       59
+  17 4993.6    25.6   95 6.4e+09    1691    2885     948 ( 0.001%) 2141998 ( 2.7%)   37.312 -1.008e+05    -37.312      0.000      0.000       62
+  18 5052.4    33.3   89 6.5e+09    1552    2667     853 ( 0.001%) 2143921 ( 2.7%)   37.305 -1.009e+05    -37.305      0.000      0.000       64
+  19 4797.8    43.3   81 6.1e+09    1440    2478     788 ( 0.001%) 2145185 ( 2.7%)   37.305 -1.011e+05    -37.305      0.000      0.000       69
+  20 5479.7    56.2   63 6.7e+09    1328    2286     722 ( 0.001%) 2146987 ( 2.7%)   37.327 -1.012e+05    -37.327      0.000      0.000       71
+  21 5764.2    73.1   80 7.1e+09    1242    2149     678 ( 0.001%) 2148468 ( 2.7%)   37.327 -1.012e+05    -37.327      0.000      0.000       76
+  22 5111.1    95.0   73 6.4e+09    1151    2015     613 ( 0.001%) 2149744 ( 2.7%)   37.337 -1.014e+05    -37.337      0.000      0.000       79
+  23 5184.7   123.5   76 6.5e+09    1051    1835     560 ( 0.001%) 2151537 ( 2.7%)   37.334 -1.021e+05    -37.334      0.000      0.000       84
+  24 5208.5   160.6   69 6.3e+09     954    1622     516 ( 0.001%) 2152566 ( 2.8%)   37.334 -1.022e+05    -37.334      0.000      0.000       85
+  25 4630.4   208.8   53 5.8e+09     878    1500     492 ( 0.001%) 2153328 ( 2.8%)   37.327 -1.023e+05    -37.327      0.000      0.000       89
+  26 5195.8   271.4   54 6.4e+09     865    1493     497 ( 0.001%) 2153812 ( 2.8%)   37.443 -1.023e+05    -37.443      0.000      0.000       91
+  27 5077.1   352.8   53 6.5e+09    1155    2247     469 ( 0.001%) 2154838 ( 2.8%)   37.327 -1.025e+05    -37.327      0.000      0.000       98
+  28 4324.1   458.7   57 5.6e+09     817    1386     460 ( 0.001%) 2155585 ( 2.8%)   37.327 -1.025e+05    -37.327      0.000      0.000      101
+  29 3722.1   596.3   53 4.8e+09     779    1328     430 ( 0.001%) 2156266 ( 2.8%)   38.104 -1.028e+05    -38.104      0.000      0.000      109
+  30 3918.1   775.1   50 4.9e+09    1024    1951     424 ( 0.001%) 2156843 ( 2.8%)   37.450 -1.028e+05    -37.450      0.000      0.000      113
+  31 3705.7  1007.7   47 4.8e+09    1081    2147     401 ( 0.001%) 2157307 ( 2.8%)   38.587 -1.028e+05    -38.587      0.000      0.000      123
+  32 3177.6  1310.0   47 4.3e+09     961    1858     354 ( 0.001%) 2157930 ( 2.8%)   37.998 -1.030e+05    -37.998      0.000      0.000      126
+  33 2694.4  1703.0   45 3.6e+09     930    1865     327 ( 0.000%) 2158386 ( 2.8%)   38.654 -1.032e+05    -38.654      0.000      0.000      130
+  34 3132.6  2213.9   43 4.1e+09     857    1668     332 ( 0.000%) 2158989 ( 2.8%)   38.654 -1.036e+05    -38.654      0.000      0.000      130
+  35 2282.2  2878.1   45 3.1e+09     819    1588     297 ( 0.000%) 2159458 ( 2.8%)   38.546 -1.032e+05    -38.546      0.000      0.000      136
+  36 1885.6  3741.5   31 2.5e+09     803    1600     282 ( 0.000%) 2159948 ( 2.8%)   38.546 -1.032e+05    -38.546      0.000      0.000      135
+  37 2332.8  4863.9   28 3.0e+09     777    1531     292 ( 0.000%) 2160299 ( 2.8%)   38.554 -1.034e+05    -38.554      0.000      0.000      137
+  38 1970.8  6323.1   18 2.5e+09     761    1485     250 ( 0.000%) 2160684 ( 2.8%)   39.101 -1.041e+05    -39.101      0.000      0.000      140
+  39 1640.5  8220.0   24 2.2e+09     652    1291     254 ( 0.000%) 2161029 ( 2.8%)   38.986 -1.042e+05    -38.986      0.000      0.000      141
+  40 1486.0 10686.0   29 2.0e+09     653    1323     234 ( 0.000%) 2161372 ( 2.8%)   38.986 -1.043e+05    -38.986      0.000      0.000      142
+  41 1991.9 13891.9   27 2.5e+09     638    1313     228 ( 0.000%) 2162049 ( 2.8%)   38.986 -1.044e+05    -38.986      0.000      0.000      143
+  42 2003.6 18059.4   21 2.6e+09     652    1312     230 ( 0.000%) 2162227 ( 2.8%)   39.383 -1.045e+05    -39.383      0.000      0.000      144
+  43 1741.4 23477.2   22 2.3e+09     626    1257     214 ( 0.000%) 2162326 ( 2.8%)   39.383 -1.047e+05    -39.383      0.000      0.000      148
+  44 1467.7 30520.4   20 2.0e+09     603    1242     204 ( 0.000%) 2162714 ( 2.8%)   40.352 -1.049e+05    -40.352      0.000      0.000      149
+  45 1564.4 39676.5   14 2.1e+09     507    1000     189 ( 0.000%) 2162801 ( 2.8%)   39.383 -1.047e+05    -39.383      0.000      0.000      151
+Routing aborted, the predicted iteration for a successful route (150.7) is too high.
+Routing failed.
+
+Failed routing attempt #1
+Total number of overused nodes: 189
+Total number of overused nodes is larger than the logging limit (20).
+Displaying the first 20 entries.
+Routing Failure Diagnostics: Printing Overused Nodes Information
+------ ------- ---------- --------- -------- ------------ ------- ------- ------- ------- ------- ------- -------
+   No.  NodeId  Occupancy  Capacity  RR Node    Direction    Side     PTC   Block    Xlow    Ylow   Xhigh   Yhigh
+                                        type                          NUM    Name                                 
+------ ------- ---------- --------- -------- ------------ ------- ------- ------- ------- ------- ------- -------
+     0 22359232          2         1     IPIN          N/A     TOP       9     LAB     298     231     298     231
+     1 22359238          2         1     IPIN          N/A     TOP      15     LAB     298     231     298     231
+     2 22430147          2         1     IPIN          N/A     TOP      16     LAB     299     236     299     236
+     3 22500502          2         1     IPIN          N/A     TOP      31     LAB     300     237     300     237
+     4 22640162          2         1     IPIN          N/A     TOP       5     LAB     302     232     302     232
+     5 22640877          2         1     IPIN          N/A     TOP      10     LAB     302     237     302     237
+     6 22709799          2         1     IPIN          N/A     TOP      12     LAB     303     228     303     228
+     7 22779857          2         1     IPIN          N/A     TOP      14     LAB     304     227     304     227
+     8 22780007          2         1     IPIN          N/A     TOP      22     LAB     304     228     304     228
+     9 22780017          2         1     IPIN          N/A     TOP      32     LAB     304     228     304     228
+    10 22780702          2         1     IPIN          N/A     TOP       7     LAB     304     233     304     233
+    11 22920532          2         1     IPIN          N/A     TOP       9     LAB     306     229     306     229
+    12 22922107          2         1     IPIN          N/A     TOP      22     LAB     306     240     306     240
+    13 22990459          2         1     IPIN          N/A     TOP      22     LAB     307     227     307     227
+    14 22992021          2         1     IPIN          N/A     TOP      22     LAB     307     238     307     238
+    15 23062362          2         1     IPIN          N/A     TOP      23     LAB     308     239     308     239
+    16 23130819          2         1     OPIN          N/A     TOP     128     LAB     309     226     309     226
+    17 23131141          2         1     IPIN          N/A     TOP      24     LAB     309     229     309     229
+    18 23132131          2         1     IPIN          N/A     TOP      20     LAB     309     236     309     236
+    19 23201193          2         1     IPIN          N/A     TOP      20     LAB     310     228     310     228
+
+Final Net Connection Criticality Histogram:
+[        0:      0.1)  880 (  3.6%) |******
+[      0.1:      0.2)  230 (  1.0%) |**
+[      0.2:      0.3)  250 (  1.0%) |**
+[      0.3:      0.4) 1092 (  4.5%) |********
+[      0.4:      0.5) 1556 (  6.5%) |***********
+[      0.5:      0.6) 2269 (  9.4%) |*****************
+[      0.6:      0.7) 4290 ( 17.8%) |*******************************
+[      0.7:      0.8) 5254 ( 21.8%) |**************************************
+[      0.8:      0.9) 6323 ( 26.2%) |**********************************************
+[      0.9:        1) 1970 (  8.2%) |**************
+Router Stats: total_nets_routed: 144689 total_connections_routed: 224111 total_heap_pushes: 152397962681 total_heap_pops: 126661419689 total_internal_heap_pushes: 0 total_internal_heap_pops: 0 total_external_heap_pushes: 152397962681 total_external_heap_pops: 126661419689 total_external_SOURCE_pushes: 224111 total_external_SOURCE_pops: 221854 total_internal_SOURCE_pushes: 0 total_internal_SOURCE_pops: 0 rt_node_SOURCE_pushes: 224111 rt_node_SOURCE_high_fanout_pushes: 0 rt_node_SOURCE_entire_tree_pushes: 224111 total_external_SINK_pushes: 1074814 total_external_SINK_pops: 956215 total_internal_SINK_pushes: 0 total_internal_SINK_pops: 0 rt_node_SINK_pushes: 0 rt_node_SINK_high_fanout_pushes: 0 rt_node_SINK_entire_tree_pushes: 0 total_external_IPIN_pushes: 1172695 total_external_IPIN_pops: 1075229 total_internal_IPIN_pushes: 0 total_internal_IPIN_pops: 0 rt_node_IPIN_pushes: 0 rt_node_IPIN_high_fanout_pushes: 0 rt_node_IPIN_entire_tree_pushes: 0 total_external_OPIN_pushes: 7986070 total_external_OPIN_pops: 7305247 total_internal_OPIN_pushes: 0 total_internal_OPIN_pops: 0 rt_node_OPIN_pushes: 94714 rt_node_OPIN_high_fanout_pushes: 0 rt_node_OPIN_entire_tree_pushes: 94714 total_external_CHANX_pushes: 77380454901 total_external_CHANX_pops: 63424631507 total_internal_CHANX_pushes: 0 total_internal_CHANX_pops: 0 rt_node_CHANX_pushes: 240132 rt_node_CHANX_high_fanout_pushes: 0 rt_node_CHANX_entire_tree_pushes: 240132 total_external_CHANY_pushes: 75007050090 total_external_CHANY_pops: 63227229637 total_internal_CHANY_pushes: 0 total_internal_CHANY_pops: 0 rt_node_CHANY_pushes: 240122 rt_node_CHANY_high_fanout_pushes: 0 rt_node_CHANY_entire_tree_pushes: 240122 total_number_of_adding_all_rt: 1020191 total_number_of_adding_high_fanout_rt: 0 total_number_of_adding_all_rt_from_calling_high_fanout_rt: 0 
+
+Attempting to route at 132 channels (binary search bounds: [120, 144])
+## Build routing resource graph
+SOURCE->OPIN and IPIN->SINK edge count:43202722
+OPIN->CHANX/CHANY edge count before creating direct connections: 112802760
+OPIN->CHANX/CHANY edge count after creating direct connections: 126069150
+CHAN->CHAN type edge count:319849178
+## Build routing resource graph took 238.97 seconds (max_rss 56630.4 MiB, delta_rss +0.0 MiB)
+  RR Graph Nodes: 69221662
+  RR Graph Edges: 489121050
+Confirming router algorithm: TIMING_DRIVEN.
+## Computing router lookahead map
+### Computing wire lookahead
+### Computing wire lookahead took 2069.14 seconds (max_rss 56630.4 MiB, delta_rss +0.0 MiB)
+### Computing src/opin lookahead
+### Computing src/opin lookahead took 0.00 seconds (max_rss 56630.4 MiB, delta_rss +0.0 MiB)
+## Computing router lookahead map took 2069.14 seconds (max_rss 56630.4 MiB, delta_rss +0.0 MiB)
+## Initializing router criticalities
+Initial Net Connection Criticality Histogram:
+[        0:      0.1)  882 (  3.7%) |******
+[      0.1:      0.2)  215 (  0.9%) |**
+[      0.2:      0.3)  945 (  3.9%) |*******
+[      0.3:      0.4)  733 (  3.0%) |*****
+[      0.4:      0.5) 1392 (  5.8%) |**********
+[      0.5:      0.6) 2182 (  9.0%) |****************
+[      0.6:      0.7) 3603 ( 14.9%) |***************************
+[      0.7:      0.8) 4976 ( 20.6%) |*************************************
+[      0.8:      0.9) 6246 ( 25.9%) |**********************************************
+[      0.9:        1) 2940 ( 12.2%) |**********************
+## Initializing router criticalities took 0.17 seconds (max_rss 56630.4 MiB, delta_rss +0.0 MiB)
+---- ------ ------- ---- ------- ------- ------- ----------------- --------------- -------- ---------- ---------- ---------- ---------- --------
+Iter   Time    pres  BBs    Heap  Re-Rtd  Re-Rtd Overused RR Nodes      Wirelength      CPD       sTNS       sWNS       hTNS       hWNS Est Succ
+      (sec)     fac Updt    push    Nets   Conns                                       (ns)       (ns)       (ns)       (ns)       (ns)     Iter
+---- ------ ------- ---- ------- ------- ------- ----------------- --------------- -------- ---------- ---------- ---------- ---------- --------
+   1    1.3     0.0    0 1.2e+07   17651   23366   40899 ( 0.059%) 2116994 ( 2.5%)   37.370 -9.989e+04    -37.370      0.000      0.000      N/A
+   2    1.7     0.5  141 1.4e+07   16047   21723   21209 ( 0.031%) 2116779 ( 2.5%)   37.198 -1.001e+05    -37.198      0.000      0.000      N/A
+   3    5.7     0.6   51 3.9e+07   12077   16938   17093 ( 0.025%) 2119343 ( 2.5%)   37.534 -1.003e+05    -37.534      0.000      0.000      N/A
+   4   19.9     0.8   63 1.2e+08   11229   16065   11611 ( 0.017%) 2118771 ( 2.5%)   37.347 -1.004e+05    -37.347      0.000      0.000      N/A
+   5   27.2     1.1   33 1.3e+08    9858   14554    6952 ( 0.010%) 2119185 ( 2.5%)   37.350 -1.004e+05    -37.350      0.000      0.000      N/A
+   6   18.4     1.4   28 9.2e+07    7595   11839    4602 ( 0.007%) 2119652 ( 2.5%)   37.522 -1.004e+05    -37.522      0.000      0.000      N/A
+   7   21.2     1.9   22 9.1e+07    5712    9400    3183 ( 0.005%) 2120786 ( 2.5%)   37.520 -1.005e+05    -37.520      0.000      0.000      N/A
+   8   26.7     2.4   30 9.3e+07    4410    7530    2245 ( 0.003%) 2121938 ( 2.5%)   37.524 -1.005e+05    -37.524      0.000      0.000      N/A
+   9   32.3     3.1   28 1.0e+08    3394    5977    1674 ( 0.002%) 2123127 ( 2.5%)   37.524 -1.005e+05    -37.524      0.000      0.000      N/A
+  10   70.2     4.1   34 1.6e+08    2686    4857    1221 ( 0.002%) 2124458 ( 2.5%)   37.524 -1.005e+05    -37.524      0.000      0.000       30
+  11  104.0     5.3   32 2.2e+08    2132    3907     928 ( 0.001%) 2125692 ( 2.5%)   37.524 -1.006e+05    -37.524      0.000      0.000       32
+  12   98.1     6.9   35 2.0e+08    1715    3236     671 ( 0.001%) 2126750 ( 2.5%)   37.524 -1.006e+05    -37.524      0.000      0.000       32
+  13   91.1     9.0   44 1.8e+08    1338    2579     487 ( 0.001%) 2128076 ( 2.5%)   37.524 -1.006e+05    -37.524      0.000      0.000       33
+  14  252.4    11.6   39 4.0e+08    1065    2097     352 ( 0.001%) 2128729 ( 2.5%)   37.531 -1.006e+05    -37.531      0.000      0.000       33
+  15  622.8    15.1   36 8.6e+08     883    1799     272 ( 0.000%) 2129697 ( 2.5%)   37.531 -1.006e+05    -37.531      0.000      0.000       33
+  16 1119.4    19.7   36 1.5e+09     777    1588     226 ( 0.000%) 2130674 ( 2.5%)   37.533 -1.006e+05    -37.533      0.000      0.000       33
+  17 1130.0    25.6   30 1.5e+09     689    1447     192 ( 0.000%) 2131452 ( 2.5%)   37.527 -1.006e+05    -37.527      0.000      0.000       34
+  18  956.2    33.3   25 1.2e+09     624    1352     149 ( 0.000%) 2131891 ( 2.5%)   37.527 -1.006e+05    -37.527      0.000      0.000       35
+  19 1020.0    43.3   26 1.3e+09     572    1242     114 ( 0.000%) 2132538 ( 2.5%)   37.527 -1.007e+05    -37.527      0.000      0.000       37
+  20  381.5    56.2   18 5.0e+08     515    1142      80 ( 0.000%) 2132934 ( 2.5%)   37.527 -1.007e+05    -37.527      0.000      0.000       37
+  21  230.4    73.1   12 3.2e+08     473    1059      72 ( 0.000%) 2133095 ( 2.5%)   37.536 -1.007e+05    -37.536      0.000      0.000       37
+  22  216.1    95.0   12 3.0e+08     444    1012      53 ( 0.000%) 2133269 ( 2.5%)   37.536 -1.007e+05    -37.536      0.000      0.000       38
+  23  513.8   123.5    8 6.6e+08     424     976      45 ( 0.000%) 2133511 ( 2.5%)   37.536 -1.007e+05    -37.536      0.000      0.000       38
+  24  475.5   160.6    4 6.2e+08     414     959      37 ( 0.000%) 2133490 ( 2.5%)   37.536 -1.008e+05    -37.536      0.000      0.000       39
+  25  448.0   208.8    2 5.8e+08     392     907      36 ( 0.000%) 2133580 ( 2.5%)   37.536 -1.008e+05    -37.536      0.000      0.000       39
+  26   78.6   271.4    1 1.1e+08     393     911      34 ( 0.000%) 2133653 ( 2.5%)   37.536 -1.008e+05    -37.536      0.000      0.000       40
+  27   56.7   352.8    3 8.0e+07     388     906      25 ( 0.000%) 2133714 ( 2.5%)   37.536 -1.008e+05    -37.536      0.000      0.000       42
+  28  175.7   458.7    4 2.3e+08     379     892      22 ( 0.000%) 2133915 ( 2.5%)   37.536 -1.008e+05    -37.536      0.000      0.000       42
+  29   62.2   596.3    3 9.3e+07     368     877      17 ( 0.000%) 2134028 ( 2.5%)   37.536 -1.008e+05    -37.536      0.000      0.000       43
+  30   55.1   775.1    3 7.5e+07     363     862      14 ( 0.000%) 2134032 ( 2.5%)   37.950 -1.008e+05    -37.950      0.000      0.000       43
+  31   42.1  1007.7    3 5.6e+07     293     704      11 ( 0.000%) 2134024 ( 2.5%)   37.950 -1.008e+05    -37.950      0.000      0.000       44
+  32    9.7  1310.0    0 1.9e+07     291     703      10 ( 0.000%) 2134142 ( 2.5%)   37.950 -1.008e+05    -37.950      0.000      0.000       43
+  33   18.5  1703.0    3 3.4e+07     290     697      10 ( 0.000%) 2134192 ( 2.5%)   37.950 -1.008e+05    -37.950      0.000      0.000       44
+  34    1.1  2213.9    2 2933148     288     696       7 ( 0.000%) 2134234 ( 2.5%)   37.950 -1.008e+05    -37.950      0.000      0.000       45
+  35    0.4  2878.1    2  770150     285     687       6 ( 0.000%) 2134228 ( 2.5%)   37.950 -1.008e+05    -37.950      0.000      0.000       45
+  36    6.2  3741.5    1 9272789     284     688       4 ( 0.000%) 2134225 ( 2.5%)   37.950 -1.008e+05    -37.950      0.000      0.000       45
+  37    0.4  4863.9    0  775962     278     677       3 ( 0.000%) 2134227 ( 2.5%)   37.950 -1.008e+05    -37.950      0.000      0.000       45
+  38    0.4  6323.1    0  795629     281     681       4 ( 0.000%) 2134265 ( 2.5%)   37.950 -1.008e+05    -37.950      0.000      0.000       44
+  39    6.1  8220.0    0 9203853     280     681       3 ( 0.000%) 2134260 ( 2.5%)   37.950 -1.008e+05    -37.950      0.000      0.000       45
+  40    0.4 10686.0    1  853161     280     679       2 ( 0.000%) 2134274 ( 2.5%)   37.950 -1.008e+05    -37.950      0.000      0.000       45
+  41    1.8 13891.9    1 3403456     278     676       2 ( 0.000%) 2134264 ( 2.5%)   37.950 -1.008e+05    -37.950      0.000      0.000       45
+  42    1.2 18059.4    0 2322075     277     674       2 ( 0.000%) 2134265 ( 2.5%)   37.950 -1.008e+05    -37.950      0.000      0.000       45
+  43    0.5 23477.2    0  734729     276     674       1 ( 0.000%) 2134261 ( 2.5%)   37.950 -1.008e+05    -37.950      0.000      0.000       45
+  44    0.4 30520.4    0  756285     276     674       1 ( 0.000%) 2134263 ( 2.5%)   37.950 -1.008e+05    -37.950      0.000      0.000       45
+  45    0.4 39676.5    0  753926     277     675       1 ( 0.000%) 2134261 ( 2.5%)   37.950 -1.008e+05    -37.950      0.000      0.000       44
+  46    0.4 51579.5    0  743309     276     673       2 ( 0.000%) 2134263 ( 2.5%)   37.950 -1.008e+05    -37.950      0.000      0.000       44
+  47    0.4 67053.3    0  737164     277     674       1 ( 0.000%) 2134325 ( 2.5%)   37.950 -1.009e+05    -37.950      0.000      0.000       45
+  48    0.4 87169.3    1  753186     280     683       1 ( 0.000%) 2134327 ( 2.5%)   37.950 -1.009e+05    -37.950      0.000      0.000       46
+  49    0.4 1.1e+05    1  757361     282     686       1 ( 0.000%) 2134285 ( 2.5%)   37.950 -1.008e+05    -37.950      0.000      0.000       46
+  50    0.4 1.5e+05    1  742157     276     673       0 ( 0.000%) 2134283 ( 2.5%)   37.950 -1.008e+05    -37.950      0.000      0.000       46
+Restoring best routing
+Critical path: 37.9499 ns
+Successfully routed after 50 routing iterations.
+Final Net Connection Criticality Histogram:
+[        0:      0.1)  872 (  3.6%) |******
+[      0.1:      0.2)  234 (  1.0%) |**
+[      0.2:      0.3)  228 (  0.9%) |**
+[      0.3:      0.4)  885 (  3.7%) |******
+[      0.4:      0.5) 1700 (  7.0%) |************
+[      0.5:      0.6) 2149 (  8.9%) |****************
+[      0.6:      0.7) 4279 ( 17.7%) |*******************************
+[      0.7:      0.8) 4797 ( 19.9%) |***********************************
+[      0.8:      0.9) 6345 ( 26.3%) |**********************************************
+[      0.9:        1) 2625 ( 10.9%) |*******************
+Router Stats: total_nets_routed: 110632 total_connections_routed: 175654 total_heap_pushes: 11928142271 total_heap_pops: 9059287561 total_internal_heap_pushes: 0 total_internal_heap_pops: 0 total_external_heap_pushes: 11928142271 total_external_heap_pops: 9059287561 total_external_SOURCE_pushes: 175654 total_external_SOURCE_pops: 173733 total_internal_SOURCE_pushes: 0 total_internal_SOURCE_pops: 0 rt_node_SOURCE_pushes: 175654 rt_node_SOURCE_high_fanout_pushes: 0 rt_node_SOURCE_entire_tree_pushes: 175654 total_external_SINK_pushes: 932226 total_external_SINK_pops: 853196 total_internal_SINK_pushes: 0 total_internal_SINK_pops: 0 rt_node_SINK_pushes: 0 rt_node_SINK_high_fanout_pushes: 0 rt_node_SINK_entire_tree_pushes: 0 total_external_IPIN_pushes: 989407 total_external_IPIN_pops: 932535 total_internal_IPIN_pushes: 0 total_internal_IPIN_pops: 0 rt_node_IPIN_pushes: 0 rt_node_IPIN_high_fanout_pushes: 0 rt_node_IPIN_entire_tree_pushes: 0 total_external_OPIN_pushes: 6238795 total_external_OPIN_pops: 5664984 total_internal_OPIN_pushes: 0 total_internal_OPIN_pops: 0 rt_node_OPIN_pushes: 77255 rt_node_OPIN_high_fanout_pushes: 0 rt_node_OPIN_entire_tree_pushes: 77255 total_external_CHANX_pushes: 5957783635 total_external_CHANX_pops: 4476860199 total_internal_CHANX_pushes: 0 total_internal_CHANX_pops: 0 rt_node_CHANX_pushes: 183211 rt_node_CHANX_high_fanout_pushes: 0 rt_node_CHANX_entire_tree_pushes: 183211 total_external_CHANY_pushes: 5962022554 total_external_CHANY_pops: 4574802914 total_internal_CHANY_pushes: 0 total_internal_CHANY_pops: 0 rt_node_CHANY_pushes: 196088 rt_node_CHANY_high_fanout_pushes: 0 rt_node_CHANY_entire_tree_pushes: 196088 total_number_of_adding_all_rt: 814346 total_number_of_adding_high_fanout_rt: 0 total_number_of_adding_all_rt_from_calling_high_fanout_rt: 0 
+
+Attempting to route at 126 channels (binary search bounds: [120, 132])
+## Build routing resource graph
+SOURCE->OPIN and IPIN->SINK edge count:43202722
+OPIN->CHANX/CHANY edge count before creating direct connections: 108908024
+OPIN->CHANX/CHANY edge count after creating direct connections: 122174414
+CHAN->CHAN type edge count:305504172
+## Build routing resource graph took 219.84 seconds (max_rss 56630.4 MiB, delta_rss +0.0 MiB)
+  RR Graph Nodes: 68482324
+  RR Graph Edges: 470881308
+Confirming router algorithm: TIMING_DRIVEN.
+## Computing router lookahead map
+### Computing wire lookahead
+### Computing wire lookahead took 1947.29 seconds (max_rss 56630.4 MiB, delta_rss +0.0 MiB)
+### Computing src/opin lookahead
+### Computing src/opin lookahead took 0.00 seconds (max_rss 56630.4 MiB, delta_rss +0.0 MiB)
+## Computing router lookahead map took 1947.29 seconds (max_rss 56630.4 MiB, delta_rss +0.0 MiB)
+## Initializing router criticalities
+Initial Net Connection Criticality Histogram:
+[        0:      0.1)  882 (  3.7%) |******
+[      0.1:      0.2)  215 (  0.9%) |**
+[      0.2:      0.3)  945 (  3.9%) |*******
+[      0.3:      0.4)  727 (  3.0%) |*****
+[      0.4:      0.5) 1397 (  5.8%) |**********
+[      0.5:      0.6) 2185 (  9.1%) |****************
+[      0.6:      0.7) 3603 ( 14.9%) |**************************
+[      0.7:      0.8) 4968 ( 20.6%) |************************************
+[      0.8:      0.9) 6280 ( 26.0%) |**********************************************
+[      0.9:        1) 2912 ( 12.1%) |*********************
+## Initializing router criticalities took 0.17 seconds (max_rss 56630.4 MiB, delta_rss +0.0 MiB)
+---- ------ ------- ---- ------- ------- ------- ----------------- --------------- -------- ---------- ---------- ---------- ---------- --------
+Iter   Time    pres  BBs    Heap  Re-Rtd  Re-Rtd Overused RR Nodes      Wirelength      CPD       sTNS       sWNS       hTNS       hWNS Est Succ
+      (sec)     fac Updt    push    Nets   Conns                                       (ns)       (ns)       (ns)       (ns)       (ns)     Iter
+---- ------ ------- ---- ------- ------- ------- ----------------- --------------- -------- ---------- ---------- ---------- ---------- --------
+   1    1.2     0.0    0 1.1e+07   17651   23366   41532 ( 0.061%) 2114467 ( 2.6%)   37.192 -9.979e+04    -37.192      0.000      0.000      N/A
+   2    1.7     0.5  128 1.5e+07   16112   21783   22198 ( 0.032%) 2114467 ( 2.6%)   37.387 -9.997e+04    -37.387      0.000      0.000      N/A
+   3    9.6     0.6   50 6.2e+07   12417   17377   17985 ( 0.026%) 2117182 ( 2.6%)   37.131 -1.002e+05    -37.131      0.000      0.000      N/A
+   4   33.6     0.8   52 1.7e+08   11650   16616   12652 ( 0.018%) 2116824 ( 2.6%)   37.215 -1.003e+05    -37.215      0.000      0.000      N/A
+   5   43.4     1.1   29 2.0e+08   10199   15035    7663 ( 0.011%) 2117059 ( 2.6%)   37.201 -1.004e+05    -37.201      0.000      0.000      N/A
+   6   36.3     1.4   34 1.6e+08    8113   12553    5105 ( 0.007%) 2118252 ( 2.6%)   37.231 -1.004e+05    -37.231      0.000      0.000      N/A
+   7   36.4     1.9   36 1.5e+08    6273   10134    3561 ( 0.005%) 2119185 ( 2.6%)   37.245 -1.005e+05    -37.245      0.000      0.000      N/A
+   8   47.5     2.4   39 1.7e+08    4901    8233    2704 ( 0.004%) 2120530 ( 2.6%)   37.245 -1.005e+05    -37.245      0.000      0.000      N/A
+   9   56.9     3.1   31 1.8e+08    4014    6897    2139 ( 0.003%) 2121927 ( 2.6%)   37.234 -1.005e+05    -37.234      0.000      0.000      N/A
+  10   95.1     4.1   42 2.4e+08    3288    5802    1604 ( 0.002%) 2123285 ( 2.6%)   37.238 -1.005e+05    -37.238      0.000      0.000       33
+  11  164.4     5.3   48 3.3e+08    2687    4824    1303 ( 0.002%) 2124669 ( 2.6%)   37.268 -1.005e+05    -37.268      0.000      0.000       36
+  12  284.8     6.9   40 5.2e+08    2298    4181    1056 ( 0.002%) 2126343 ( 2.6%)   37.258 -1.006e+05    -37.258      0.000      0.000       37
+  13  550.9     9.0   63 8.9e+08    1955    3613     850 ( 0.001%) 2128091 ( 2.6%)   37.254 -1.006e+05    -37.254      0.000      0.000       40
+  14 1114.1    11.6   58 1.6e+09    1656    3119     689 ( 0.001%) 2129459 ( 2.6%)   37.254 -1.006e+05    -37.254      0.000      0.000       41
+  15 1373.9    15.1   46 1.9e+09    1451    2768     592 ( 0.001%) 2130707 ( 2.6%)   37.254 -1.007e+05    -37.254      0.000      0.000       43
+  16 1838.1    19.7   52 2.4e+09    1289    2493     491 ( 0.001%) 2131946 ( 2.6%)   37.254 -1.007e+05    -37.254      0.000      0.000       44
+  17 2164.3    25.6   53 2.9e+09    1134    2233     420 ( 0.001%) 2133034 ( 2.6%)   37.253 -1.007e+05    -37.253      0.000      0.000       46
+  18 2253.3    33.3   41 3.0e+09    1058    2081     353 ( 0.001%) 2133655 ( 2.6%)   37.253 -1.007e+05    -37.253      0.000      0.000       47
+  19 1683.9    43.3   31 2.2e+09     918    1855     297 ( 0.000%) 2134677 ( 2.6%)   37.253 -1.008e+05    -37.253      0.000      0.000       49
+  20 2037.6    56.2   30 2.6e+09     883    1809     265 ( 0.000%) 2135104 ( 2.6%)   37.256 -1.008e+05    -37.256      0.000      0.000       49
+  21 1789.9    73.1   30 2.3e+09     813    1696     234 ( 0.000%) 2135989 ( 2.6%)   37.257 -1.008e+05    -37.257      0.000      0.000       51
+  22 1830.1    95.0   29 2.4e+09     787    1607     227 ( 0.000%) 2136371 ( 2.6%)   37.257 -1.009e+05    -37.257      0.000      0.000       52
+  23 1860.7   123.5   22 2.4e+09     787    1623     192 ( 0.000%) 2136904 ( 2.6%)   37.279 -1.009e+05    -37.279      0.000      0.000       55
+  24 2392.2   160.6   20 3.1e+09     738    1508     203 ( 0.000%) 2137134 ( 2.6%)   37.279 -1.009e+05    -37.279      0.000      0.000       57
+  25 1861.5   208.8   18 2.3e+09     731    1499     179 ( 0.000%) 2137655 ( 2.6%)   37.473 -1.011e+05    -37.473      0.000      0.000       61
+  26 1888.5   271.4   12 2.4e+09     703    1458     165 ( 0.000%) 2138210 ( 2.6%)   37.279 -1.011e+05    -37.279      0.000      0.000       64
+  27  771.9   352.8   15 1.1e+09     721    1524     155 ( 0.000%) 2138828 ( 2.6%)   37.279 -1.012e+05    -37.279      0.000      0.000       68
+  28  780.3   458.7   28 1.1e+09     697    1479     150 ( 0.000%) 2139432 ( 2.6%)   37.279 -1.012e+05    -37.279      0.000      0.000       70
+  29  979.5   596.3   29 1.3e+09     686    1474     122 ( 0.000%) 2139986 ( 2.6%)   37.279 -1.013e+05    -37.279      0.000      0.000       76
+  30  670.9   775.1   18 9.4e+08     654    1438     106 ( 0.000%) 2140210 ( 2.6%)   37.279 -1.013e+05    -37.279      0.000      0.000       76
+  31  792.8  1007.7   20 1.1e+09     649    1420      99 ( 0.000%) 2140438 ( 2.6%)   37.279 -1.013e+05    -37.279      0.000      0.000       79
+  32  594.4  1310.0   21 8.4e+08     621    1371      83 ( 0.000%) 2140568 ( 2.6%)   37.279 -1.013e+05    -37.279      0.000      0.000       78
+  33  344.0  1703.0   18 5.2e+08     600    1355      82 ( 0.000%) 2141026 ( 2.6%)   37.279 -1.013e+05    -37.279      0.000      0.000       79
+  34  690.1  2213.9   12 9.2e+08     603    1346      73 ( 0.000%) 2140819 ( 2.6%)   37.279 -1.013e+05    -37.279      0.000      0.000       79
+  35  622.0  2878.1    9 8.2e+08     576    1304      63 ( 0.000%) 2141215 ( 2.6%)   37.279 -1.013e+05    -37.279      0.000      0.000       80
+  36  525.6  3741.5   13 7.0e+08     572    1294      51 ( 0.000%) 2141252 ( 2.6%)   37.279 -1.013e+05    -37.279      0.000      0.000       79
+  37  450.3  4863.9    6 6.1e+08     552    1246      45 ( 0.000%) 2141333 ( 2.6%)   37.279 -1.012e+05    -37.279      0.000      0.000       78
+  38  377.2  6323.1    3 5.3e+08     540    1226      41 ( 0.000%) 2141674 ( 2.6%)   37.279 -1.013e+05    -37.279      0.000      0.000       77
+  39  323.5  8220.0    5 4.4e+08     525    1204      37 ( 0.000%) 2141524 ( 2.6%)   37.279 -1.013e+05    -37.279      0.000      0.000       75
+  40  330.3 10686.0    3 4.8e+08     529    1222      35 ( 0.000%) 2141747 ( 2.6%)   37.279 -1.013e+05    -37.279      0.000      0.000       74
+  41   80.7 13891.9    2 1.3e+08     526    1205      32 ( 0.000%) 2141624 ( 2.6%)   37.279 -1.013e+05    -37.279      0.000      0.000       74
+  42  113.8 18059.4    4 1.7e+08     521    1188      33 ( 0.000%) 2141873 ( 2.6%)   37.279 -1.013e+05    -37.279      0.000      0.000       74
+  43  335.7 23477.2    7 4.3e+08     528    1195      31 ( 0.000%) 2141762 ( 2.6%)   37.279 -1.012e+05    -37.279      0.000      0.000       74
+  44  291.5 30520.4    4 3.8e+08     519    1185      32 ( 0.000%) 2142015 ( 2.6%)   37.330 -1.012e+05    -37.330      0.000      0.000       74
+  45  257.2 39676.5    4 3.4e+08     503    1156      26 ( 0.000%) 2141956 ( 2.6%)   37.330 -1.012e+05    -37.330      0.000      0.000       76
+  46  175.9 51579.5    3 2.4e+08     506    1161      25 ( 0.000%) 2141981 ( 2.6%)   37.330 -1.013e+05    -37.330      0.000      0.000       76
+  47   48.5 67053.3    2 8.2e+07     496    1139      23 ( 0.000%) 2142055 ( 2.6%)   37.330 -1.013e+05    -37.330      0.000      0.000       76
+  48  122.9 87169.3    1 1.8e+08     499    1154      25 ( 0.000%) 2142090 ( 2.6%)   37.330 -1.013e+05    -37.330      0.000      0.000       77
+  49   91.9 1.1e+05    0 1.4e+08     499    1153      24 ( 0.000%) 2142086 ( 2.6%)   37.330 -1.013e+05    -37.330      0.000      0.000       79
+  50  164.6 1.5e+05    0 2.2e+08     491    1139      17 ( 0.000%) 2142119 ( 2.6%)   37.330 -1.014e+05    -37.330      0.000      0.000       81
+Routing failed.
+
+Failed routing attempt #2
+Total number of overused nodes: 17
+Routing Failure Diagnostics: Printing Overused Nodes Information
+------ ------- ---------- --------- -------- ------------ ------- ------- ------- ------- ------- ------- -------
+   No.  NodeId  Occupancy  Capacity  RR Node    Direction    Side     PTC   Block    Xlow    Ylow   Xhigh   Yhigh
+                                        type                          NUM    Name                                 
+------ ------- ---------- --------- -------- ------------ ------- ------- ------- ------- ------- ------- -------
+     0 22711516          2         1     IPIN          N/A     TOP      25     LAB     303     240     303     240
+     1 22781571          2         1     IPIN          N/A     TOP      24     LAB     304     239     304     239
+     2 22851409          2         1     OPIN          N/A     TOP      90     LAB     305     236     305     236
+     3 23061229          2         1     IPIN          N/A     TOP      26     LAB     308     231     308     231
+     4 23201074          2         1     IPIN          N/A     TOP      43     LAB     310     227     310     227
+     5 23623231          2         1     IPIN          N/A     TOP      18     LAB     316     234     316     234
+     6 24046307          2         1     IPIN          N/A     TOP      16     LAB     321     232     321     232
+     7 54158504          2         1    CHANX      INC_DIR     N/A       8     LAB     307     230     310     230
+     8 54196890          2         1    CHANX      INC_DIR     N/A      86     LAB     320     232     323     232
+     9 54234614          2         1    CHANX      INC_DIR     N/A       8     LAB     311     234     314     234
+    10 54348943          2         1    CHANX      DEC_DIR     N/A      87     LAB     324     240     327     240
+    11 63360349          2         1    CHANY      DEC_DIR     N/A      71     LAB     300     248     300     251
+    12 63373880          2         1    CHANY      INC_DIR     N/A      18     LAB     301     229     301     232
+    13 63388173          2         1    CHANY      DEC_DIR     N/A      75     LAB     302     236     302     239
+    14 63486819          2         1    CHANY      DEC_DIR     N/A      57     LAB     309     236     309     239
+    15 63500610          2         1    CHANY      INC_DIR     N/A       6     LAB     310     226     310     229
+    16 63627590          2         1    CHANY      INC_DIR     N/A      36     LAB     319     232     319     235
+
+Final Net Connection Criticality Histogram:
+[        0:      0.1)  864 (  3.6%) |*******
+[      0.1:      0.2)  234 (  1.0%) |**
+[      0.2:      0.3)  211 (  0.9%) |**
+[      0.3:      0.4)  766 (  3.2%) |******
+[      0.4:      0.5) 1697 (  7.0%) |**************
+[      0.5:      0.6) 1943 (  8.1%) |***************
+[      0.6:      0.7) 3865 ( 16.0%) |*******************************
+[      0.7:      0.8) 4797 ( 19.9%) |**************************************
+[      0.8:      0.9) 5775 ( 23.9%) |**********************************************
+[      0.9:        1) 3962 ( 16.4%) |********************************
+Router Stats: total_nets_routed: 128119 total_connections_routed: 206741 total_heap_pushes: 48572699580 total_heap_pops: 39360768676 total_internal_heap_pushes: 0 total_internal_heap_pops: 0 total_external_heap_pushes: 48572699580 total_external_heap_pops: 39360768676 total_external_SOURCE_pushes: 206741 total_external_SOURCE_pops: 204393 total_internal_SOURCE_pushes: 0 total_internal_SOURCE_pops: 0 rt_node_SOURCE_pushes: 206741 rt_node_SOURCE_high_fanout_pushes: 0 rt_node_SOURCE_entire_tree_pushes: 206741 total_external_SINK_pushes: 1091136 total_external_SINK_pops: 991626 total_internal_SINK_pushes: 0 total_internal_SINK_pops: 0 rt_node_SINK_pushes: 0 rt_node_SINK_high_fanout_pushes: 0 rt_node_SINK_entire_tree_pushes: 0 total_external_IPIN_pushes: 1164887 total_external_IPIN_pops: 1091520 total_internal_IPIN_pushes: 0 total_internal_IPIN_pops: 0 rt_node_IPIN_pushes: 0 rt_node_IPIN_high_fanout_pushes: 0 rt_node_IPIN_entire_tree_pushes: 0 total_external_OPIN_pushes: 7399402 total_external_OPIN_pops: 6575099 total_internal_OPIN_pushes: 0 total_internal_OPIN_pops: 0 rt_node_OPIN_pushes: 94697 rt_node_OPIN_high_fanout_pushes: 0 rt_node_OPIN_entire_tree_pushes: 94697 total_external_CHANX_pushes: 24525470648 total_external_CHANX_pops: 19601007374 total_internal_CHANX_pushes: 0 total_internal_CHANX_pops: 0 rt_node_CHANX_pushes: 237183 rt_node_CHANX_high_fanout_pushes: 0 rt_node_CHANX_entire_tree_pushes: 237183 total_external_CHANY_pushes: 24037366766 total_external_CHANY_pops: 19750898664 total_internal_CHANY_pushes: 0 total_internal_CHANY_pops: 0 rt_node_CHANY_pushes: 246231 rt_node_CHANY_high_fanout_pushes: 0 rt_node_CHANY_entire_tree_pushes: 246231 total_number_of_adding_all_rt: 1006632 total_number_of_adding_high_fanout_rt: 0 total_number_of_adding_all_rt_from_calling_high_fanout_rt: 0 
+
+Attempting to route at 130 channels (binary search bounds: [126, 132])
+## Build routing resource graph
+SOURCE->OPIN and IPIN->SINK edge count:43202722
+OPIN->CHANX/CHANY edge count before creating direct connections: 110273628
+OPIN->CHANX/CHANY edge count after creating direct connections: 123540018
+CHAN->CHAN type edge count:314138596
+## Build routing resource graph took 229.57 seconds (max_rss 56630.4 MiB, delta_rss +0.0 MiB)
+  RR Graph Nodes: 68893838
+  RR Graph Edges: 480881336
+Confirming router algorithm: TIMING_DRIVEN.
+## Computing router lookahead map
+### Computing wire lookahead
+### Computing wire lookahead took 2087.13 seconds (max_rss 56630.4 MiB, delta_rss +0.0 MiB)
+### Computing src/opin lookahead
+### Computing src/opin lookahead took 0.00 seconds (max_rss 56630.4 MiB, delta_rss +0.0 MiB)
+## Computing router lookahead map took 2087.13 seconds (max_rss 56630.4 MiB, delta_rss +0.0 MiB)
+## Initializing router criticalities
+Initial Net Connection Criticality Histogram:
+[        0:      0.1)  882 (  3.7%) |******
+[      0.1:      0.2)  215 (  0.9%) |**
+[      0.2:      0.3)  945 (  3.9%) |*******
+[      0.3:      0.4)  728 (  3.0%) |*****
+[      0.4:      0.5) 1390 (  5.8%) |**********
+[      0.5:      0.6) 2184 (  9.1%) |****************
+[      0.6:      0.7) 3604 ( 14.9%) |***************************
+[      0.7:      0.8) 4972 ( 20.6%) |*************************************
+[      0.8:      0.9) 6242 ( 25.9%) |**********************************************
+[      0.9:        1) 2952 ( 12.2%) |**********************
+## Initializing router criticalities took 0.18 seconds (max_rss 56630.4 MiB, delta_rss +0.0 MiB)
+---- ------ ------- ---- ------- ------- ------- ----------------- --------------- -------- ---------- ---------- ---------- ---------- --------
+Iter   Time    pres  BBs    Heap  Re-Rtd  Re-Rtd Overused RR Nodes      Wirelength      CPD       sTNS       sWNS       hTNS       hWNS Est Succ
+      (sec)     fac Updt    push    Nets   Conns                                       (ns)       (ns)       (ns)       (ns)       (ns)     Iter
+---- ------ ------- ---- ------- ------- ------- ----------------- --------------- -------- ---------- ---------- ---------- ---------- --------
+   1    1.3     0.0    0 1.2e+07   17651   23366   40287 ( 0.058%) 2116787 ( 2.5%)   37.136 -9.994e+04    -37.136      0.000      0.000      N/A
+   2    1.6     0.5  134 1.4e+07   16279   21962   21892 ( 0.032%) 2117304 ( 2.5%)   37.197 -1.001e+05    -37.197      0.000      0.000      N/A
+   3    5.7     0.6   54 3.8e+07   12259   17218   17402 ( 0.025%) 2119531 ( 2.5%)   37.187 -1.003e+05    -37.187      0.000      0.000      N/A
+   4   20.2     0.8   63 1.0e+08   11568   16492   12385 ( 0.018%) 2119059 ( 2.5%)   37.247 -1.003e+05    -37.247      0.000      0.000      N/A
+   5   28.3     1.1   40 1.3e+08   10035   14840    7366 ( 0.011%) 2119307 ( 2.5%)   37.167 -1.003e+05    -37.167      0.000      0.000      N/A
+   6   27.9     1.4   28 1.2e+08    7877   12175    4895 ( 0.007%) 2120202 ( 2.5%)   37.399 -1.004e+05    -37.399      0.000      0.000      N/A
+   7   23.4     1.9   23 9.4e+07    6042    9823    3371 ( 0.005%) 2121155 ( 2.5%)   37.398 -1.004e+05    -37.398      0.000      0.000      N/A
+   8   31.0     2.4   44 1.1e+08    4643    7843    2455 ( 0.004%) 2122384 ( 2.5%)   37.400 -1.004e+05    -37.400      0.000      0.000      N/A
+   9   43.4     3.1   28 1.3e+08    3712    6425    1845 ( 0.003%) 2123854 ( 2.5%)   37.401 -1.004e+05    -37.401      0.000      0.000      N/A
+  10   52.2     4.1   47 1.4e+08    2939    5231    1399 ( 0.002%) 2125155 ( 2.5%)   37.401 -1.004e+05    -37.401      0.000      0.000       31
+  11   81.0     5.3   48 1.9e+08    2361    4318    1075 ( 0.002%) 2126311 ( 2.5%)   37.406 -1.005e+05    -37.406      0.000      0.000       33
+  12  186.1     6.9   43 3.6e+08    1890    3509     821 ( 0.001%) 2127703 ( 2.5%)   37.396 -1.005e+05    -37.396      0.000      0.000       34
+  13  270.9     9.0   47 4.8e+08    1588    3017     635 ( 0.001%) 2128946 ( 2.5%)   37.406 -1.005e+05    -37.406      0.000      0.000       36
+  14  654.0    11.6   43 9.7e+08    1289    2486     496 ( 0.001%) 2130022 ( 2.5%)   37.405 -1.005e+05    -37.405      0.000      0.000       36
+  15 1392.9    15.1   43 1.9e+09    1142    2236     439 ( 0.001%) 2131030 ( 2.5%)   37.413 -1.005e+05    -37.413      0.000      0.000       37
+  16 1709.7    19.7   35 2.3e+09    1018    2018     351 ( 0.001%) 2131972 ( 2.5%)   37.413 -1.006e+05    -37.413      0.000      0.000       39
+  17 1682.6    25.6   33 2.3e+09     870    1775     284 ( 0.000%) 2133052 ( 2.5%)   37.413 -1.006e+05    -37.413      0.000      0.000       40
+  18 1469.6    33.3   44 1.9e+09     815    1693     214 ( 0.000%) 2133694 ( 2.5%)   37.413 -1.007e+05    -37.413      0.000      0.000       41
+  19  582.3    43.3   35 7.9e+08     685    1461     161 ( 0.000%) 2134739 ( 2.5%)   37.413 -1.007e+05    -37.413      0.000      0.000       42
+  20  932.1    56.2   31 1.2e+09     617    1305     142 ( 0.000%) 2135188 ( 2.5%)   37.413 -1.007e+05    -37.413      0.000      0.000       41
+  21  493.0    73.1   18 6.6e+08     587    1290     124 ( 0.000%) 2135834 ( 2.5%)   37.413 -1.008e+05    -37.413      0.000      0.000       42
+  22  586.2    95.0   25 7.8e+08     563    1253     101 ( 0.000%) 2136124 ( 2.5%)   37.413 -1.007e+05    -37.413      0.000      0.000       43
+  23  626.6   123.5   12 8.4e+08     545    1220      89 ( 0.000%) 2136512 ( 2.5%)   37.413 -1.007e+05    -37.413      0.000      0.000       44
+  24  697.5   160.6   12 9.3e+08     524    1180      76 ( 0.000%) 2136801 ( 2.5%)   37.413 -1.007e+05    -37.413      0.000      0.000       44
+  25  563.0   208.8   11 7.6e+08     485    1093      68 ( 0.000%) 2136940 ( 2.5%)   37.413 -1.008e+05    -37.413      0.000      0.000       45
+  26  475.3   271.4    5 6.5e+08     479    1089      57 ( 0.000%) 2137086 ( 2.5%)   37.408 -1.008e+05    -37.408      0.000      0.000       46
+  27  555.8   352.8    7 7.3e+08     472    1080      53 ( 0.000%) 2137506 ( 2.5%)   38.109 -1.008e+05    -38.109      0.000      0.000       47
+  28  438.3   458.7   12 6.0e+08     360     838      51 ( 0.000%) 2137682 ( 2.5%)   38.331 -1.009e+05    -38.331      0.000      0.000       48
+  29  611.4   596.3    8 8.4e+08     322     752      52 ( 0.000%) 2137758 ( 2.5%)   38.331 -1.009e+05    -38.331      0.000      0.000       50
+  30  434.8   775.1    9 6.1e+08     328     750      38 ( 0.000%) 2137859 ( 2.5%)   38.331 -1.009e+05    -38.331      0.000      0.000       52
+  31  182.9  1007.7    6 2.5e+08     309     722      39 ( 0.000%) 2138085 ( 2.5%)   38.331 -1.011e+05    -38.331      0.000      0.000       54
+  32  466.1  1310.0    9 6.0e+08     316     746      31 ( 0.000%) 2138138 ( 2.5%)   38.331 -1.009e+05    -38.331      0.000      0.000       55
+  33  296.0  1703.0    5 4.1e+08     304     721      26 ( 0.000%) 2138208 ( 2.5%)   38.331 -1.009e+05    -38.331      0.000      0.000       57
+  34  151.9  2213.9    2 2.3e+08     295     697      26 ( 0.000%) 2138412 ( 2.5%)   38.331 -1.009e+05    -38.331      0.000      0.000       57
+  35   96.7  2878.1    6 1.5e+08     287     682      24 ( 0.000%) 2138434 ( 2.5%)   38.331 -1.009e+05    -38.331      0.000      0.000       59
+  36  179.3  3741.5    1 2.7e+08     294     692      24 ( 0.000%) 2138482 ( 2.5%)   38.331 -1.009e+05    -38.331      0.000      0.000       60
+  37   41.5  4863.9    4 8.0e+07     288     692      22 ( 0.000%) 2138539 ( 2.5%)   38.331 -1.009e+05    -38.331      0.000      0.000       62
+  38   81.2  6323.1    2 1.3e+08     290     684      19 ( 0.000%) 2138561 ( 2.5%)   38.331 -1.010e+05    -38.331      0.000      0.000       63
+  39  206.8  8220.0    3 2.8e+08     289     685      19 ( 0.000%) 2138575 ( 2.5%)   38.331 -1.009e+05    -38.331      0.000      0.000       64
+  40  118.2 10686.0    2 1.8e+08     291     684      20 ( 0.000%) 2138626 ( 2.5%)   38.331 -1.009e+05    -38.331      0.000      0.000       65
+  41  130.8 13891.9    1 1.8e+08     281     664      18 ( 0.000%) 2138715 ( 2.5%)   38.331 -1.009e+05    -38.331      0.000      0.000       68
+  42   22.9 18059.4    2 4.3e+07     276     665      11 ( 0.000%) 2138939 ( 2.5%)   38.331 -1.010e+05    -38.331      0.000      0.000       69
+  43  161.8 23477.2    5 2.2e+08     271     648      11 ( 0.000%) 2138957 ( 2.5%)   38.331 -1.010e+05    -38.331      0.000      0.000       69
+  44   58.9 30520.4    0 8.3e+07     270     648      10 ( 0.000%) 2138966 ( 2.5%)   38.331 -1.010e+05    -38.331      0.000      0.000       69
+  45   65.1 39676.5    0 1.0e+08     271     649       9 ( 0.000%) 2138949 ( 2.5%)   38.331 -1.010e+05    -38.331      0.000      0.000       69
+  46   45.4 51579.5    0 6.5e+07     268     644       9 ( 0.000%) 2138969 ( 2.5%)   38.331 -1.010e+05    -38.331      0.000      0.000       68
+  47  277.2 67053.3    0 3.6e+08     268     643       6 ( 0.000%) 2138986 ( 2.5%)   38.331 -1.010e+05    -38.331      0.000      0.000       69
+  48  236.0 87169.3    0 3.1e+08     264     639       6 ( 0.000%) 2139033 ( 2.5%)   38.331 -1.010e+05    -38.331      0.000      0.000       68
+  49  191.4 1.1e+05    2 2.5e+08     264     637       5 ( 0.000%) 2139052 ( 2.5%)   38.331 -1.010e+05    -38.331      0.000      0.000       67
+  50  191.7 1.5e+05    1 2.5e+08     260     630       5 ( 0.000%) 2139047 ( 2.5%)   38.331 -1.010e+05    -38.331      0.000      0.000       67
+Routing failed.
+
+Failed routing attempt #3
+Total number of overused nodes: 5
+Routing Failure Diagnostics: Printing Overused Nodes Information
+------ ------- ---------- --------- -------- ------------ ------- ------- ------- ------- ------- ------- -------
+   No.  NodeId  Occupancy  Capacity  RR Node    Direction    Side     PTC   Block    Xlow    Ylow   Xhigh   Yhigh
+                                        type                          NUM    Name                                 
+------ ------- ---------- --------- -------- ------------ ------- ------- ------- ------- ------- ------- -------
+     0 23412080          2         1     IPIN          N/A     TOP      29     LAB     313     230     313     230
+     1 54429845          2         1    CHANX      DEC_DIR     N/A      43     LAB     319     239     322     239
+     2 54448969          2         1    CHANX      DEC_DIR     N/A      81     LAB     309     240     312     240
+     3 63831618          2         1    CHANY      INC_DIR     N/A      58     LAB     312     238     312     241
+     4 63975547          2         1    CHANY      DEC_DIR     N/A      51     LAB     322     236     322     239
+
+Final Net Connection Criticality Histogram:
+[        0:      0.1)  875 (  3.6%) |******
+[      0.1:      0.2)  236 (  1.0%) |**
+[      0.2:      0.3)  238 (  1.0%) |**
+[      0.3:      0.4)  931 (  3.9%) |*******
+[      0.4:      0.5) 1676 (  7.0%) |************
+[      0.5:      0.6) 2255 (  9.4%) |****************
+[      0.6:      0.7) 4388 ( 18.2%) |*******************************
+[      0.7:      0.8) 4823 ( 20.0%) |**********************************
+[      0.8:      0.9) 6577 ( 27.3%) |**********************************************
+[      0.9:        1) 2115 (  8.8%) |***************
+Router Stats: total_nets_routed: 115601 total_connections_routed: 183210 total_heap_pushes: 25088631255 total_heap_pops: 19736805075 total_internal_heap_pushes: 0 total_internal_heap_pops: 0 total_external_heap_pushes: 25088631255 total_external_heap_pops: 19736805075 total_external_SOURCE_pushes: 183210 total_external_SOURCE_pops: 181369 total_internal_SOURCE_pushes: 0 total_internal_SOURCE_pops: 0 rt_node_SOURCE_pushes: 183210 rt_node_SOURCE_high_fanout_pushes: 0 rt_node_SOURCE_entire_tree_pushes: 183210 total_external_SINK_pushes: 992571 total_external_SINK_pops: 904631 total_internal_SINK_pushes: 0 total_internal_SINK_pops: 0 rt_node_SINK_pushes: 0 rt_node_SINK_high_fanout_pushes: 0 rt_node_SINK_entire_tree_pushes: 0 total_external_IPIN_pushes: 1058259 total_external_IPIN_pops: 992941 total_internal_IPIN_pushes: 0 total_internal_IPIN_pops: 0 rt_node_IPIN_pushes: 0 rt_node_IPIN_high_fanout_pushes: 0 rt_node_IPIN_entire_tree_pushes: 0 total_external_OPIN_pushes: 6518764 total_external_OPIN_pops: 5930138 total_internal_OPIN_pushes: 0 total_internal_OPIN_pops: 0 rt_node_OPIN_pushes: 80735 rt_node_OPIN_high_fanout_pushes: 0 rt_node_OPIN_entire_tree_pushes: 80735 total_external_CHANX_pushes: 12692077066 total_external_CHANX_pops: 9838233210 total_internal_CHANX_pushes: 0 total_internal_CHANX_pops: 0 rt_node_CHANX_pushes: 193441 rt_node_CHANX_high_fanout_pushes: 0 rt_node_CHANX_entire_tree_pushes: 193441 total_external_CHANY_pushes: 12387801385 total_external_CHANY_pops: 9890562786 total_internal_CHANY_pushes: 0 total_internal_CHANY_pops: 0 rt_node_CHANY_pushes: 200393 rt_node_CHANY_high_fanout_pushes: 0 rt_node_CHANY_entire_tree_pushes: 200393 total_number_of_adding_all_rt: 847241 total_number_of_adding_high_fanout_rt: 0 total_number_of_adding_all_rt_from_calling_high_fanout_rt: 0 
+## Build routing resource graph
+SOURCE->OPIN and IPIN->SINK edge count:43202722
+OPIN->CHANX/CHANY edge count before creating direct connections: 112802760
+OPIN->CHANX/CHANY edge count after creating direct connections: 126069150
+CHAN->CHAN type edge count:319849178
+## Build routing resource graph took 234.61 seconds (max_rss 56630.4 MiB, delta_rss +0.0 MiB)
+  RR Graph Nodes: 69221662
+  RR Graph Edges: 489121050
+Best routing used a channel width factor of 132.
+# Routing took 281027.53 seconds (max_rss 56630.4 MiB, delta_rss +0.0 MiB)
+
+Checking to ensure routing is legal...
+# Checking to ensure non-configurable edges are legal
+# Checking to ensure non-configurable edges are legal took 1.11 seconds (max_rss 56630.4 MiB, delta_rss +0.0 MiB)
+Completed routing consistency check successfully.
+
+Serial number (magic cookie) for the routing is: 82687573
+Circuit successfully routed with a channel width factor of 132.
+# Synchronize the packed netlist to routing optimization
+## Annotating rr_node with routed nets
+## Annotating rr_node with routed nets took 0.09 seconds (max_rss 56630.4 MiB, delta_rss +0.0 MiB)
+Found 59692 mismatches between routing and packing results.
+Fixed 21647 routing traces due to mismatch between routing and packing results.
+# Synchronize the packed netlist to routing optimization took 0.39 seconds (max_rss 56630.4 MiB, delta_rss +0.0 MiB)
+Final Clustering Statistics: 
+----------   --------   ------------------------------------   --------------------------
+Block Type   # Blocks   Avg. # of input clocks and pins used   Avg. # of output pins used
+----------   --------   ------------------------------------   --------------------------
+     EMPTY          0                                      0                            0   
+        io       4571                               0.299934                     0.700066   
+       PLL          0                                      0                            0   
+       LAB        962                                23.6414                      15.0229   
+       DSP          0                                      0                            0   
+       M9K          0                                      0                            0   
+     M144K          0                                      0                            0   
+Absorbed logical nets 7165 out of 24817 nets, 17652 nets not absorbed.
+
+
+Average number of bends per net: 2.90437  Maximum # of bends: 26
+
+Number of global nets: 1
+Number of routed nets (nonglobal): 17651
+Wire length results (in units of 1 clb segments)...
+	Total wirelength: 2134283, average net length: 120.916
+	Maximum net length: 684
+
+Wire length results in terms of physical segments...
+	Total wiring segments used: 195091, average wire segments per net: 11.0527
+	Maximum segments used by a net: 71
+	Total local nets with reserved CLB opins: 0
+Total number of nets absorbed: 947
+
+Routing channel utilization histogram:
+[        1:      inf)      0 (  0.0%) |
+[      0.9:        1)    524 (  0.1%) |
+[      0.8:      0.9)    710 (  0.1%) |
+[      0.7:      0.8)    490 (  0.1%) |
+[      0.5:      0.6)    202 (  0.0%) |
+[      0.4:      0.5)    220 (  0.0%) |
+[      0.3:      0.4)    276 (  0.0%) |
+[      0.2:      0.3)    864 (  0.1%) |
+[      0.1:      0.2)  13250 (  2.0%) |*
+[        0:      0.1) 636840 ( 97.5%) |********************************************
+Maximum routing channel utilization:      0.98 at (316,236)
+
+X - Directed channels:   j max occ ave occ capacity
+                      ---- ------- ------- --------
+                         0      13   7.287      132
+                         1      23  13.489      132
+                         2       9   4.481      132
+                         3      10   4.048      132
+                         4       9   3.851      132
+                         5      15   6.432      132
+                         6       5   1.552      132
+                         7       5   1.854      132
+                         8       5   1.290      132
+                         9       7   2.192      132
+                        10       5   1.298      132
+                        11       4   0.668      132
+                        12       3   0.811      132
+                        13       3   0.887      132
+                        14       4   1.090      132
+                        15       3   0.932      132
+                        16       3   1.074      132
+                        17       8   4.441      132
+                        18       6   1.716      132
+                        19       9   1.958      132
+                        20       4   1.346      132
+                        21      10   2.272      132
+                        22       9   1.523      132
+                        23       4   1.029      132
+                        24       4   0.923      132
+                        25       5   0.998      132
+                        26       4   0.776      132
+                        27       3   1.119      132
+                        28       2   1.361      132
+                        29       3   0.938      132
+                        30       3   0.540      132
+                        31       4   1.580      132
+                        32       4   0.713      132
+                        33       8   3.215      132
+                        34       7   1.656      132
+                        35       7   1.926      132
+                        36       6   1.361      132
+                        37       8   2.537      132
+                        38       5   1.063      132
+                        39       5   1.528      132
+                        40       3   0.568      132
+                        41       4   0.708      132
+                        42       3   0.904      132
+                        43       2   0.347      132
+                        44       4   0.941      132
+                        45       4   0.632      132
+                        46       5   1.026      132
+                        47       3   1.096      132
+                        48       3   0.789      132
+                        49       8   3.774      132
+                        50       7   1.472      132
+                        51       5   1.439      132
+                        52       5   1.191      132
+                        53       8   2.140      132
+                        54       5   1.504      132
+                        55       4   1.580      132
+                        56       3   0.594      132
+                        57       5   1.232      132
+                        58       3   0.689      132
+                        59       4   0.498      132
+                        60       4   1.379      132
+                        61       5   1.826      132
+                        62       6   1.174      132
+                        63       3   0.922      132
+                        64       3   0.483      132
+                        65       8   2.925      132
+                        66       3   0.908      132
+                        67       6   1.423      132
+                        68       3   0.953      132
+                        69       9   2.427      132
+                        70       4   1.420      132
+                        71       3   0.687      132
+                        72       3   0.432      132
+                        73       6   1.226      132
+                        74       3   0.713      132
+                        75       5   1.131      132
+                        76       3   0.656      132
+                        77       4   0.971      132
+                        78       3   0.693      132
+                        79       3   0.624      132
+                        80       2   0.442      132
+                        81       7   2.614      132
+                        82       6   1.478      132
+                        83       6   0.764      132
+                        84       6   1.377      132
+                        85       7   2.388      132
+                        86       4   1.101      132
+                        87       5   1.122      132
+                        88       5   1.041      132
+                        89       5   1.445      132
+                        90       3   1.153      132
+                        91       9   1.427      132
+                        92       5   0.385      132
+                        93       5   0.959      132
+                        94       2   0.499      132
+                        95       4   0.620      132
+                        96       3   0.944      132
+                        97       8   1.974      132
+                        98       4   1.051      132
+                        99       5   1.725      132
+                       100       3   1.598      132
+                       101       5   1.937      132
+                       102       5   1.468      132
+                       103       4   0.895      132
+                       104       5   1.394      132
+                       105       7   1.746      132
+                       106       4   1.220      132
+                       107       6   1.385      132
+                       108       3   0.495      132
+                       109       5   1.672      132
+                       110       4   0.889      132
+                       111       5   0.716      132
+                       112       5   0.991      132
+                       113       9   2.489      132
+                       114       5   1.162      132
+                       115       5   1.562      132
+                       116       5   1.838      132
+                       117       6   1.436      132
+                       118       4   0.877      132
+                       119       3   0.838      132
+                       120       7   1.779      132
+                       121       6   1.152      132
+                       122       5   1.215      132
+                       123       5   1.620      132
+                       124       4   1.241      132
+                       125       5   1.477      132
+                       126       4   1.072      132
+                       127       3   0.702      132
+                       128       6   1.325      132
+                       129       6   2.170      132
+                       130       6   0.681      132
+                       131       5   1.090      132
+                       132       6   1.617      132
+                       133       5   1.340      132
+                       134       4   1.468      132
+                       135       4   1.382      132
+                       136       5   1.398      132
+                       137       5   1.693      132
+                       138       7   1.941      132
+                       139       7   2.570      132
+                       140       3   1.105      132
+                       141       3   0.774      132
+                       142       3   1.308      132
+                       143       5   0.974      132
+                       144       4   1.008      132
+                       145      10   3.586      132
+                       146       4   1.552      132
+                       147       5   1.501      132
+                       148       8   2.186      132
+                       149       5   1.910      132
+                       150       6   2.570      132
+                       151       6   2.499      132
+                       152       5   1.809      132
+                       153       6   2.553      132
+                       154       5   1.403      132
+                       155       7   2.758      132
+                       156       5   1.406      132
+                       157       5   1.262      132
+                       158       4   2.508      132
+                       159       4   1.376      132
+                       160       5   2.565      132
+                       161      11   3.880      132
+                       162       5   2.134      132
+                       163       8   3.947      132
+                       164       8   3.803      132
+                       165       8   3.620      132
+                       166       8   3.269      132
+                       167       6   3.206      132
+                       168       6   2.732      132
+                       169      10   4.292      132
+                       170       6   3.389      132
+                       171       8   4.356      132
+                       172       8   3.606      132
+                       173       8   2.941      132
+                       174       9   2.238      132
+                       175       8   3.341      132
+                       176      10   3.427      132
+                       177      10   4.620      132
+                       178      13   5.149      132
+                       179      15   6.505      132
+                       180      11   5.480      132
+                       181      13   6.325      132
+                       182      13   6.350      132
+                       183      15   6.104      132
+                       184      14   5.931      132
+                       185      15   7.391      132
+                       186      13   5.003      132
+                       187      17   7.723      132
+                       188      12   6.432      132
+                       189      14   5.862      132
+                       190      14   5.896      132
+                       191      12   5.755      132
+                       192      17   6.364      132
+                       193      14   7.260      132
+                       194      14   5.555      132
+                       195      17   8.758      132
+                       196      16   6.377      132
+                       197      14   6.583      132
+                       198      15   8.203      132
+                       199      16   8.940      132
+                       200      19   8.456      132
+                       201      19  10.552      132
+                       202      17   8.871      132
+                       203      18   8.565      132
+                       204      18   9.374      132
+                       205      17   8.901      132
+                       206      15   6.878      132
+                       207      16   7.595      132
+                       208      17   6.617      132
+                       209      21   8.872      132
+                       210      18   6.886      132
+                       211      19   7.567      132
+                       212      27  11.245      132
+                       213      21   8.317      132
+                       214      30  10.477      132
+                       215      63   9.346      132
+                       216      87  10.526      132
+                       217      96  10.743      132
+                       218     110  11.791      132
+                       219     108  12.453      132
+                       220     112  12.657      132
+                       221     124  12.665      132
+                       222     119  14.489      132
+                       223     124  13.561      132
+                       224     122  13.168      132
+                       225     124  12.946      132
+                       226     122  13.471      132
+                       227     123  13.922      132
+                       228     123  14.976      132
+                       229     127  15.322      132
+                       230     127  14.105      132
+                       231     125  15.535      132
+                       232     127  14.232      132
+                       233     126  13.971      132
+                       234     126  13.359      132
+                       235     129  12.844      132
+                       236     129  14.555      132
+                       237     128  13.504      132
+                       238     127  13.427      132
+                       239     125  14.726      132
+                       240     125  13.137      132
+                       241     125  11.353      132
+                       242     124  11.329      132
+                       243     122  12.516      132
+                       244     126  12.405      132
+                       245     121  10.632      132
+                       246     115  10.003      132
+                       247     116  11.424      132
+                       248     115  10.962      132
+                       249     102  10.632      132
+                       250      79   9.789      132
+                       251      58   8.805      132
+                       252      29   7.426      132
+                       253      19   8.654      132
+                       254      23   7.522      132
+                       255      18   5.956      132
+                       256      24   5.466      132
+                       257      16   4.036      132
+                       258      17   5.976      132
+                       259      18   4.424      132
+                       260      17   4.147      132
+                       261      18   4.469      132
+                       262      20   6.427      132
+                       263      19   6.054      132
+                       264      18   6.027      132
+                       265      16   6.471      132
+                       266      15   5.874      132
+                       267      19   7.000      132
+                       268      16   3.582      132
+                       269      14   5.269      132
+                       270      14   4.534      132
+                       271      15   4.650      132
+                       272      18   3.777      132
+                       273      13   4.059      132
+                       274      12   3.447      132
+                       275      14   4.298      132
+                       276      13   4.089      132
+                       277      13   4.048      132
+                       278      13   3.785      132
+                       279      13   4.830      132
+                       280      12   5.202      132
+                       281      13   5.263      132
+                       282      14   5.552      132
+                       283      15   4.935      132
+                       284      11   3.337      132
+                       285      11   4.654      132
+                       286      10   2.770      132
+                       287       9   3.075      132
+                       288      12   3.087      132
+                       289       7   3.696      132
+                       290       7   1.595      132
+                       291      14   3.277      132
+                       292      10   3.350      132
+                       293      11   3.684      132
+                       294       6   2.992      132
+                       295      10   3.003      132
+                       296       8   3.066      132
+                       297       6   3.346      132
+                       298      10   3.800      132
+                       299       9   3.892      132
+                       300       7   3.474      132
+                       301       6   2.690      132
+                       302       8   2.302      132
+                       303       5   2.265      132
+                       304       6   2.797      132
+                       305       5   1.314      132
+                       306       6   2.573      132
+                       307       6   2.349      132
+                       308       6   2.591      132
+                       309       6   2.511      132
+                       310       6   2.426      132
+                       311       7   2.836      132
+                       312       8   3.565      132
+                       313       5   3.054      132
+                       314       6   2.962      132
+                       315       8   3.544      132
+                       316       8   3.847      132
+                       317       6   3.985      132
+                       318       4   1.919      132
+                       319       6   2.914      132
+                       320       6   1.598      132
+                       321       4   1.153      132
+                       322       5   1.651      132
+                       323      10   2.346      132
+                       324       6   2.403      132
+                       325       6   2.519      132
+                       326       5   2.229      132
+                       327       9   2.902      132
+                       328       4   1.651      132
+                       329       6   2.144      132
+                       330       5   2.170      132
+                       331       5   1.871      132
+                       332       6   2.683      132
+                       333       6   2.398      132
+                       334       5   2.167      132
+                       335       4   1.170      132
+                       336       9   1.618      132
+                       337       4   2.099      132
+                       338       4   1.710      132
+                       339       8   2.621      132
+                       340       5   2.038      132
+                       341       7   2.220      132
+                       342       6   2.205      132
+                       343       8   2.991      132
+                       344       4   1.899      132
+                       345       7   2.382      132
+                       346       5   2.385      132
+                       347       6   2.967      132
+                       348       5   2.409      132
+                       349       5   1.922      132
+                       350       4   1.215      132
+                       351       4   1.884      132
+                       352       4   1.815      132
+                       353       3   1.202      132
+                       354       5   1.165      132
+                       355       5   1.962      132
+                       356       7   2.669      132
+                       357       5   2.271      132
+                       358       7   2.290      132
+                       359       6   1.811      132
+                       360       4   1.502      132
+                       361       5   3.119      132
+                       362       5   2.705      132
+                       363       6   2.611      132
+                       364       4   1.275      132
+                       365       5   2.585      132
+                       366       5   2.866      132
+                       367       2   0.442      132
+                       368       6   2.423      132
+                       369       5   1.928      132
+                       370       3   0.611      132
+                       371       5   1.186      132
+                       372       4   1.044      132
+                       373       6   2.023      132
+                       374       4   1.110      132
+                       375       4   1.603      132
+                       376       5   2.039      132
+                       377       5   2.823      132
+                       378       5   2.379      132
+                       379       5   2.326      132
+                       380       5   1.624      132
+                       381       7   1.904      132
+                       382       3   1.217      132
+                       383       4   1.011      132
+                       384       5   1.913      132
+                       385       4   1.241      132
+                       386       3   1.265      132
+                       387       5   2.150      132
+                       388       4   0.580      132
+                       389       5   1.711      132
+                       390       4   1.081      132
+                       391       4   1.705      132
+                       392       7   1.971      132
+                       393       6   2.847      132
+                       394       6   2.811      132
+                       395       7   2.898      132
+                       396       4   2.289      132
+                       397       4   1.373      132
+                       398       7   2.268      132
+                       399       3   0.671      132
+                       400       6   2.385      132
+                       401       4   1.227      132
+                       402       3   1.099      132
+                       403       3   0.958      132
+                       404       5   2.098      132
+                       405       6   1.671      132
+                       406       4   1.101      132
+                       407       5   1.451      132
+                       408       4   1.988      132
+                       409       6   3.023      132
+                       410       5   1.414      132
+                       411       8   3.647      132
+                       412       3   0.863      132
+                       413       5   2.289      132
+                       414       4   1.707      132
+                       415       3   0.850      132
+                       416       4   1.471      132
+                       417       5   1.313      132
+                       418       3   1.283      132
+                       419       4   1.430      132
+                       420       5   1.814      132
+                       421       5   1.868      132
+                       422       5   1.445      132
+                       423       5   1.853      132
+                       424       6   2.329      132
+                       425       6   1.678      132
+                       426       7   2.418      132
+                       427       6   2.747      132
+                       428       5   2.015      132
+                       429       5   1.965      132
+                       430       5   2.305      132
+                       431       4   1.420      132
+                       432       5   1.595      132
+                       433       3   0.950      132
+                       434       3   0.555      132
+                       435       4   1.057      132
+                       436       5   1.131      132
+                       437       4   1.235      132
+                       438       3   1.441      132
+                       439       6   2.301      132
+                       440       9   2.886      132
+                       441       9   4.030      132
+                       442       9   3.705      132
+                       443       9   3.362      132
+                       444       7   2.472      132
+                       445       8   3.090      132
+                       446       6   1.534      132
+                       447       5   2.119      132
+                       448       5   2.695      132
+                       449       4   0.913      132
+                       450       3   0.920      132
+                       451       5   1.577      132
+                       452       5   1.170      132
+                       453       8   3.051      132
+                       454       6   2.752      132
+                       455       4   1.592      132
+                       456       8   2.997      132
+                       457       8   4.119      132
+                       458      11   3.974      132
+                       459       9   4.713      132
+                       460       8   3.412      132
+                       461      11   4.880      132
+                       462       5   1.741      132
+                       463       7   2.290      132
+                       464       7   2.770      132
+                       465       5   1.489      132
+                       466       3   0.926      132
+                       467       7   2.577      132
+                       468      10   3.135      132
+                       469      11   4.429      132
+                       470       6   2.719      132
+                       471       9   3.644      132
+                       472      15   4.863      132
+                       473      12   5.042      132
+                       474      14   6.358      132
+                       475      11   5.119      132
+                       476      12   5.026      132
+                       477      13   3.583      132
+                       478       9   3.782      132
+                       479      12   4.167      132
+                       480       7   3.174      132
+                       481      11   4.368      132
+                       482       8   2.743      132
+                       483      12   5.454      132
+                       484      12   4.749      132
+                       485      11   4.445      132
+                       486      11   4.044      132
+                       487      15   6.242      132
+                       488      20   9.173      132
+                       489      16   7.926      132
+                       490      20   8.726      132
+                       491      24  13.353      132
+Y - Directed channels:   i max occ ave occ capacity
+                      ---- ------- ------- --------
+                         0      17   9.604      132
+                         1      11   3.602      132
+                         2       7   2.753      132
+                         3      10   3.442      132
+                         4       6   2.467      132
+                         5       6   2.020      132
+                         6       4   1.290      132
+                         7       2   0.588      132
+                         8       4   0.990      132
+                         9       6   1.310      132
+                        10       4   1.394      132
+                        11       5   1.201      132
+                        12       3   0.604      132
+                        13       3   0.477      132
+                        14       4   0.663      132
+                        15       3   0.432      132
+                        16       5   1.414      132
+                        17       6   1.903      132
+                        18       3   0.844      132
+                        19       4   0.473      132
+                        20       5   1.205      132
+                        21       4   0.767      132
+                        22       5   0.990      132
+                        23       4   0.615      132
+                        24       2   0.751      132
+                        25       4   0.667      132
+                        26       4   0.365      132
+                        27       3   0.586      132
+                        28       3   0.144      132
+                        29       3   0.533      132
+                        30       3   0.361      132
+                        31       4   0.475      132
+                        32       5   0.921      132
+                        33       3   0.450      132
+                        34       3   0.895      132
+                        35       4   0.813      132
+                        36       5   1.187      132
+                        37       4   0.848      132
+                        38       6   0.481      132
+                        39       3   0.284      132
+                        40       4   0.475      132
+                        41       3   1.156      132
+                        42       4   0.562      132
+                        43       3   0.795      132
+                        44       5   0.751      132
+                        45       3   1.201      132
+                        46       2   0.361      132
+                        47       4   0.576      132
+                        48       4   0.931      132
+                        49       4   0.992      132
+                        50       4   1.296      132
+                        51       4   1.142      132
+                        52       4   1.296      132
+                        53       4   1.028      132
+                        54       4   1.442      132
+                        55       5   1.176      132
+                        56       3   0.434      132
+                        57       4   0.761      132
+                        58       3   0.223      132
+                        59       4   0.830      132
+                        60       3   0.976      132
+                        61       3   0.333      132
+                        62       4   0.888      132
+                        63       3   0.361      132
+                        64       3   0.927      132
+                        65       5   1.349      132
+                        66       2   0.535      132
+                        67       3   1.172      132
+                        68       3   0.517      132
+                        69       3   0.436      132
+                        70       3   0.698      132
+                        71       7   1.262      132
+                        72       4   0.854      132
+                        73       4   0.677      132
+                        74       3   0.193      132
+                        75       4   1.122      132
+                        76       4   1.110      132
+                        77       5   1.826      132
+                        78       4   0.604      132
+                        79       4   0.890      132
+                        80       4   1.586      132
+                        81       3   0.909      132
+                        82       4   1.256      132
+                        83       3   0.558      132
+                        84       4   0.677      132
+                        85       4   0.570      132
+                        86       4   0.493      132
+                        87       3   0.903      132
+                        88       3   0.426      132
+                        89       4   0.606      132
+                        90       2   0.126      132
+                        91       4   0.751      132
+                        92       3   0.507      132
+                        93       5   0.675      132
+                        94       4   0.675      132
+                        95       5   1.442      132
+                        96       5   0.505      132
+                        97       4   0.832      132
+                        98       5   0.876      132
+                        99       3   0.531      132
+                       100       5   0.627      132
+                       101       4   0.959      132
+                       102       5   1.142      132
+                       103       6   0.941      132
+                       104       3   0.761      132
+                       105       3   0.160      132
+                       106       2   0.264      132
+                       107       3   0.828      132
+                       108       2   0.361      132
+                       109       3   0.404      132
+                       110       4   1.258      132
+                       111       4   0.974      132
+                       112       3   1.034      132
+                       113       4   0.805      132
+                       114       6   0.817      132
+                       115       3   0.426      132
+                       116       3   0.757      132
+                       117       4   0.781      132
+                       118       3   0.809      132
+                       119       3   0.501      132
+                       120       2   0.497      132
+                       121       4   0.852      132
+                       122       3   0.363      132
+                       123       6   0.797      132
+                       124       4   1.045      132
+                       125       4   0.465      132
+                       126       3   0.306      132
+                       127       4   0.730      132
+                       128       5   0.580      132
+                       129       4   0.811      132
+                       130       4   0.625      132
+                       131       5   1.126      132
+                       132       5   1.057      132
+                       133       6   1.118      132
+                       134       5   0.933      132
+                       135       3   0.680      132
+                       136       2   0.538      132
+                       137       5   1.032      132
+                       138       5   0.337      132
+                       139       4   0.815      132
+                       140       3   0.604      132
+                       141       5   0.949      132
+                       142       4   0.556      132
+                       143       3   0.805      132
+                       144       4   1.144      132
+                       145       5   1.154      132
+                       146       4   1.331      132
+                       147       5   1.105      132
+                       148       4   0.951      132
+                       149       4   0.487      132
+                       150       2   0.744      132
+                       151       5   0.949      132
+                       152       4   0.619      132
+                       153       3   0.377      132
+                       154       4   0.544      132
+                       155       5   0.667      132
+                       156       5   0.767      132
+                       157       3   0.446      132
+                       158       4   0.546      132
+                       159       4   0.669      132
+                       160       4   0.830      132
+                       161       4   1.215      132
+                       162       3   0.641      132
+                       163       2   0.604      132
+                       164       4   1.122      132
+                       165       4   1.039      132
+                       166       4   0.986      132
+                       167       4   1.225      132
+                       168       4   0.740      132
+                       169       5   1.099      132
+                       170       3   0.623      132
+                       171       3   0.398      132
+                       172       3   1.132      132
+                       173       3   0.852      132
+                       174       4   0.531      132
+                       175       4   0.566      132
+                       176       3   1.081      132
+                       177       4   1.552      132
+                       178       7   1.316      132
+                       179       3   0.968      132
+                       180       4   1.570      132
+                       181       3   0.941      132
+                       182       5   1.501      132
+                       183       4   1.406      132
+                       184       4   1.112      132
+                       185       6   1.659      132
+                       186       3   0.757      132
+                       187       3   0.947      132
+                       188       5   1.935      132
+                       189       4   1.264      132
+                       190       4   0.848      132
+                       191       5   1.738      132
+                       192       5   2.101      132
+                       193       5   1.391      132
+                       194       3   1.391      132
+                       195       2   0.538      132
+                       196       4   1.533      132
+                       197       4   1.097      132
+                       198       6   2.197      132
+                       199       4   1.477      132
+                       200       3   1.252      132
+                       201       5   1.365      132
+                       202       4   1.331      132
+                       203       7   2.122      132
+                       204       5   2.406      132
+                       205       2   0.704      132
+                       206       4   0.813      132
+                       207       6   1.272      132
+                       208       4   1.254      132
+                       209       6   1.785      132
+                       210       5   2.172      132
+                       211       4   1.527      132
+                       212       5   1.736      132
+                       213       4   1.302      132
+                       214       7   2.276      132
+                       215       5   1.564      132
+                       216       3   1.219      132
+                       217       5   1.751      132
+                       218       6   1.621      132
+                       219       7   2.562      132
+                       220       5   2.205      132
+                       221       4   1.923      132
+                       222       4   1.574      132
+                       223       6   2.278      132
+                       224       8   3.343      132
+                       225       8   2.075      132
+                       226       9   3.170      132
+                       227       8   3.073      132
+                       228      10   3.937      132
+                       229       7   2.523      132
+                       230       9   4.473      132
+                       231       9   4.838      132
+                       232      10   3.391      132
+                       233       8   3.235      132
+                       234       6   2.266      132
+                       235       6   2.931      132
+                       236       9   4.241      132
+                       237       5   2.126      132
+                       238      10   4.440      132
+                       239      12   5.497      132
+                       240      12   4.398      132
+                       241      11   4.404      132
+                       242      11   4.959      132
+                       243      14   5.144      132
+                       244      16   6.394      132
+                       245      10   4.939      132
+                       246      15   6.901      132
+                       247      12   6.404      132
+                       248      11   4.913      132
+                       249      11   4.093      132
+                       250      11   5.446      132
+                       251      11   5.217      132
+                       252      13   6.361      132
+                       253      12   4.515      132
+                       254      12   5.765      132
+                       255      12   5.576      132
+                       256      16   6.558      132
+                       257      14   5.763      132
+                       258      13   5.974      132
+                       259      14   6.118      132
+                       260      16   6.929      132
+                       261      15   6.069      132
+                       262      12   7.164      132
+                       263      12   6.639      132
+                       264      11   6.069      132
+                       265      16   7.986      132
+                       266      12   6.615      132
+                       267      11   6.899      132
+                       268      12   5.323      132
+                       269      15   6.558      132
+                       270      11   6.006      132
+                       271      11   7.306      132
+                       272      14   7.264      132
+                       273      16   7.406      132
+                       274      17   9.339      132
+                       275      13   5.838      132
+                       276      14   6.485      132
+                       277      16   7.211      132
+                       278      13   7.602      132
+                       279      11   6.523      132
+                       280      13   6.657      132
+                       281      17   9.053      132
+                       282      11   6.418      132
+                       283      13   7.085      132
+                       284      17   6.915      132
+                       285      20   7.008      132
+                       286      15   9.041      132
+                       287      15   7.641      132
+                       288      16   7.440      132
+                       289      20   8.533      132
+                       290      21   8.552      132
+                       291      40   7.312      132
+                       292      81  10.959      132
+                       293     120  11.444      132
+                       294     128  12.611      132
+                       295     128  14.408      132
+                       296     125  13.817      132
+                       297     127  15.243      132
+                       298     130  15.609      132
+                       299     131  18.264      132
+                       300     130  19.028      132
+                       301     129  16.101      132
+                       302     130  17.627      132
+                       303     132  18.199      132
+                       304     128  19.596      132
+                       305     131  18.160      132
+                       306     130  18.824      132
+                       307     130  16.099      132
+                       308     130  19.373      132
+                       309     130  17.961      132
+                       310     131  17.911      132
+                       311     129  15.740      132
+                       312     130  17.028      132
+                       313     130  16.716      132
+                       314     129  16.260      132
+                       315     129  15.420      132
+                       316     127  15.223      132
+                       317     129  14.718      132
+                       318     129  16.428      132
+                       319     130  15.667      132
+                       320     128  16.552      132
+                       321     127  15.043      132
+                       322     125  16.314      132
+                       323     125  13.355      132
+                       324     125  13.824      132
+                       325     119  13.617      132
+                       326     115  13.000      132
+                       327     120  14.775      132
+                       328     123  14.824      132
+                       329     119  12.564      132
+                       330     115  10.272      132
+                       331     113   9.649      132
+                       332      75  10.726      132
+                       333      29   5.824      132
+                       334      18   7.379      132
+                       335      15   5.055      132
+                       336      17   5.998      132
+                       337      12   5.227      132
+                       338      16   5.781      132
+                       339      15   5.105      132
+                       340      14   4.588      132
+                       341      15   5.919      132
+                       342      16   6.615      132
+                       343      14   6.436      132
+                       344      15   7.195      132
+                       345      11   5.432      132
+                       346      16   5.968      132
+                       347      12   4.864      132
+                       348      11   4.753      132
+                       349      10   4.611      132
+                       350      14   4.527      132
+                       351      14   5.422      132
+                       352      12   5.866      132
+                       353      14   5.799      132
+                       354      12   5.499      132
+                       355      15   5.994      132
+                       356      10   4.351      132
+                       357      13   5.929      132
+                       358      15   5.071      132
+                       359      12   5.168      132
+                       360       9   4.353      132
+                       361      15   6.045      132
+                       362      12   5.870      132
+                       363      10   4.316      132
+                       364      11   4.890      132
+                       365      11   5.357      132
+                       366      13   3.909      132
+                       367      14   4.870      132
+                       368      10   3.446      132
+                       369       9   3.627      132
+                       370      11   3.515      132
+                       371      11   4.185      132
+                       372      14   3.890      132
+                       373      14   6.824      132
+                       374       9   2.142      132
+                       375      11   3.548      132
+                       376       8   2.787      132
+                       377       6   3.361      132
+                       378       6   2.012      132
+                       379       5   2.641      132
+                       380       9   3.874      132
+                       381       6   3.091      132
+                       382       6   2.243      132
+                       383       4   1.730      132
+                       384       6   2.846      132
+                       385       6   2.961      132
+                       386       4   0.923      132
+                       387       8   2.702      132
+                       388       6   2.247      132
+                       389      10   4.724      132
+                       390       6   1.570      132
+                       391       8   2.402      132
+                       392       7   3.223      132
+                       393       5   2.460      132
+                       394       4   1.726      132
+                       395       4   1.258      132
+                       396       6   2.550      132
+                       397       4   1.763      132
+                       398       5   1.501      132
+                       399       5   2.548      132
+                       400       5   1.087      132
+                       401       4   1.801      132
+                       402       6   1.921      132
+                       403       4   1.619      132
+                       404       5   1.815      132
+                       405       5   2.103      132
+                       406       4   1.594      132
+                       407       6   1.444      132
+                       408       5   2.613      132
+                       409       4   1.951      132
+                       410       6   2.012      132
+                       411       5   1.424      132
+                       412       6   1.824      132
+                       413       5   0.976      132
+                       414       4   1.073      132
+                       415       4   0.927      132
+                       416       9   4.779      132
+                       417       7   3.061      132
+                       418       5   1.343      132
+                       419       4   1.706      132
+                       420       6   1.394      132
+                       421       3   1.473      132
+                       422       5   1.302      132
+                       423       4   1.527      132
+                       424       5   1.994      132
+                       425       3   1.286      132
+                       426       6   1.888      132
+                       427       5   2.714      132
+                       428       5   2.065      132
+                       429       5   1.990      132
+                       430       4   1.497      132
+                       431       3   0.609      132
+                       432       5   1.899      132
+                       433       3   1.148      132
+                       434       5   1.621      132
+                       435       4   1.394      132
+                       436       8   2.609      132
+                       437       4   1.349      132
+                       438       6   1.152      132
+                       439       7   2.059      132
+                       440       3   0.970      132
+                       441       4   1.400      132
+                       442       4   1.051      132
+                       443       5   1.779      132
+                       444       4   1.359      132
+                       445       3   0.878      132
+                       446       5   2.249      132
+                       447       3   0.793      132
+                       448       4   1.318      132
+                       449       4   1.105      132
+                       450       4   1.856      132
+                       451       5   1.144      132
+                       452       4   1.101      132
+                       453       4   1.333      132
+                       454       5   0.736      132
+                       455       5   1.325      132
+                       456       6   2.016      132
+                       457       4   1.503      132
+                       458       6   1.057      132
+                       459       4   1.290      132
+                       460       7   3.221      132
+                       461       4   1.172      132
+                       462       4   0.850      132
+                       463       5   2.000      132
+                       464       5   0.698      132
+                       465       3   1.361      132
+                       466       2   0.483      132
+                       467       3   1.162      132
+                       468       3   0.669      132
+                       469       6   1.890      132
+                       470       5   2.077      132
+                       471       4   1.213      132
+                       472       5   0.773      132
+                       473       6   1.560      132
+                       474       4   1.357      132
+                       475       5   2.185      132
+                       476       3   0.783      132
+                       477       2   0.387      132
+                       478       4   1.020      132
+                       479       4   1.412      132
+                       480       2   0.544      132
+                       481       4   0.978      132
+                       482       4   0.970      132
+                       483       4   1.296      132
+                       484       4   0.937      132
+                       485       5   1.258      132
+                       486       4   1.225      132
+                       487       4   1.316      132
+                       488       4   1.442      132
+                       489       2   1.045      132
+                       490       7   2.247      132
+                       491       2   0.529      132
+                       492       5   1.578      132
+                       493       3   0.805      132
+                       494       5   1.418      132
+                       495       3   0.911      132
+                       496       3   1.442      132
+                       497       4   1.284      132
+                       498       5   1.264      132
+                       499       3   0.613      132
+                       500       4   1.357      132
+                       501       5   1.759      132
+                       502       4   1.921      132
+                       503       4   1.643      132
+                       504       3   1.028      132
+                       505       4   1.680      132
+                       506       4   1.073      132
+                       507       4   1.314      132
+                       508       6   1.357      132
+                       509       4   1.430      132
+                       510       4   1.207      132
+                       511       3   1.185      132
+                       512       5   1.613      132
+                       513       3   0.367      132
+                       514       3   0.866      132
+                       515       3   0.945      132
+                       516       3   0.418      132
+                       517       4   1.700      132
+                       518       5   1.045      132
+                       519       4   0.736      132
+                       520       4   0.996      132
+                       521       3   1.053      132
+                       522       5   1.444      132
+                       523       4   1.710      132
+                       524       4   1.748      132
+                       525       4   1.542      132
+                       526       6   1.631      132
+                       527       4   0.617      132
+                       528       5   1.838      132
+                       529       3   0.371      132
+                       530       5   1.805      132
+                       531       5   1.493      132
+                       532       4   1.134      132
+                       533       3   1.243      132
+                       534       4   1.704      132
+                       535       5   1.310      132
+                       536       5   1.546      132
+                       537       6   3.008      132
+                       538       7   2.748      132
+                       539       5   1.680      132
+                       540       7   2.264      132
+                       541       3   1.527      132
+                       542       4   1.434      132
+                       543       4   1.978      132
+                       544       3   0.878      132
+                       545       5   0.854      132
+                       546       3   0.495      132
+                       547       4   1.414      132
+                       548       6   2.310      132
+                       549       5   1.897      132
+                       550       6   1.207      132
+                       551       3   0.615      132
+                       552       4   0.830      132
+                       553       5   2.049      132
+                       554       3   0.755      132
+                       555       4   1.225      132
+                       556       3   0.850      132
+                       557       5   0.941      132
+                       558       4   0.811      132
+                       559       5   0.773      132
+                       560       4   1.527      132
+                       561       2   0.602      132
+                       562       5   1.487      132
+                       563       4   0.497      132
+                       564       4   1.631      132
+                       565       4   2.016      132
+                       566       5   2.087      132
+                       567       3   0.475      132
+                       568       4   1.120      132
+                       569       6   1.568      132
+                       570       4   1.337      132
+                       571       5   1.836      132
+                       572       5   1.183      132
+                       573       3   0.884      132
+                       574       5   1.586      132
+                       575       4   1.511      132
+                       576       5   1.507      132
+                       577       4   2.041      132
+                       578       2   0.521      132
+                       579       4   1.039      132
+                       580       5   1.071      132
+                       581       5   1.469      132
+                       582       5   1.651      132
+                       583       2   0.659      132
+                       584       4   1.016      132
+                       585       6   1.550      132
+                       586       4   1.205      132
+                       587       5   1.884      132
+                       588       2   0.197      132
+                       589       4   1.538      132
+                       590       3   1.290      132
+                       591       4   1.481      132
+                       592       5   1.653      132
+                       593       5   0.913      132
+                       594       3   0.880      132
+                       595       3   0.809      132
+                       596       4   1.947      132
+                       597       4   1.444      132
+                       598       6   1.588      132
+                       599       3   0.953      132
+                       600       4   1.316      132
+                       601       4   1.276      132
+                       602       4   0.897      132
+                       603       2   0.264      132
+                       604       5   1.753      132
+                       605       4   3.014      132
+                       606       3   1.170      132
+                       607       4   1.479      132
+                       608       4   1.436      132
+                       609       3   0.385      132
+                       610       5   1.024      132
+                       611       6   1.704      132
+                       612       5   1.874      132
+                       613       4   1.892      132
+                       614       7   2.483      132
+                       615       3   0.734      132
+                       616       4   1.095      132
+                       617       6   2.761      132
+                       618       6   2.410      132
+                       619       4   1.191      132
+                       620       5   1.856      132
+                       621       5   0.613      132
+                       622       4   1.688      132
+                       623       3   0.460      132
+                       624       3   1.030      132
+                       625       4   1.755      132
+                       626       5   2.195      132
+                       627       5   2.335      132
+                       628       5   1.473      132
+                       629       6   2.483      132
+                       630      11   4.785      132
+                       631       8   2.365      132
+                       632       5   1.420      132
+                       633       4   1.963      132
+                       634       5   1.619      132
+                       635       5   1.909      132
+                       636       4   1.495      132
+                       637       3   0.943      132
+                       638       5   1.347      132
+                       639       7   1.998      132
+                       640       5   1.548      132
+                       641       5   1.623      132
+                       642      11   3.243      132
+                       643      10   2.669      132
+                       644       8   2.586      132
+                       645       6   1.377      132
+                       646      13   4.404      132
+                       647       7   2.838      132
+                       648       6   1.473      132
+                       649       2   0.546      132
+                       650       6   2.410      132
+                       651       9   2.783      132
+                       652       5   1.296      132
+                       653       2   0.968      132
+                       654      11   3.661      132
+                       655      11   4.176      132
+                       656      12   4.462      132
+                       657       6   1.976      132
+                       658      13   5.858      132
+                       659      16   5.024      132
+                       660      14   6.562      132
+                       661      14   5.231      132
+                       662      27  13.653      132
+                       663      17   9.452      132
+
+Total tracks in x-direction: 64944, in y-direction: 87648
+
+Logic area (in minimum width transistor areas, excludes I/Os and empty grid tiles)...
+	Total logic block area (Warning, need to add pitch of routing to blocks with height > 3): 0
+	Total used logic block area: 0
+
+Routing area (in minimum width transistor areas)...
+	Total routing area: 2.90824e+09, per logic tile: 8870.77
+
+Total Number of Wiring Segments by Direction: direction length number
+                                              --------- ------ -------
+                                                      X      4 9338652
+                                                      Y      4 9348456
+                                                      X     16 375272
+                                                      Y     16 377982
+
+X - Directed Wiring Segment usage by length: length utilization
+                                             ------ -----------
+                                             4      0.0041
+                                            16       0.169
+
+Y - Directed Wiring Segment usage by length: length utilization
+                                             ------ -----------
+                                             4     0.00461
+                                            16       0.133
+
+Segment occupancy by length: Length utilization
+                             ------ -----------
+                             L4         0.00436
+                             L16           0.151
+
+Segment occupancy by type: name type utilization
+                           ---- ---- -----------
+                             L4    0     0.00436
+                            L16    1       0.151
+
+Final hold Worst Negative Slack (hWNS): 0 ns
+Final hold Total Negative Slack (hTNS): 0 ns
+
+Final hold slack histogram:
+[  6.7e-11:  2.4e-09) 3015 ( 60.4%) |**********************************************
+[  2.4e-09:  4.7e-09)  550 ( 11.0%) |********
+[  4.7e-09:    7e-09)    9 (  0.2%) |
+[    7e-09:  9.3e-09)    6 (  0.1%) |
+[  9.3e-09:  1.2e-08)  177 (  3.5%) |***
+[  1.2e-08:  1.4e-08)  466 (  9.3%) |*******
+[  1.4e-08:  1.6e-08)  737 ( 14.8%) |***********
+[  1.6e-08:  1.8e-08)   14 (  0.3%) |
+[  1.8e-08:  2.1e-08)   10 (  0.2%) |
+[  2.1e-08:  2.3e-08)    4 (  0.1%) |
+
+Final critical path delay (least slack): 37.9499 ns, Fmax: 26.3506 MHz
+Final setup Worst Negative Slack (sWNS): -37.9499 ns
+Final setup Total Negative Slack (sTNS): -100824 ns
+
+Final setup slack histogram:
+[ -3.8e-08: -3.4e-08)   84 (  1.7%) |***
+[ -3.4e-08:   -3e-08)  209 (  4.2%) |*******
+[   -3e-08: -2.7e-08)  426 (  8.5%) |**************
+[ -2.7e-08: -2.3e-08) 1415 ( 28.4%) |**********************************************
+[ -2.3e-08: -1.9e-08)  870 ( 17.4%) |****************************
+[ -1.9e-08: -1.5e-08)  645 ( 12.9%) |*********************
+[ -1.5e-08: -1.2e-08)  831 ( 16.7%) |***************************
+[ -1.2e-08: -7.8e-09)  265 (  5.3%) |*********
+[ -7.8e-09:   -4e-09)   68 (  1.4%) |**
+[   -4e-09: -2.3e-10)  175 (  3.5%) |******
+
+Final geomean non-virtual intra-domain period: 37.9499 ns (26.3506 MHz)
+Final fanout-weighted geomean non-virtual intra-domain period: 37.9499 ns (26.3506 MHz)
+
+Incr Slack updates 1 in 0.00072259 sec
+Full Max Req/Worst Slack updates 1 in 4.3932e-05 sec
+Incr Max Req/Worst Slack updates 0 in 0 sec
+Incr Criticality updates 0 in 0 sec
+Full Criticality updates 1 in 0.00097946 sec
+Flow timing analysis took 53.5267 seconds (52.3535 STA, 1.17321 slack) (385 full updates: 134 setup, 0 hold, 251 combined).
+VPR succeeded
+The entire flow of VPR took 297980.88 seconds (max_rss 56630.4 MiB)
+Incr Slack updates 250 in 0.190407 sec
+Full Max Req/Worst Slack updates 52 in 0.00242394 sec
+Incr Max Req/Worst Slack updates 198 in 0.0123797 sec
+Incr Criticality updates 137 in 0.0966786 sec
+Full Criticality updates 113 in 0.112196 sec

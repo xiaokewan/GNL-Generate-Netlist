@@ -25,13 +25,15 @@ WORK_DIR=$1
 RUN_NETLIST2RENT="on"
 RUN_RENT2VIZ="on"
 READ_VPR="off"
+COMP="off"
 NORM="off"
 usage() {
   echo "Usage: $0 <work_dir_path> -n [*on*|off] -v [*on*|off] -r [on|*off*] -m [on|off]"
-  echo "  -n  [on|off]: blif to rent hypergraph, default 'on'."
-  echo "  -v  [on|off]: rent hypergraph to figure, default 'on'."
-  echo "  -r  [on|off]: Read VPR results for runtime critical pathlength ..., default is 'off'."
-  echo "  -m  [on|off]: Using normalization rent_graph. Default is off."
+  echo "  -n  [*on*|off]: blif to rent hypergraph, default 'on'."
+  echo "  -v  [*on*|off]: rent hypergraph to figure, default 'on'."
+  echo "  -r  [on|*off*]: Read VPR results for runtime critical pathlength ..., default is 'off'."
+  echo "  -c  [on|*off*]: Compare the result in different size. Default is off."
+  echo "  -m  [on|*off*]: Using normalization rent_graph. Default is off."
   exit 0
 }
 if [ $# -eq 0 ] || [ "$1" == "-h" ]; then
@@ -43,7 +45,7 @@ source "./config.sh"
 
 shift # shift arguments
 
-while getopts ":n:v:r:m" opt; do
+while getopts ":n:v:r:c:m" opt; do
   case ${opt} in
     n | net2rent)
       RUN_NETLIST2RENT=$OPTARG
@@ -54,9 +56,13 @@ while getopts ":n:v:r:m" opt; do
     r | read)
       READ_VPR=$OPTARG
       ;;
+    c | compare)
+      COMP=$OPTARG
+      ;;
     m | norm)
       NORM=$OPTARG
       ;;
+
     \? )
       echo "Usage: $0 <work_dir_path> -n [*on*|off] -v [*on*|off] -r [on|*off*]"
       exit 1
@@ -118,4 +124,8 @@ if [ "$READ_VPR" == "on" ]; then
     python3 "$POST_DIR/readvpr.py" "$PROJECT_ROOT/$WORK_DIR/vpr_files" "$PROJECT_ROOT/$WORK_DIR"
 fi
 
+if [ "$COMP" == "on" ]; then
+  echo "Comparing Diff VPR results in $WORK_DIR"
+  python3 "$POST_DIR/compvpr.py" "$PROJECT_ROOT/$WORK_DIR"
+fi
 cd - > /dev/null || exit

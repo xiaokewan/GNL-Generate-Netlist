@@ -77,7 +77,9 @@ done
 #    exit 1
 #fi
 
-cd "$PROJECT_ROOT"/rent_sweep/"$FOLDER_NAME" || mkdir -p "$PROJECT_ROOT"/rent_sweep/"$FOLDER_NAME" || exit 1
+mkdir -p "$PROJECT_ROOT"/rent_sweep/"$FOLDER_NAME" || exit 1
+cd "$PROJECT_ROOT"/rent_sweep/"$FOLDER_NAME" || exit 1
+
 
 
 if [ "$SWEEP_RUN" == "on" ]; then
@@ -101,14 +103,14 @@ gate=xor2   2 1
 [circuit]
 name=rent_exp_$p
 libraries=lib
-distribution=1500 4500 3000 3000 1500 1500
+distribution=2000 6000 4000 4000 2000 2000
 
 size=1
 p=$p
 sigmaG=0
 sigmaT=0
 
-size=15000
+size=20000
 p=$p
 #  meanG=0.5
 sigmaG=0
