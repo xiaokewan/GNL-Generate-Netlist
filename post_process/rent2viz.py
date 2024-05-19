@@ -118,7 +118,7 @@ def visualize_rent(rent_path, output_filename='Rents_rule_real.png', output_figu
     log_bin_means = np.log2(bin_means)
     line, slope, _, _ = trend_line(log_bin_means)
     # y_pred_log, coef = trend_line_ml(log_bin_means)
-
+    print(f"Current net's rent's exponent is {slope}")
     plt.figure(figsize=(10, 6))
 
     ## Viz linear regression results

@@ -128,7 +128,7 @@ def fit_and_plot_exponential(filename, columns_to_fit):
 
 if __name__ == '__main__':
     if len(sys.argv) != 3:
-        print("Usage: python analyze_vpr_logs.py <log_folder> <output_figures_folder>")
+        print("Usage: python readvpr.py <log_folder> <output_figures_folder>")
         sys.exit(1)
 
     log_folder = sys.argv[1]

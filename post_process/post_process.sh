@@ -18,6 +18,7 @@
 #   -n --net2rent [on|off]: blif to rent hypergraph, default 'on'. Optional. whether to run netlist2rent.py.
 #   -v --viz [on|off]: rent hypergraph to figure, default 'on'. Optional. whether to run rent2viz.py.
 #                recommend: <work_dir_path> will search .rent files in the current folder and sub-folder
+#   -b --blif <blif_file1> <blif_file2>...: Optional list of BLIF files to process. If not provided, all BLIF files in the directory will be processed.
 #   -r -- read [on|off]: Read VPR results for runtime critical pathlength ..., default is 'off'. Optional. whether to run readvpr.py to process VPR results. Default is 'off'.
 #   -m --norm [on|off]: Using normalization rent_graph. Default is off.
 #   -h help
@@ -27,9 +28,12 @@ RUN_RENT2VIZ="on"
 READ_VPR="off"
 COMP="off"
 NORM="off"
+BLIF_FILES=()
+
 usage() {
   echo "Usage: $0 <work_dir_path> -n [*on*|off] -v [*on*|off] -r [on|*off*] -m [on|off]"
   echo "  -n  [*on*|off]: blif to rent hypergraph, default 'on'."
+  echo "  -b  [on|*off*]: blif files will be proceeded, default 'off'."
   echo "  -v  [*on*|off]: rent hypergraph to figure, default 'on'."
   echo "  -r  [on|*off*]: Read VPR results for runtime critical pathlength ..., default is 'off'."
   echo "  -c  [on|*off*]: Compare the result in different size. Default is off."
@@ -45,34 +49,40 @@ source "./config.sh"
 
 shift # shift arguments
 
-while getopts ":n:v:r:c:m" opt; do
-  case ${opt} in
-    n | net2rent)
-      RUN_NETLIST2RENT=$OPTARG
-      ;;
-    v | viz)
-      RUN_RENT2VIZ=$OPTARG
-      ;;
-    r | read)
-      READ_VPR=$OPTARG
-      ;;
-    c | compare)
-      COMP=$OPTARG
-      ;;
-    m | norm)
-      NORM=$OPTARG
-      ;;
 
-    \? )
-      echo "Usage: $0 <work_dir_path> -n [*on*|off] -v [*on*|off] -r [on|*off*]"
-      exit 1
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    -n|--net2rent)
+      RUN_NETLIST2RENT="$2"
+      shift 2
       ;;
-    : )
-      echo "Usage: $0 <work_dir_path> -n [*on*|off] -v [*on*|off] -r [on|*off*]"
+    -v|--viz)
+      RUN_RENT2VIZ="$2"
+      shift 2
+      ;;
+    -r|--read)
+      READ_VPR="$2"
+      shift 2
+      ;;
+    -b|--blif)
+      shift
+      while [[ $# -gt 0 && ! "$1" =~ ^- ]]; do
+        BLIF_FILES+=("$1")
+        shift
+      done
+      ;;
+    -m|--norm)
+      NORM="$2"
+      shift 2
+      ;;
+    *)
+      echo "Unknown option: $1"
+      usage
       exit 1
       ;;
   esac
 done
+
 
 if [ -f "$WORK_DIR" ]; then
   WORK_DIR=$(dirname "${WORK_DIR}")
@@ -85,11 +95,13 @@ fi
 
 #$WORK_DIR="$PROJECT_ROOT/$WORK_DIR"
 cd "$PROJECT_ROOT/$WORK_DIR" || exit
-
-
+	
 # netlist2rent.py: Transfer the .blif to Hypergraph
 if [ "$RUN_NETLIST2RENT" == "on" ]; then
-    for blif_file in *.blif; do
+    if [ ${#BLIF_FILES[@]} -eq 0 ]; then
+        BLIF_FILES=("$WORK_DIR"/*.blif)
+    fi
+    for blif_file in "${BLIF_FILES[@]}"; do
         if [ "$NORM" == "off" ]; then
             echo "Processing $blif_file with netlist2rent.py"
             python3 "$POST_DIR/netlist2rent.py" "$blif_file" "$PROJECT_ROOT/$WORK_DIR/rent_files" "$HMETIS_DIR"
@@ -102,19 +114,33 @@ fi
 
 # rent2viz.py: visualized partitioned netlist (rent graph)
 if [ "$RUN_RENT2VIZ" == "on" ]; then
-#    if ls *.rent */*.rent >/dev/null 2>&1; then
-        for rent_file in *.rent */*.rent; do
+    if [ ${#BLIF_FILES[@]} -eq 0 ]; then
+        RENT_FILES=(/*.rent /*/*.rent)
+    else
+        RENT_FILES=()
+        for blif_file in "${BLIF_FILES[@]}"; do
+            rent_file="rent_files/${blif_file}.rent"
+            if [ -f "$rent_file" ]; then
+                RENT_FILES+=("$rent_file")
+            else
+                echo "File NOT found: $rent_file"
+            fi
+        done
+    fi
+
+    for rent_file in "${RENT_FILES[@]}"; do
+        if [ -f "$rent_file" ]; then  
             if [ "$NORM" == "off" ]; then
                 echo "Visualizing $rent_file with rent2viz.py"
-                echo "$rent_file"
                 python3 "$POST_DIR/rent2viz.py" "$rent_file" "$PROJECT_ROOT/$WORK_DIR/rent_figures"
             else
                 echo "Visualizing $rent_file with rent_norm2viz.py"
-                echo "$rent_file"
                 python3 "$POST_DIR/rent_norm/rent_norm2viz.py" "$rent_file" "$PROJECT_ROOT/$WORK_DIR/rent_figures"
             fi
-        done
-#    fi
+        else
+            echo "Warning: Expected rent file does not exist - $rent_file"
+        fi
+    done
 fi
 
 

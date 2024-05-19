@@ -149,7 +149,7 @@ def visualize_rent(rent_path, output_filename='Rents_rule_real.png', output_figu
     # # calculate norm bin means
     bin_means = calculate_bin_means_norm(rent_data_flat[:, 0:2], norm_blocks, (np.floor(np.log2(norm_blocks.max()))).astype(int))
     line, slope, _, _ = trend_line(np.log2(bin_means), True)
-
+    print(f"Current net's normalized rent's exponent is {slope}")
     # prev_slope = slope
     # for i in range(10):
     #     y_predict, slope, outlier_mask = trend_line_ml(np.stack((np.log(norm_blocks.astype(float)), np.log(pins.astype(float))), axis=1))
