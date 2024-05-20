@@ -40,7 +40,12 @@ def parse_log_file(filepath):
     routing_time = re.search(routing_time_regex, content)
     placement_time = re.search(placement_time_regex, content)
     fpga_size = re.search(fpga_size_regex, content)
-
+    if fpga_size:
+        width = int(fpga_size.group(1))
+        height = int(fpga_size.group(2))
+        area = width * height  # Calculate the area
+    else:
+        width = height = area = None
     return {
         "time": float(time.group(1)) if time else None,
         "cpd": float(cpd.group(1)) if cpd else None,
@@ -52,7 +57,8 @@ def parse_log_file(filepath):
         "packing_time": float(packing_time.group(1)) if packing_time else None,
         "routing_time": float(routing_time.group(1)) if routing_time else None,
         "placement_time": float(placement_time.group(1)) if placement_time else None,
-        "fpga_size": f"{fpga_size.group(1)} x {fpga_size.group(2)}" if fpga_size else None
+        "fpga_size": f"{fpga_size.group(1)} x {fpga_size.group(2)}" if fpga_size else None,
+        "fpga_area": area if area else None
     }
 
 
