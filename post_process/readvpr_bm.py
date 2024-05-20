@@ -25,10 +25,10 @@ def parse_log_file(filepath):
     cpd_regex = r"Final critical path delay \(least slack\): ([\d.]+) ns"
     wirelength_regex = r"Total wirelength: ([\d]+), average net length: ([\d.]+)"
     estimate_distance_regex = r"BB estimate of min-dist \(placement\) wire length:\s+(\d+)"
-
     packing_time_regex = r"# Packing took ([\d.]+) seconds"
     routing_time_regex = r"# Routing took ([\d.]+) seconds"
     placement_time_regex = r"# Placement took ([\d.]+) seconds"
+    fpga_size_regex = r"FPGA sized to (\d+) x (\d+) \(auto\)"
 
     # search existing data
     blocks = re.search(blocks_regex, content)
@@ -36,7 +36,7 @@ def parse_log_file(filepath):
     cpd = re.search(cpd_regex, content)
     wirelength = re.search(wirelength_regex, content)
     estimate_distances = re.findall(estimate_distance_regex, content)
-
+    fpga_size = re.search(fpga_size_regex, content)
 
     packing_time = re.search(packing_time_regex, content)
     routing_time = re.search(routing_time_regex, content)
@@ -52,7 +52,8 @@ def parse_log_file(filepath):
         "estimate_distance_2": int(estimate_distances[1]) if len(estimate_distances) > 1 else None,
         "packing_time": float(packing_time.group(1)) if packing_time else None,
         "routing_time": float(routing_time.group(1)) if routing_time else None,
-        "placement_time": float(placement_time.group(1)) if placement_time else None
+        "placement_time": float(placement_time.group(1)) if placement_time else None,
+        "fpga_size": f"{fpga_size.group(1)} x {fpga_size.group(2)}" if fpga_size else None
     }
 
 
