@@ -168,6 +168,7 @@ def visualize_rent(rent_path, output_filename='Rents_rule_real.png', output_figu
 #         visualize_rent(rent_file_path, output_filename)
 #         print(f"Visualization saved to {output_filename}")
 
+
 if __name__ == '__main__':
     if len(sys.argv) != 3:
         print("Usage: python3 rent2viz.py <rent_file_path>  <output_figures_folder>")

@@ -160,7 +160,7 @@ def visualize_rent(rent_path, output_filename='Rents_rule_real.png', output_figu
     #     prev_slope = slope
     #     norm_blocks = rent_norm(t_dic, slope)
 
-    plt.figure(figsize=(10, 6))
+    plt.figure(figsize=(12, 9))
 
     ## data points
     plt.scatter(norm_blocks, pins, alpha=0.1, label='Data Points')
@@ -177,7 +177,8 @@ def visualize_rent(rent_path, output_filename='Rents_rule_real.png', output_figu
              label=f'Slope (r) = {slope:.2f}')
     plt.xscale("log", base=2)
     plt.yscale("log", base=2)
-    plt.xlabel('$B$ (Blocks)', size=15)
+    # after normalization, the x axis changed to the summation
+    plt.xlabel(r'$T = \sum_{i=1}^{n} w_i \cdot B_i$', size=12)
     plt.ylabel('$T$ (Terminals)', size=15)
 
 
@@ -187,7 +188,7 @@ def visualize_rent(rent_path, output_filename='Rents_rule_real.png', output_figu
 
     os.makedirs(output_figures_folder, exist_ok=True)
     plt.savefig(os.path.join(output_figures_folder, output_filename))
-    # plt.show()
+    plt.show()
 
 
 if __name__ == '__main__':

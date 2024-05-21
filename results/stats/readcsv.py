@@ -5,7 +5,7 @@ from mpl_toolkits.mplot3d import Axes3D
 import sys
 
 
-def plot_3d_comparison_data_vs_rent(csv_directory, output_directory, three_di=True):
+def plot_comparison_data_vs_rent(csv_directory, output_directory, three_di=True):
     # y-axis: data, x-axis: rent exponent, color/z-axis: area
     if not os.path.exists(output_directory):
         os.makedirs(output_directory)
@@ -54,14 +54,14 @@ def plot_3d_comparison_data_vs_rent(csv_directory, output_directory, three_di=Tr
         ax.set_title(f'Scatter Plot of {metric}')
         ax.legend(title='Source File')
         cbar = fig.colorbar(scatter, ax=ax, shrink=0.7)
-        cbar.set_label(metric)
+        cbar.set_label('FPGA Area')
 
     plt.tight_layout()
-    plt.savefig(os.path.join(output_directory, 'combined_scatter_plots.png')) if three_di is False else plt.savefig(os.path.join(output_directory, 'combined_scatter_plots_3d.png'))
+    plt.savefig(os.path.join(output_directory, 'combined_scatter_plots_data_vs_rent.png')) if three_di is False else plt.savefig(os.path.join(output_directory, 'combined_scatter_plots_3d_data_vs_rent.png'))
     plt.close()
 
 
-def plot_3d_comparison_area_vs_rent(csv_directory, output_directory, three_di=True):
+def plot_comparison_area_vs_rent(csv_directory, output_directory, three_di=True):
     if not os.path.exists(output_directory):
         os.makedirs(output_directory)
 
@@ -112,7 +112,7 @@ def plot_3d_comparison_area_vs_rent(csv_directory, output_directory, three_di=Tr
         cbar.set_label(metric)
 
     plt.tight_layout()
-    plt.savefig(os.path.join(output_directory, 'combined_scatter_plots.png')) if three_di is False else plt.savefig(os.path.join(output_directory, 'combined_scatter_plots_3d.png'))
+    plt.savefig(os.path.join(output_directory, 'combined_scatter_plots_area_vs_rent.png')) if three_di is False else plt.savefig(os.path.join(output_directory, 'combined_scatter_plots_3d_area_vs_rent.png'))
     plt.close()
 
 
@@ -158,4 +158,4 @@ if __name__ == '__main__':
     csv_folder = sys.argv[1]
     output_figures_dir = sys.argv[2]
     # plot_3d_scatter_sperate(csv_folder, output_figures_dir)
-    plot_3d_comparison_data_vs_rent(csv_folder, output_figures_dir, three_di=True)
+    plot_comparison_data_vs_rent(csv_folder, output_figures_dir, three_di=False)
