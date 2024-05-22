@@ -99,21 +99,28 @@ def trend_line_ml(data):
     return line, coef, outlier_mask
 
 
-def trend_line(data, filter=False, slope_threshold=(0.2, 1)):
+def trend_line(data, filter=True, slope_threshold=0.13):
     if filter:
         filtered_data = []
-        for i in range(1, len(data)):
-            slope = (data[i, 1] - data[i - 1, 1]) / (data[i, 0] - data[i - 1, 0]) if (data[i, 0] - data[
-                i - 1, 0]) != 0 else 0
-            if slope_threshold[0] <= slope <= slope_threshold[1]:
-                filtered_data.append(data[i - 1])
-                filtered_data.append(data[i])
+        slopes = []
 
+        for i in range(1, len(data) - 1):
+            slope = (data[i, 1] - data[i - 1, 1]) / (data[i, 0] - data[i - 1, 0]) \
+                if (data[i, 0] - data[i - 1, 0]) != 0 else 0
+            slopes.append(slope) if i == 1 else None
+            if (abs(slope - slopes[i-1]) <= slope_threshold) or i < 4: # 2*len(data)/5:
+                if i == 1:
+                    filtered_data.append(data[i - 1])
+                filtered_data.append(data[i])
+                slopes.append(slope)
+            else:
+                break
         if not filtered_data:
             return None, None, None, None
     else:
         filtered_data = data
-    # filtered data for tendline
+
+    # filtered data for trend line
     filtered_data = np.array(filtered_data)
     x, y = filtered_data[:, 0], filtered_data[:, 1]
     x_mean, y_mean = x.mean(), y.mean()
@@ -123,6 +130,31 @@ def trend_line(data, filter=False, slope_threshold=(0.2, 1)):
     error = np.sum((y - (a * x + b)) ** 2) / len(filtered_data)
 
     return np.array([[x[0], a * x[0] + b], [x[-1], a * x[-1] + b]]), a, b, error
+
+
+# def trend_line(data, filter=True, slope_threshold=(0.25, 1)):
+#     if filter:
+#         filtered_data = []
+#         for i in range(1, len(data)):
+#             slope = (data[i, 1] - data[i - 1, 1]) / (data[i, 0] - data[i - 1, 0]) if (data[i, 0] - data[i - 1, 0]) != 0 else 0
+#             if slope_threshold[0] <= slope <= slope_threshold[1]:
+#                 filtered_data.append(data[i - 1])
+#                 filtered_data.append(data[i])
+#         if not filtered_data:
+#             return None, None, None, None
+#     else:
+#         filtered_data = data
+#
+#     # filtered data for tend line
+#     filtered_data = np.array(filtered_data)
+#     x, y = filtered_data[:, 0], filtered_data[:, 1]
+#     x_mean, y_mean = x.mean(), y.mean()
+#     x_err, y_err = x - x_mean, y - y_mean
+#     a = (x_err * y_err).sum() / (x_err ** 2).sum()
+#     b = y_mean - a * x_mean
+#     error = np.sum((y - (a * x + b)) ** 2) / len(filtered_data)
+#
+#     return np.array([[x[0], a * x[0] + b], [x[-1], a * x[-1] + b]]), a, b, error
 
 
 def visualize_rent(rent_path, output_filename='Rents_rule_real.png', output_figures_folder="."):
@@ -174,21 +206,19 @@ def visualize_rent(rent_path, output_filename='Rents_rule_real.png', output_figu
                 marker='o', label='Bin Means')
     # bin means line
     plt.plot(np.exp2(line[:, 0]), np.exp2(line[:, 1]), color='black', linewidth=2, linestyle='--',
-             label=f'Slope (r) = {slope:.2f}')
+             label=f'Slope (r) = {slope:.4f}')
     plt.xscale("log", base=2)
     plt.yscale("log", base=2)
-    # after normalization, the x axis changed to the summation
+    # after normalization, the x-axis changed to the summation
     plt.xlabel(r'$T = \sum_{i=1}^{n} w_i \cdot B_i$', size=12)
     plt.ylabel('$T$ (Terminals)', size=15)
-
-
 
     plt.title('Rent\'s Rule Visualization After Normalization', size=15)
     plt.legend()
 
     os.makedirs(output_figures_folder, exist_ok=True)
     plt.savefig(os.path.join(output_figures_folder, output_filename))
-    plt.show()
+    # plt.show()
 
 
 if __name__ == '__main__':
@@ -199,6 +229,5 @@ if __name__ == '__main__':
     rent_file_path = sys.argv[1]
     output_figures_folder = sys.argv[2]
     output_filename = os.path.basename(rent_file_path) + "_norm_viz.png"
-
     visualize_rent(rent_file_path, output_filename, output_figures_folder)
     print(f"Visualization saved to {output_filename}")

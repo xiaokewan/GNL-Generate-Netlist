@@ -115,7 +115,7 @@ fi
 # rent2viz.py: visualized partitioned netlist (rent graph)
 if [ "$RUN_RENT2VIZ" == "on" ]; then
     if [ ${#BLIF_FILES[@]} -eq 0 ]; then
-        RENT_FILES=(/*.rent /*/*.rent)
+        RENT_FILES=($(find ./ -type f -name "*.rent"))
     else
         RENT_FILES=()
         for blif_file in "${BLIF_FILES[@]}"; do
@@ -129,6 +129,7 @@ if [ "$RUN_RENT2VIZ" == "on" ]; then
     fi
 
     for rent_file in "${RENT_FILES[@]}"; do
+	      echo "RentFIle: $rent_file"
         if [ -f "$rent_file" ]; then  
             if [ "$NORM" == "off" ]; then
                 echo "Visualizing $rent_file with rent2viz.py"
